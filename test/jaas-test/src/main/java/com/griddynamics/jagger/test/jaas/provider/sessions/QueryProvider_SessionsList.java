@@ -1,4 +1,4 @@
-package com.griddynamics.jagger.test.jaas.provider;
+package com.griddynamics.jagger.test.jaas.provider.sessions;
 
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;

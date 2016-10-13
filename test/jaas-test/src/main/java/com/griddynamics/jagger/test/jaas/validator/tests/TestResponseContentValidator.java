@@ -1,13 +1,12 @@
-package com.griddynamics.jagger.test.jaas.validator;
+package com.griddynamics.jagger.test.jaas.validator.tests;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
+import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.AssertionFailedError;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * [JFG-879]
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
  * - actual record is the same as expected one.
  */
 public class TestResponseContentValidator<E> extends BaseHttpResponseValidator<JHttpQuery<String>, E> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestResponseContentValidator.class);
 
     public TestResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -41,8 +39,7 @@ public class TestResponseContentValidator<E> extends BaseHttpResponseValidator<J
             isValid = true;
         } catch (AssertionFailedError e) {
             isValid = false;
-            LOGGER.warn("{}'s query response content is not valid, due to [{}].", query.toString(), e.getMessage());
-            logResponseAsFailed(endpoint, result);
+            logResponseAsFailed(query, endpoint, result, e.getMessage());
         }
 
         return isValid;

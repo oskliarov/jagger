@@ -8,8 +8,7 @@
         http://www.griddynamics.com/schema/jagger
         http://www.griddynamics.com/schema/jagger.xsd
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd"
-        >
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <scenario  id="scn_JaaS_std" xsi:type="scenario-query-pool">
         <query-distributor xsi:type="query-distributor-round-robin" />
@@ -23,6 +22,27 @@
         <info-collectors>
             <validator xsi:type="validator-not-null-response"/>
             <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.ResponseStatusValidator"/>
+
+            <metric xsi:type="metric-success-rate" plotData="true"/>
+            <metric xsi:type="metric-not-null-response" plotData="true"/>
+        </info-collectors>
+    </test-description>
+
+    <test-description id="td_JaaS_BadRequest" version="1">
+        <info-collectors>
+            <validator xsi:type="validator-not-null-response"/>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.ResponseStatus400Validator"/>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.BadRequest_ResponseContentValidator"/>
+
+            <metric xsi:type="metric-success-rate" plotData="true"/>
+            <metric xsi:type="metric-not-null-response" plotData="true"/>
+        </info-collectors>
+    </test-description>
+
+    <test-description id="td_JaaS_POSTRequest" version="1">
+        <info-collectors>
+            <validator xsi:type="validator-not-null-response"/>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.ResponseStatus201Validator"/>
 
             <metric xsi:type="metric-success-rate" plotData="true"/>
             <metric xsi:type="metric-not-null-response" plotData="true"/>

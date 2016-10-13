@@ -1,15 +1,13 @@
-package com.griddynamics.jagger.test.jaas.validator;
+package com.griddynamics.jagger.test.jaas.validator.sessions;
 
-import com.alibaba.fastjson.JSON;
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
+import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +20,9 @@ import java.util.stream.Collectors;
  * - list of sessions is of size 2 and greater;
  * - the list is no longer than the one available via DataService;
  * - the list contains no duplicates;
- * - a randomly picked records is the same as corresponding expected one.
+ * - a randomly picked record is the same as corresponding expected one.
  */
 public class SessionsListResponseContentValidator<E> extends BaseHttpResponseValidator<JHttpQuery<String>, E> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SessionsListResponseContentValidator.class);
 
     public SessionsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -54,15 +51,14 @@ public class SessionsListResponseContentValidator<E> extends BaseHttpResponseVal
             // Re-factor ones JFG-908 is resolved.
             Assert.assertTrue("Actual list is not a sub-set of expected set.", actualSessions.containsAll(TestContext.getSessions()));
 
-            SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize-1)));
+            SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize)));
             SessionEntity correspondingExpectedSession = TestContext.getSession(randomActualEntity.getId());
 
             Assert.assertEquals("Randomly selected expected and actual sessions are not equal.", correspondingExpectedSession, randomActualEntity);
             isValid = true;
         } catch (AssertionFailedError e) {
             isValid = false;
-            LOGGER.warn("{}'s query response content is not valid, due to [{}].", query.toString(), e.getMessage());
-            logResponseAsFailed(endpoint, result);
+            logResponseAsFailed(query, endpoint, result, e.getMessage());
         }
 
         return isValid;

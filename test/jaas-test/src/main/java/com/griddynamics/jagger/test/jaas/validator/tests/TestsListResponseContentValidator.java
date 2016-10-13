@@ -1,13 +1,12 @@
-package com.griddynamics.jagger.test.jaas.validator;
+package com.griddynamics.jagger.test.jaas.validator.tests;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
+import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.AssertionFailedError;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +26,6 @@ import static junit.framework.Assert.assertTrue;
  * - a randomly picked records is the same as corresponding expected one.
  */
 public class TestsListResponseContentValidator<E> extends BaseHttpResponseValidator<JHttpQuery<String>, E> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestsListResponseContentValidator.class);
 
     public TestsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -59,8 +57,7 @@ public class TestsListResponseContentValidator<E> extends BaseHttpResponseValida
             isValid = true;
         } catch (AssertionFailedError e) {
             isValid = false;
-            LOGGER.warn("{}'s query response content is not valid, due to [{}].", query.toString(), e.getMessage());
-            logResponseAsFailed(endpoint, result);
+            logResponseAsFailed(query, endpoint, result, e.getMessage());
         }
 
         return isValid;

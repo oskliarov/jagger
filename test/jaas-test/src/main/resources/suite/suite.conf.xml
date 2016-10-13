@@ -8,11 +8,21 @@
         http://www.griddynamics.com/schema/jagger
         http://www.griddynamics.com/schema/jagger.xsd
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd"
-        >
-
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <beans:import resource="test.description.conf.xml"/>
+
+    <!-- Standard Load/Termination/Limits settings for a test. A test still may have custom Load/Termination/Limits settings. -->
+    <test id="t_JaaS_Standard_load_termination">
+        <load xsi:type="load-user-groups">
+            <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" />
+        </load>
+        <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
+    </test>
+
+    <test id="t_JaaS_Standard" parent="t_JaaS_Standard_load_termination">
+        <limits xsi:type="limits-ref" ref="test_limits"/>
+    </test>
 
     <!--Name of workload configuration-->
     <configuration id="JaaS_TestConfiguration">
@@ -22,36 +32,36 @@
 
         <test-suite id="ts_JaaSTestSuit">
             <test-group id="tg_JaaS_GET_Sessions">
-                <test id="t_JaaS_GET_Sessions_List_SR_eq._1.0" testDescription="td_JaaS_SessionsList">
-                    <load xsi:type="load-user-groups">
-                        <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" id="tl_JaaS_sessions" />
-                    </load>
-                    <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
-                    <limits xsi:type="limits-ref" ref="test_limits"/>
-                </test>
+                <test id="t_JaaS_GET_Sessions_List_SR_eq._1.0" testDescription="td_JaaS_SessionsList" parent="t_JaaS_Standard"/>
 
-                <test id="t_JaaS_GET_Exact_Session_SR_eq._1.0" testDescription="td_JaaS_ExactSessionIds">
-                    <load xsi:type="load-user-groups">
-                        <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" id="tl_JaaS_session_ids" />
-                    </load>
-                    <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
-                    <limits xsi:type="limits-ref" ref="test_limits"/>
-                </test>
+                <test id="t_JaaS_GET_Exact_Session_SR_eq._1.0" testDescription="td_JaaS_ExactSessionIds" parent="t_JaaS_Standard"/>
 
-                <test id="t_JaaS_GET_Session_Tests_List_SR_eq._1.0" testDescription="td_JaaS_SessionTestsList">
-                    <load xsi:type="load-user-groups">
-                        <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" id="tl_JaaS_session_tests" />
-                    </load>
-                    <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
-                    <limits xsi:type="limits-ref" ref="test_limits"/>
-                </test>
+                <test id="t_JaaS_GET_Session_Tests_List_SR_eq._1.0" testDescription="td_JaaS_SessionTestsList" parent="t_JaaS_Standard"/>
 
-                <test id="t_JaaS_GET_Exact_Session_Test_SR_eq._1.0" testDescription="td_JaaS_ExactSessionTest">
+                <!-- Test may fail due to JFG-930 -->
+                <test id="t_JaaS_GET_Exact_Session_Test_SR_eq._1.0" testDescription="td_JaaS_ExactSessionTest" parent="t_JaaS_Standard"/>
+            </test-group>
+
+            <test-group id="tg_JaaS_GET_DB_configs">
+                <test id="t_JaaS_GET_DBs_List_SR_eq._1.0" testDescription="td_JaaS_DBsList" parent="t_JaaS_Standard"/>
+
+                <test id="t_JaaS_GET_Exact_DB_SR_eq._1.0" testDescription="td_JaaS_ExactDBsIds" parent="t_JaaS_Standard"/>
+
+                <test id="t_JaaS_GET_DBsIds_Non_Numeric" testDescription="td_JaaS_DBsIds_Non_Numeric" parent="t_JaaS_Standard_load_termination"/>
+
+                <test id="t_JaaS_GET_DBsIds_Not_Existent" testDescription="td_JaaS_DBsIds_Not_Existent" parent="t_JaaS_Standard_load_termination"/>
+            </test-group>
+
+            <test-group id="tg_JaaS_POST_DB_configs">
+                <test id="t_JaaS_POST_DB_SR_eq._1.0" testDescription="td_JaaS_Create_DB">
                     <load xsi:type="load-user-groups">
-                        <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" id="tl_JaaS_session_test" />
+                        <user count="1" startCount="1" startIn="0" startBy="0" life="1s" />
                     </load>
-                    <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
+                    <termination xsi:type="termination-iterations" iterations="1" maxDuration="1s"/>
                     <limits xsi:type="limits-ref" ref="test_limits"/>
+                    <listeners-test>
+                        <listener-test xsi:type="listener-test-ref" ref="listenerAfterCreateDbTestsCleanUp" />
+                    </listeners-test>
                 </test>
             </test-group>
 

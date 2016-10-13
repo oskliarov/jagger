@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class BaseHttpResponseValidator<Q, E> extends ResponseValidator<Q, E, JHttpResponse> {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseHttpResponseValidator.class);
+    protected static final String HDR_LOCATION = "Location";
 
     public BaseHttpResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -21,9 +22,10 @@ public abstract class BaseHttpResponseValidator<Q, E> extends ResponseValidator<
     @Override
     public abstract boolean validate(Q query, E endpoint, JHttpResponse result, long duration);
 
-    protected void logResponseAsFailed(E endpoint, JHttpResponse response){
+    protected void logResponseAsFailed(Q query, E endpoint, JHttpResponse response, String message){
+        LOGGER.warn("{}'s query response content is not valid, due to [{}].", query.toString(), message);
         LOGGER.warn(String.format
-                ("------> Failed response:\nEndpoint=%s \nStatus=%s \nBody=%s ",
-                        endpoint.toString(), response.getStatus().toString(), response.getBody()));
+                ("------> Failed response:\n%s \n%s",
+                        endpoint.toString(), response.toString()));
     }
 }

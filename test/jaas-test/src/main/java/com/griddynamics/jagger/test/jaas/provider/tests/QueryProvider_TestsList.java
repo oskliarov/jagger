@@ -1,7 +1,8 @@
-package com.griddynamics.jagger.test.jaas.provider;
+package com.griddynamics.jagger.test.jaas.provider.tests;
 
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
+import com.griddynamics.jagger.test.jaas.provider.sessions.QueryProvider_SessionsList;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import org.springframework.beans.factory.annotation.Value;
 
