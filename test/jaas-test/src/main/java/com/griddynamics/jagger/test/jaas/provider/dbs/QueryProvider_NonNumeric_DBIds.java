@@ -15,7 +15,7 @@ public class QueryProvider_NonNumeric_DBIds extends QueryProvider_DBsList {
     public Iterator iterator() {
         if (queries.isEmpty()) {
             queries.add(new JHttpQuery<String>().get().responseBodyType(String.class).path(uri + "/abvgdeyka"));
-            queries.add(new JHttpQuery<String>().get().responseBodyType(String.class).path(uri + "/AB"));
+            queries.add(new JHttpQuery<String>().get().responseBodyType(String.class).path(uri + "/ABVGD"));
         }
 
         return queries.iterator();

@@ -33,6 +33,16 @@
         </scenario>
     </test-description>
 
+    <test-description id="td_JaaS_CreatedDBsIds" name="Just created DB Configs" version="1" parent="td_JaaS_default">
+        <info-collectors>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.dbs.CreatedDBContentValidator"/>
+        </info-collectors>
+
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_CreatedDBIds" />
+        </scenario>
+    </test-description>
+
     <test-description id="td_JaaS_DBsIds_Non_Numeric" name="String as DB Config id" version="1" parent="td_JaaS_BadRequest">
         <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
             <query-provider xsi:type="query-provider-ref" ref="queryProvider_NonNumeric_DBIds" />

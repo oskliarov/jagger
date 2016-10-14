@@ -37,7 +37,7 @@ public class SessionsListResponseContentValidator<E> extends BaseHttpResponseVal
     public boolean validate(JHttpQuery<String> query, E endpoint, JHttpResponse result, long duration)  {
         List<SessionEntity> actualSessions = Arrays.asList((SessionEntity[]) result.getBody());
 
-        boolean isValid = false;
+        boolean isValid;
 
         //Checks.
         try {
@@ -46,10 +46,8 @@ public class SessionsListResponseContentValidator<E> extends BaseHttpResponseVal
             Assert.assertTrue("Several session records are expected. Check returned list's size", 1 < actlSize);
             List<SessionEntity> noDuplicatesActualList = actualSessions.stream().distinct().collect(Collectors.toList());
             Assert.assertEquals("Response contains duplicate session records", actlSize, noDuplicatesActualList.size());
-            //TODO: Wait for JFG-908 to be resolved and un-comment/re-factor.
- //           Assert.assertTrue(String.format("Actual list(%d) is longer than expected one(%d).", actlSize, expctdSize), actlSize <= expctdSize);
-            // Re-factor ones JFG-908 is resolved.
-            Assert.assertTrue("Actual list is not a sub-set of expected set.", actualSessions.containsAll(TestContext.getSessions()));
+            Assert.assertTrue(String.format("Actual list(%d) is longer than expected one(%d).", actlSize, expctdSize), actlSize <= expctdSize);
+            Assert.assertTrue("Actual list is not a sub-set of expected set.", TestContext.getSessions().containsAll(actualSessions));
 
             SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize)));
             SessionEntity correspondingExpectedSession = TestContext.getSession(randomActualEntity.getId());

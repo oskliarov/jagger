@@ -3,8 +3,7 @@
         xmlns="http://www.griddynamics.com/schema/jagger"
         xmlns:beans="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation=
-                "
+        xsi:schemaLocation="
         http://www.griddynamics.com/schema/jagger
         http://www.griddynamics.com/schema/jagger.xsd
         http://www.springframework.org/schema/beans
@@ -15,9 +14,10 @@
     <!-- Standard Load/Termination/Limits settings for a test. A test still may have custom Load/Termination/Limits settings. -->
     <test id="t_JaaS_Standard_load_termination">
         <load xsi:type="load-user-groups">
-            <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}" />
+            <user count="2" startCount="2" startIn="0" startBy="0" life="${jaas.std.tst.life}"/>
         </load>
-        <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}" maxDuration="${jaas.std.tst.max_duration}"/>
+        <termination xsi:type="termination-iterations" iterations="${jaas.std.tst.iterations}"
+                     maxDuration="${jaas.std.tst.max_duration}"/>
     </test>
 
     <test id="t_JaaS_Standard" parent="t_JaaS_Standard_load_termination">
@@ -55,12 +55,17 @@
             <test-group id="tg_JaaS_POST_DB_configs">
                 <test id="t_JaaS_POST_DB_SR_eq._1.0" testDescription="td_JaaS_Create_DB">
                     <load xsi:type="load-user-groups">
-                        <user count="1" startCount="1" startIn="0" startBy="0" life="1s" />
+                        <user count="1" startCount="1" startIn="0" startBy="0" life="1s"/>
                     </load>
-                    <termination xsi:type="termination-iterations" iterations="1" maxDuration="1s"/>
+                    <termination xsi:type="termination-iterations" iterations="1" maxDuration="1s"/> <!-- We do not want tons of records to be created.-->
                     <limits xsi:type="limits-ref" ref="test_limits"/>
+                </test>
+            </test-group>
+
+            <test-group id="tg_JaaS_GET_After_POST_DB_configs"> <!-- Shall be executed right after the POST test group to verify what actually was created. -->
+                <test id="t_JaaS_GET_Created_DB_SR_eq._1.0" testDescription="td_JaaS_CreatedDBsIds" parent="t_JaaS_Standard">
                     <listeners-test>
-                        <listener-test xsi:type="listener-test-ref" ref="listenerAfterCreateDbTestsCleanUp" />
+                        <listener-test xsi:type="listener-test-ref" ref="listenerAfterCreateDbTestsCleanUp"/>
                     </listeners-test>
                 </test>
             </test-group>
@@ -70,7 +75,7 @@
             </listeners-test-suite>
         </test-suite>
 
-        <report outputReportLocation="jaas-test-report.pdf" />
+        <report outputReportLocation="jaas-test-report.pdf"/>
 
     </configuration>
 </beans:beans>

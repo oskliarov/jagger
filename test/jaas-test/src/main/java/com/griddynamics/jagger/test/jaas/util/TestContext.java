@@ -22,9 +22,9 @@ public class TestContext {
     private Set<DbConfigEntity> dbConfigs = new TreeSet<>();
 
     /**
-     * To be generated and used in Create/Update/Delete tests for /jaas/dbs resource.
+     * A prototype, to be generated and used in Create/Update/Delete tests for /jaas/dbs resource.
      */
-    private Set<DbConfigEntity> dbConfigsToCreate = new HashSet<>();
+    private DbConfigEntity dbConfigToPrototype;
 
     /**
      * DB Config Ids (Strings) which were created during test run.
@@ -101,16 +101,12 @@ public class TestContext {
         get().dbConfigs = dbConfigs;
     }
 
-    public static Set<DbConfigEntity> getDbConfigsToCreate() {
-        return get().dbConfigsToCreate;
+    public static DbConfigEntity getDbConfigPrototype() {
+        return get().dbConfigToPrototype;
     }
 
-    public static void setDbConfigsToCreate(Set<DbConfigEntity> dbConfigsToCreate) {
-        get().dbConfigsToCreate = dbConfigsToCreate;
-    }
-
-    public static void addDbConfigToCreate(DbConfigEntity dbConfigToCreate) {
-        get().dbConfigsToCreate.add(dbConfigToCreate);
+    public static void setDbConfigToCreate(DbConfigEntity dbConfigToCreate) {
+        get().dbConfigToPrototype = dbConfigToCreate;
     }
 
     public static List<String> getCreatedDbConfigIds() {

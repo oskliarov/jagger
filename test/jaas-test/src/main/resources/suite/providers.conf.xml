@@ -8,6 +8,7 @@
 
     <bean id="queryProvider_DBsList" class="com.griddynamics.jagger.test.jaas.provider.dbs.QueryProvider_DBsList"/>
     <bean id="queryProvider_DBIds" class="com.griddynamics.jagger.test.jaas.provider.dbs.QueryProvider_DBIds"/>
+    <bean id="queryProvider_CreatedDBIds" class="com.griddynamics.jagger.test.jaas.provider.dbs.QueryProvider_CreatedDBIds"/>
     <bean id="queryProvider_NonNumeric_DBIds" class="com.griddynamics.jagger.test.jaas.provider.dbs.QueryProvider_NonNumeric_DBIds"/>
     <bean id="queryProvider_NonExisting_DBIds" class="com.griddynamics.jagger.test.jaas.provider.dbs.QueryProvider_NonExisting_DBIds"/>
 

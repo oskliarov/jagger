@@ -40,9 +40,12 @@ public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQu
             Assert.assertTrue(locationHdr.contains(query.getPath()));
 
             String[] parts = locationHdr.split("/"); //Get Id from the query path.
-            TestContext.addCreatedDbConfigId(parts[parts.length - 1]); //Store it for further clean-up.
+            String theLast = parts[parts.length - 1];
+            Assert.assertTrue(Integer.parseInt(theLast) > 0);
+
+            TestContext.addCreatedDbConfigId(theLast); //Store it for further clean-up.
             isValid = true;
-        } catch (AssertionFailedError e) {
+        } catch (AssertionFailedError | NumberFormatException e) {
             isValid = false;
             logResponseAsFailed(query, endpoint, result, e.getMessage());
         }

@@ -48,7 +48,6 @@ public class AfterCreateDbTestsCleanUpListener extends ServicesAware implements 
                 } catch (URISyntaxException e) {
                     LOGGER.warn("Could not create a JaaS endpoint due to ", e);
                 }
-
             }
         };
     }
