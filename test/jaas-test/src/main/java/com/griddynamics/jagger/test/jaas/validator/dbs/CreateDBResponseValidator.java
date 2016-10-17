@@ -32,13 +32,15 @@ public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQu
         //Checks.
         try {
             String locationHdr = result.getHeaders().getFirst(HDR_LOCATION);
-            Assert.assertFalse("Location header is null.", null == locationHdr);
-            Assert.assertTrue(locationHdr.length() > query.getPath().length());
-            Assert.assertTrue(locationHdr.contains(query.getPath()));
+            Assert.assertNotNull("Location header shall not be null.", locationHdr);
+            Assert.assertTrue("Location header's value shall be longer than query path's ",
+                    locationHdr.replace(endpoint.getURI().getPath(), "").length() > query.getPath().length());
+            Assert.assertTrue("Location header's value shall contain original query's path.", locationHdr.contains(query.getPath()));
 
             String[] parts = locationHdr.split("/"); //Get Id from the query path.
             String theLast = parts[parts.length - 1];
-            Assert.assertTrue(Integer.parseInt(theLast) > 0);
+            Assert.assertTrue("Location header's value shall end with a positive numeric id of a created record.",
+                    Integer.parseInt(theLast) > 0);
 
             TestContext.addCreatedDbConfigId(theLast); //Store it for further clean-up.
             isValid = true;

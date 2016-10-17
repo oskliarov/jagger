@@ -37,7 +37,8 @@ public class CreatedDBContentValidator extends DBsListResponseContentValidator {
             DbConfigEntity actualEntity = (DbConfigEntity)result.getBody();
             DbConfigEntity prototypeEntity = TestContext.getDbConfigPrototype();
 
-            Assert.assertTrue("Prototype and actually created DB Configs are not equal.", equalsIgnoreId(prototypeEntity, actualEntity));
+            Assert.assertTrue("Prototype and actually created DB Configs are not equal.",
+                        equalsIgnoreId(prototypeEntity,actualEntity));
             isValid = true;
         } catch (AssertionFailedError e) {
             isValid = false;
