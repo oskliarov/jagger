@@ -8,9 +8,9 @@ import java.util.Iterator;
 /**
  * Provides queries like GET /jaas/dbs/{id} where {id} is invalid (does not exist).
  */
-public class QueryProvider_NonExisting_DBIds extends QueryProvider_DBsList {
+public class QueryProvider_GET_NonExisting_DBIds extends QueryProvider_GET_DBsList {
 
-    public QueryProvider_NonExisting_DBIds() {}
+    public QueryProvider_GET_NonExisting_DBIds() {}
 
     @Override
     public Iterator iterator() {

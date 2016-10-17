@@ -8,8 +8,6 @@ import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Validates response of POST  /jaas/dbs/ .
@@ -17,7 +15,6 @@ import org.slf4j.LoggerFactory;
  * - Created record's id in the Location Header.
  */
 public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQuery<String>, JHttpEndpoint> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CreateDBResponseValidator.class);
 
     public CreateDBResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -30,7 +27,7 @@ public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQu
 
     @Override
     public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
-        boolean isValid = false;
+        boolean isValid;
 
         //Checks.
         try {

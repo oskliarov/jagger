@@ -4,6 +4,7 @@ import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -24,7 +25,7 @@ public class TestContext {
     /**
      * A prototype, to be generated and used in Create/Update/Delete tests for /jaas/dbs resource.
      */
-    private DbConfigEntity dbConfigToPrototype;
+    private DbConfigEntity dbConfigPrototype;
 
     /**
      * DB Config Ids (Strings) which were created during test run.
@@ -101,12 +102,19 @@ public class TestContext {
         get().dbConfigs = dbConfigs;
     }
 
-    public static DbConfigEntity getDbConfigPrototype() {
-        return get().dbConfigToPrototype;
+    public static void addDbConfig(DbConfigEntity dbConfig) {
+        get().dbConfigs.add(dbConfig);
     }
 
-    public static void setDbConfigToCreate(DbConfigEntity dbConfigToCreate) {
-        get().dbConfigToPrototype = dbConfigToCreate;
+    public static DbConfigEntity getDbConfigPrototype() {
+        if (null == get().dbConfigPrototype){
+            generateDbConfigPrototype();
+        }
+        return get().dbConfigPrototype;
+    }
+
+    private static void setDbConfigPrototype(DbConfigEntity dbConfigToCreate) {
+        get().dbConfigPrototype = dbConfigToCreate;
     }
 
     public static List<String> getCreatedDbConfigIds() {
@@ -119,5 +127,21 @@ public class TestContext {
 
     public static void addCreatedDbConfigId(String createdDbConfigId) {
         get().createdDbConfigIds.add(createdDbConfigId);
+    }
+
+    public static DbConfigEntity provideFakeDbConfig_NoId() {
+        DbConfigEntity dbConf = new DbConfigEntity();
+        dbConf.setUser("Proto-" + UUID.randomUUID().toString());
+        dbConf.setPass("[TO DELETE]" + UUID.randomUUID().toString());
+        dbConf.setDesc("Timestamp: " + LocalDateTime.now().toString());
+        dbConf.setHibernateDialect(UUID.randomUUID().toString());
+        dbConf.setJdbcDriver(UUID.randomUUID().toString());
+        dbConf.setUrl("jdbc:"+UUID.randomUUID().toString());
+
+        return dbConf;
+    }
+
+    private static void generateDbConfigPrototype() {
+        TestContext.setDbConfigPrototype(provideFakeDbConfig_NoId());
     }
 }

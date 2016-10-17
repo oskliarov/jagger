@@ -33,39 +33,53 @@
         </scenario>
     </test-description>
 
-    <test-description id="td_JaaS_CreatedDBsIds" name="Just created DB Configs" version="1" parent="td_JaaS_default">
-        <info-collectors>
-            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.dbs.CreatedDBContentValidator"/>
-        </info-collectors>
-
-        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
-            <query-provider xsi:type="query-provider-ref" ref="queryProvider_CreatedDBIds" />
-        </scenario>
-    </test-description>
-
     <test-description id="td_JaaS_DBsIds_Non_Numeric" name="String as DB Config id" version="1" parent="td_JaaS_BadRequest">
         <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
             <query-provider xsi:type="query-provider-ref" ref="queryProvider_NonNumeric_DBIds" />
         </scenario>
     </test-description>
 
-    <test-description id="td_JaaS_DBsIds_Not_Existent" name="Not existing DB Config ids" version="1">
-        <info-collectors>
-            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.ResponseStatus404Validator"/>
-        </info-collectors>
-
+    <test-description id="td_JaaS_DBsIds_Not_Existent" name="Not existing DB Config ids" version="1" parent="td_JaaS_NotFound">
         <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
             <query-provider xsi:type="query-provider-ref" ref="queryProvider_NonExisting_DBIds" />
         </scenario>
     </test-description>
 
-    <test-description id="td_JaaS_Create_DB" name="Create(POST) /jaas/dbs" version="1" parent="td_JaaS_POSTRequest">
+    <test-description id="td_JaaS_Create_DB" name="Create(POST) /jaas/dbs" version="1" parent="td_JaaS_POST_Request">
         <info-collectors>
             <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.dbs.CreateDBResponseValidator"/>
         </info-collectors>
 
         <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
             <query-provider xsi:type="query-provider-ref" ref="queryProvider_Create_DB"/>
+        </scenario>
+    </test-description>
+
+    <test-description id="td_JaaS_CreatedDBsIds" name="Just created DB Configs" version="1" parent="td_JaaS_default">
+        <info-collectors>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.dbs.CreatedDBContentValidator"/>
+        </info-collectors>
+
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_Get_Created_DB_Ids" />
+        </scenario>
+    </test-description>
+
+    <test-description id="td_JaaS_Update_DB" name="Update(PUT) /jaas/dbs" version="1" parent="td_JaaS_PUT_Request">
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_Update_DB"/>
+        </scenario>
+    </test-description>
+
+    <test-description id="td_JaaS_Delete_DB" name="Delete(DELETE) /jaas/dbs" version="1" parent="td_JaaS_DELETE_Request">
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_Delete_DB"/>
+        </scenario>
+    </test-description>
+
+    <test-description id="td_JaaS_DeletedDBsIds" name="Read just deleted DB Configs" version="1" parent="td_JaaS_NotFound">
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_Get_Deleted_DB"/>
         </scenario>
     </test-description>
 

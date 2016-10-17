@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 /**
  * Provides queries like /jaas/sessions/{id}.
  */
-public class QueryProvider_SessionIds extends QueryProvider_SessionsList {
+public class QueryProvider_GET_SessionIds extends QueryProvider_GET_SessionsList {
 
-    public QueryProvider_SessionIds() {}
+    public QueryProvider_GET_SessionIds() {}
 
     @Override
     public Iterator iterator() {

@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 /**
  * Provides queries like GET /jaas/dbs/{id} where {id} is an id of just created DB config (by previous test).
  */
-public class QueryProvider_CreatedDBIds extends QueryProvider_DBsList {
+public class QueryProvider_GET_CreatedDBIds extends QueryProvider_GET_DBsList {
 
-    public QueryProvider_CreatedDBIds() {}
+    public QueryProvider_GET_CreatedDBIds() {}
 
     @Override
     public Iterator iterator() {

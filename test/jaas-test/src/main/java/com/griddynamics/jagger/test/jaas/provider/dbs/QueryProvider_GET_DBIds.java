@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 /**
  * Provides queries like GET /jaas/dbs/{id}.
  */
-public class QueryProvider_DBIds extends QueryProvider_DBsList {
+public class QueryProvider_GET_DBIds extends QueryProvider_GET_DBsList {
 
-    public QueryProvider_DBIds() {}
+    public QueryProvider_GET_DBIds() {}
 
     @Override
     public Iterator iterator() {

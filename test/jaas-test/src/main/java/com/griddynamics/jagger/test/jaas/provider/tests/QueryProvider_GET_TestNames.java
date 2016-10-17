@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 /**
  * Provides queries like /jaas/sessions/{sessioId}/tests/{testName}.
  */
-public class QueryProvider_TestNames extends QueryProvider_TestsList {
+public class QueryProvider_GET_TestNames extends QueryProvider_GET_TestsList {
 
-    public QueryProvider_TestNames() {}
+    public QueryProvider_GET_TestNames() {}
 
     @Override
     public Iterator iterator() {
