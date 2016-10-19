@@ -46,5 +46,9 @@ public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQ
                         endpoint.toString(), response.toString()));
     }
 
+    /**
+     * Child classes shall provide own implementation of the method.
+     * That allows to simplify functional checks.
+     */
     protected abstract boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result);
 }

@@ -51,7 +51,7 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
         assertEquals("Response contains duplicate records", actlSize, noDuplicatesActualList.size());
         assertEquals("Actual list's size is not the same as expected one's.", actlSize, expctdSize);
 
-        //TODO: Refactor when JFG-($#  is ready.
+        //TODO: Refactor when JFG-943  is ready.
         assertTrue("Actual list is not the same as expected set.", compareIgnoringTestDto(expectedEntities, actualEntities));
 
         return true;
