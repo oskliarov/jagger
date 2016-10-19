@@ -123,4 +123,14 @@
         </scenario>
     </test-description>
 
+    <test-description id="td_JaaS_MetricsList" name="test for list of metrics." version="1" parent="td_JaaS_default">
+        <info-collectors>
+            <validator xsi:type="validator-custom" validator="com.griddynamics.jagger.test.jaas.validator.metrics.MetricsListResponseContentValidator"/>
+        </info-collectors>
+
+        <scenario  xsi:type="scenario-query-pool" parent="scn_JaaS_std">
+            <query-provider xsi:type="query-provider-ref" ref="queryProvider_TestMetrics" />
+        </scenario>
+    </test-description>
+
 </beans:beans>

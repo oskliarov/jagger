@@ -13,7 +13,7 @@ import junit.framework.AssertionFailedError;
  * Expected:
  * - response entity contains some error explanation text.
   */
-public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidator<JHttpQuery<String>, JHttpEndpoint> {
+public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidator {
 
     public BadRequest_ResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -25,20 +25,11 @@ public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidat
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
-        boolean isValid = false;
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+        String actualEntity = (String)result.getBody();
+        Assert.assertTrue(actualEntity.toLowerCase().contains("error page"));
+        Assert.assertTrue(actualEntity.contains("NumberFormatException"));
 
-        //Checks.
-        try {
-            String actualEntity = (String)result.getBody();
-            Assert.assertTrue(actualEntity.toLowerCase().contains("error page"));
-            Assert.assertTrue(actualEntity.contains("NumberFormatException"));
-            isValid = true;
-        } catch (AssertionFailedError e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 }

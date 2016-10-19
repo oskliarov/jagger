@@ -45,11 +45,17 @@
                 <test id="t_JaaS_GET_Sessions_List_SR_eq._1.0" testDescription="td_JaaS_SessionsList" parent="t_JaaS_Standard"/>
 
                 <test id="t_JaaS_GET_Exact_Session_SR_eq._1.0" testDescription="td_JaaS_ExactSessionIds" parent="t_JaaS_Standard"/>
+            </test-group>
 
+            <test-group id="tg_JaaS_GET_Tests">
                 <test id="t_JaaS_GET_Session_Tests_List_SR_eq._1.0" testDescription="td_JaaS_SessionTestsList" parent="t_JaaS_Standard"/>
 
                 <!-- Test may fail due to JFG-930 -->
                 <test id="t_JaaS_GET_Exact_Session_Test_SR_eq._1.0" testDescription="td_JaaS_ExactSessionTest" parent="t_JaaS_Standard"/>
+            </test-group>
+
+            <test-group id="tg_JaaS_GET_Metrics">
+                <test id="t_JaaS_GET_Metrics_List_SR_eq._1.0" testDescription="td_JaaS_MetricsList" parent="t_JaaS_Standard"/>
             </test-group>
 
             <test-group id="tg_JaaS_GET_DB_configs">
@@ -75,7 +81,7 @@
                 <test id="t_JaaS_DELETE_DB_SR_eq._1.0" testDescription="td_JaaS_Delete_DB" parent="t_JaaS_Standard_One_invocation"/>
             </test-group>
             <test-group id="tg_JaaS_GET_After_DELETE_DB_configs">
-                <test id="t_JaaS_GET__Deleted_DB" testDescription="td_JaaS_DeletedDBsIds" parent="t_JaaS_Standard_One_invocation_no_limits">
+                <test id="t_JaaS_GET_Deleted_DB" testDescription="td_JaaS_DeletedDBsIds" parent="t_JaaS_Standard_One_invocation_no_limits">
                     <listeners-test>
                         <listener-test xsi:type="listener-test-ref" ref="listenerAfterCreateDbTestsCleanUp"/>
                     </listeners-test>

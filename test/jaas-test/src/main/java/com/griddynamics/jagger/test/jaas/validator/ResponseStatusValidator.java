@@ -1,9 +1,11 @@
 package com.griddynamics.jagger.test.jaas.validator;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
+import com.griddynamics.jagger.invoker.http.v2.JHttpEndpoint;
+import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 
-public class ResponseStatusValidator<Q, E> extends BaseHttpResponseValidator<Q, E> {
+public class ResponseStatusValidator extends BaseHttpResponseValidator {
     public ResponseStatusValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
     }
@@ -22,7 +24,7 @@ public class ResponseStatusValidator<Q, E> extends BaseHttpResponseValidator<Q, 
      * @param duration - Duration of invoke
      * */
     @Override
-    public boolean validate(Q query, E endpoint, JHttpResponse result, long duration)  {
+    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
         int statusCode = result.getStatus().value();
 
         if (statusCode != getExpectedStatusCode()) { //TODO: Need range/RegExp.
@@ -35,6 +37,11 @@ public class ResponseStatusValidator<Q, E> extends BaseHttpResponseValidator<Q, 
         }
 
         return true;
+    }
+
+    @Override
+    protected boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
+        return false; //Just a place-holder to re-use the base class.
     }
 
     /**

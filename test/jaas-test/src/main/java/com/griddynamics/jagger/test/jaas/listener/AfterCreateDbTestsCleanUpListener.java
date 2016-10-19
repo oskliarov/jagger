@@ -19,6 +19,7 @@ import java.net.URISyntaxException;
  * <p>
  * Created by ELozovan on 2016-09-27.
  */
+@SuppressWarnings("unused")
 public class AfterCreateDbTestsCleanUpListener extends ServicesAware implements Provider<TestListener> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AfterCreateDbTestsCleanUpListener.class);
 

@@ -5,6 +5,7 @@ import com.griddynamics.jagger.engine.e1.Provider;
 import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteInfo;
 import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteListener;
 import com.griddynamics.jagger.engine.e1.services.ServicesAware;
+import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
@@ -19,7 +20,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
  * <p>
  * Created by ELozovan on 2016-09-27.
  */
+@SuppressWarnings("unused")
 public class TestSuiteConfigListener extends ServicesAware implements Provider<TestSuiteListener> {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestSuiteConfigListener.class);
 
@@ -46,6 +47,9 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
 
                 findAndLoadExpectedTests(sessionsAvailable);
 
+                String tmpSessionId = TestContext.getTests().keySet().toArray(new String[]{})[0];
+                findAndLoadExpectedMetrics(tmpSessionId, TestContext.getTestsBySessionId(tmpSessionId));
+
                 loadExpectedDbConfigs();
             }
 
@@ -63,6 +67,25 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
 
                 tests.stream().forEach(this::correctDateFieldValue);
                 TestContext.addTests(sessionToGetTests.getId(), tests);
+            }
+
+            private void findAndLoadExpectedMetrics(String sessionId, Set<TestEntity> testsAvailable) {
+                TestEntity testToGetMetricsFrom = null;
+                Set<MetricEntity> metrics = null;
+                while (null == metrics) {
+                    testToGetMetricsFrom = testsAvailable.size() < 2 ?
+                                            testsAvailable.stream().findFirst().orElse(null)
+                                            : testsAvailable.stream().skip(new Random().nextInt(testsAvailable.size() - 1)).findFirst().orElse(null);
+                    metrics = getDataService().getMetrics(testToGetMetricsFrom);
+
+
+                    if (metrics.isEmpty()) {
+                        metrics = null; //Let's find another test which shall have some metrics stored.
+                    }
+                }
+
+                metrics.stream().forEach(this::correctDateFieldValue);
+                TestContext.addMetrics(sessionId, testToGetMetricsFrom.getName(), metrics);
             }
 
             private void loadExpectedDbConfigs() {

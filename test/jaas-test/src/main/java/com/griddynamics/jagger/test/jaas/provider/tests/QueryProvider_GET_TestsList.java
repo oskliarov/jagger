@@ -11,6 +11,7 @@ import java.util.Iterator;
 /**
  * Provides a query for /jaas/sessions/{sessionId}/tests resource which shall return list of available tests.
  */
+@SuppressWarnings("unused")
 public class QueryProvider_GET_TestsList extends QueryProvider_GET_SessionsList {
 
     @Value( "${jaas.rest.sub.sessions.tests}" )

@@ -7,7 +7,6 @@ import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
 import junit.framework.Assert;
-import junit.framework.AssertionFailedError;
 
 /**
  * Validates response of /jaas/dbs/{id}.
@@ -27,23 +26,14 @@ public class DBResponseContentValidator extends DBsListResponseContentValidator 
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
-        boolean isValid = false;
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+        DbConfigEntity actualEntity = (DbConfigEntity)result.getBody();
 
-        //Checks.
-        try {
-            DbConfigEntity actualEntity = (DbConfigEntity)result.getBody();
+        String[] queryParts = query.getPath().split("/"); //Get id from the query path.
+        DbConfigEntity expectedEntity = TestContext.getDbConfig(Long.parseLong(queryParts[queryParts.length - 1]));
 
-            String[] queryParts = query.getPath().split("/"); //Get id from the query path.
-            DbConfigEntity expectedEntity = TestContext.getDbConfig(Long.parseLong(queryParts[queryParts.length - 1]));
+        Assert.assertEquals("Expected and actual DB Configs are not equal.", expectedEntity, actualEntity);
 
-            Assert.assertEquals("Expected and actual DB Configs are not equal.", expectedEntity, actualEntity);
-            isValid = true;
-        } catch (AssertionFailedError e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 }

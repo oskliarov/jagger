@@ -7,7 +7,6 @@ import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
 import junit.framework.Assert;
-import junit.framework.AssertionFailedError;
 
 import java.util.Objects;
 
@@ -29,23 +28,14 @@ public class CreatedDBContentValidator extends DBsListResponseContentValidator {
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
-        boolean isValid;
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+        DbConfigEntity actualEntity = (DbConfigEntity)result.getBody();
+        DbConfigEntity prototypeEntity = TestContext.getDbConfigPrototype();
 
-        //Checks.
-        try {
-            DbConfigEntity actualEntity = (DbConfigEntity)result.getBody();
-            DbConfigEntity prototypeEntity = TestContext.getDbConfigPrototype();
+        Assert.assertTrue("Prototype and actually created DB Configs are not equal.",
+                equalsIgnoreId(prototypeEntity,actualEntity));
 
-            Assert.assertTrue("Prototype and actually created DB Configs are not equal.",
-                        equalsIgnoreId(prototypeEntity,actualEntity));
-            isValid = true;
-        } catch (AssertionFailedError e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 
     public boolean equalsIgnoreId(DbConfigEntity expected, DbConfigEntity actual) {

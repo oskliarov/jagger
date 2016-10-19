@@ -21,4 +21,6 @@
     <bean id="queryProvider_SessionIds" class="com.griddynamics.jagger.test.jaas.provider.sessions.QueryProvider_GET_SessionIds"/>
     <bean id="queryProvider_SessionTestsList" class="com.griddynamics.jagger.test.jaas.provider.tests.QueryProvider_GET_TestsList"/>
     <bean id="queryProvider_SessionTestNames" class="com.griddynamics.jagger.test.jaas.provider.tests.QueryProvider_GET_TestNames"/>
+
+    <bean id="queryProvider_TestMetrics" class="com.griddynamics.jagger.test.jaas.provider.metrics.QueryProvider_GET_TestMetrics"/>
 </beans>

@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * - the list is no longer than the expected one (to be configured in the env.properties);
  * - a randomly picked record is the same as corresponding expected one.
  */
-public class DBsListResponseContentValidator extends BaseHttpResponseValidator<JHttpQuery<String>, JHttpEndpoint> {
+public class DBsListResponseContentValidator extends BaseHttpResponseValidator {
 
     public DBsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -35,36 +35,27 @@ public class DBsListResponseContentValidator extends BaseHttpResponseValidator<J
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
         List<DbConfigEntity> actualEntities = Arrays.asList((DbConfigEntity[]) result.getBody());
 
-        boolean isValid = false;
+        int actlSize = actualEntities.size();
+        int expctdSize = TestContext.getDbConfigs().size();
+        Assert.assertTrue("Several DB config records are expected. Check returned list's size", 1 < actlSize);
 
-        //Checks.
-        try {
-            int actlSize = actualEntities.size();
-            int expctdSize = TestContext.getDbConfigs().size();
-            Assert.assertTrue("Several DB config records are expected. Check returned list's size", 1 < actlSize);
+        List<DbConfigEntity> noDuplicatesActualList = actualEntities.stream().distinct().collect(Collectors.toList());
+        Assert.assertEquals("Response contains duplicate DB config records", actlSize, noDuplicatesActualList.size());
 
-            List<DbConfigEntity> noDuplicatesActualList = actualEntities.stream().distinct().collect(Collectors.toList());
-            Assert.assertEquals("Response contains duplicate DB config records", actlSize, noDuplicatesActualList.size());
+        Assert.assertEquals(String.format("Actual list(%d) and expected one(%d) differ in size.", actlSize, expctdSize), expctdSize, actlSize);
 
-            Assert.assertEquals(String.format("Actual list(%d) and expected one(%d) differ in size.", actlSize, expctdSize), actlSize, expctdSize);
+        Assert.assertEquals("Actual set of DB configs is not the same as the expected one.",
+                TestContext.getDbConfigs(),
+                actualEntities.stream().collect(Collectors.toSet()));
 
-            Assert.assertEquals("Actual set of DB configs is not the same as the expected one.",
-                    actualEntities.stream().collect(Collectors.toSet()),
-                    TestContext.getDbConfigs());
+        DbConfigEntity randomActualEntity = actualEntities.get((new Random().nextInt(actlSize)));
+        DbConfigEntity correspondingExpectedEntity = TestContext.getDbConfig(randomActualEntity.getId());
 
-            DbConfigEntity randomActualEntity = actualEntities.get((new Random().nextInt(actlSize)));
-            DbConfigEntity correspondingExpectedEntity = TestContext.getDbConfig(randomActualEntity.getId());
+        Assert.assertEquals("Randomly selected expected and actual DB configs are not equal.", correspondingExpectedEntity, randomActualEntity);
 
-            Assert.assertEquals("Randomly selected expected and actual DB configs are not equal.", correspondingExpectedEntity, randomActualEntity);
-            isValid = true;
-        } catch (AssertionFailedError e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 }

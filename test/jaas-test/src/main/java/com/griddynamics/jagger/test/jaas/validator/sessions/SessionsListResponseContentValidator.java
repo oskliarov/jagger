@@ -2,6 +2,7 @@ package com.griddynamics.jagger.test.jaas.validator.sessions;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
+import com.griddynamics.jagger.invoker.http.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  * - the list contains no duplicates;
  * - a randomly picked record is the same as corresponding expected one.
  */
-public class SessionsListResponseContentValidator<E> extends BaseHttpResponseValidator<JHttpQuery<String>, E> {
+public class SessionsListResponseContentValidator extends BaseHttpResponseValidator {
 
     public SessionsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -34,31 +35,21 @@ public class SessionsListResponseContentValidator<E> extends BaseHttpResponseVal
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, E endpoint, JHttpResponse result, long duration)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
         List<SessionEntity> actualSessions = Arrays.asList((SessionEntity[]) result.getBody());
+        int actlSize = actualSessions.size();
+        int expctdSize = TestContext.getSessions().size();
+        Assert.assertTrue("Several session records are expected. Check returned list's size", 1 < actlSize);
+        List<SessionEntity> noDuplicatesActualList = actualSessions.stream().distinct().collect(Collectors.toList());
+        Assert.assertEquals("Response contains duplicate session records", actlSize, noDuplicatesActualList.size());
+        Assert.assertTrue(String.format("Actual list(%d) is longer than expected one(%d).", actlSize, expctdSize), actlSize <= expctdSize);
+        Assert.assertTrue("Actual list is not a sub-set of expected set.", TestContext.getSessions().containsAll(actualSessions));
 
-        boolean isValid;
+        SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize)));
+        SessionEntity correspondingExpectedSession = TestContext.getSession(randomActualEntity.getId());
 
-        //Checks.
-        try {
-            int actlSize = actualSessions.size();
-            int expctdSize = TestContext.getSessions().size();
-            Assert.assertTrue("Several session records are expected. Check returned list's size", 1 < actlSize);
-            List<SessionEntity> noDuplicatesActualList = actualSessions.stream().distinct().collect(Collectors.toList());
-            Assert.assertEquals("Response contains duplicate session records", actlSize, noDuplicatesActualList.size());
-            Assert.assertTrue(String.format("Actual list(%d) is longer than expected one(%d).", actlSize, expctdSize), actlSize <= expctdSize);
-            Assert.assertTrue("Actual list is not a sub-set of expected set.", TestContext.getSessions().containsAll(actualSessions));
+        Assert.assertEquals("Randomly selected expected and actual sessions are not equal.", correspondingExpectedSession, randomActualEntity);
 
-            SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize)));
-            SessionEntity correspondingExpectedSession = TestContext.getSession(randomActualEntity.getId());
-
-            Assert.assertEquals("Randomly selected expected and actual sessions are not equal.", correspondingExpectedSession, randomActualEntity);
-            isValid = true;
-        } catch (AssertionFailedError e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 }

@@ -7,14 +7,13 @@ import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.Assert;
-import junit.framework.AssertionFailedError;
 
 /**
  * Validates response of POST  /jaas/dbs/ .
  * Expected:
  * - Created record's id in the Location Header.
  */
-public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQuery<String>, JHttpEndpoint> {
+public class CreateDBResponseValidator extends BaseHttpResponseValidator {
 
     public CreateDBResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -26,29 +25,20 @@ public class CreateDBResponseValidator extends BaseHttpResponseValidator<JHttpQu
     }
 
     @Override
-    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
-        boolean isValid;
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+        String locationHdr = result.getHeaders().getFirst(HDR_LOCATION);
+        Assert.assertNotNull("Location header shall not be null.", locationHdr);
+        Assert.assertTrue("Location header's value shall be longer than query path's ",
+                locationHdr.replace(endpoint.getURI().getPath(), "").length() > query.getPath().length());
+        Assert.assertTrue("Location header's value shall contain original query's path.", locationHdr.contains(query.getPath()));
 
-        //Checks.
-        try {
-            String locationHdr = result.getHeaders().getFirst(HDR_LOCATION);
-            Assert.assertNotNull("Location header shall not be null.", locationHdr);
-            Assert.assertTrue("Location header's value shall be longer than query path's ",
-                    locationHdr.replace(endpoint.getURI().getPath(), "").length() > query.getPath().length());
-            Assert.assertTrue("Location header's value shall contain original query's path.", locationHdr.contains(query.getPath()));
+        String[] parts = locationHdr.split("/"); //Get Id from the query path.
+        String theLast = parts[parts.length - 1];
+        Assert.assertTrue("Location header's value shall end with a positive numeric id of a created record.",
+                Integer.parseInt(theLast) > 0);
 
-            String[] parts = locationHdr.split("/"); //Get Id from the query path.
-            String theLast = parts[parts.length - 1];
-            Assert.assertTrue("Location header's value shall end with a positive numeric id of a created record.",
-                    Integer.parseInt(theLast) > 0);
+        TestContext.addCreatedDbConfigId(theLast); //Store it for further clean-up.
 
-            TestContext.addCreatedDbConfigId(theLast); //Store it for further clean-up.
-            isValid = true;
-        } catch (AssertionFailedError | NumberFormatException e) {
-            isValid = false;
-            logResponseAsFailed(query, endpoint, result, e.getMessage());
-        }
-
-        return isValid;
+        return true;
     }
 }
