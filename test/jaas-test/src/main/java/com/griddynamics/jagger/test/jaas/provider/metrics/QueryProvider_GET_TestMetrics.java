@@ -15,28 +15,31 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public class QueryProvider_GET_TestMetrics extends QueryProvider_GET_TestsList {
 
-    @Value( "${jaas.rest.sub.tests.metrics}" )
+    @Value("${jaas.rest.sub.tests.metrics}")
     private String metricsSubPath;
 
-    private String targetSessionId=null;
+    private String targetSessionId = null;
 
-    public QueryProvider_GET_TestMetrics() {}
+    public QueryProvider_GET_TestMetrics() {
+    }
 
     @Override
     public Iterator iterator() {
         if (queries.isEmpty()) {
-            String sessionId = getTargetSessionId();
-            String targetTestName = TestContext.getMetrics().get(sessionId).keySet().toArray(new String[]{})[0];
-
             queries.add(new JHttpQuery<String>()
-                            .get().responseBodyType(MetricEntity[].class)
-                            .path(getMetricsPath(targetTestName)));
+                    .get().responseBodyType(MetricEntity[].class)
+                    .path(getMetricsPath()));
         }
 
         return queries.iterator();
     }
 
-    private String getMetricsPath(String testName){
-        return getTestsPath() + "/" + testName + metricsSubPath;
+    protected String getMetricsPath() {
+        return getTestsPath() + "/" + getTargetTestName() + metricsSubPath;
+    }
+
+    protected String getTargetTestName() {
+        String sessionId = getTargetSessionId();
+        return TestContext.getMetrics().get(sessionId).keySet().toArray(new String[]{})[0];
     }
 }

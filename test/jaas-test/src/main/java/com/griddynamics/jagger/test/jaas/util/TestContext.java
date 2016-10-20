@@ -1,8 +1,6 @@
 package com.griddynamics.jagger.test.jaas.util;
 
-import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
-import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
-import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
+import com.griddynamics.jagger.engine.e1.services.data.service.*;
 import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
 
 import java.time.LocalDateTime;
@@ -17,11 +15,14 @@ public class TestContext {
     private static volatile TestContext instance;
 
     private Set<SessionEntity> sessions = new TreeSet<>();
-    private Map<String,Set<TestEntity>> tests = new HashMap<>();
+    private Map<String, Set<TestEntity>> tests = new HashMap<>();
     /**
      * Key:SessionId, Value:[Key:TestName, Value:Set of Metrics]
      */
-    private Map<String, Map<String,Set<MetricEntity>>> metrics = new HashMap<>();
+    private Map<String, Map<String, Set<MetricEntity>>> metrics = new HashMap<>();
+
+    private Map<MetricEntity, MetricSummaryValueEntity> metricSummaries = new HashMap<>();
+    private Map<MetricEntity, List<MetricPlotPointEntity>> metricPlotData = new HashMap<>();
 
     /**
      * To be loaded and used in Read tests for /jaas/dbs resource.
@@ -38,7 +39,8 @@ public class TestContext {
      */
     private List<String> createdDbConfigIds = new ArrayList<>();
 
-    private TestContext() {}
+    private TestContext() {
+    }
 
     public static TestContext get() {
         TestContext localInstance = instance;
@@ -59,10 +61,9 @@ public class TestContext {
 
     /**
      * Returns NULL if no session entity found.
-     *
      */
     public static SessionEntity getSession(String id) {
-        return get().sessions.stream().filter((s)->id.equals(s.getId())).findFirst().orElse(null);
+        return get().sessions.stream().filter((s) -> id.equals(s.getId())).findFirst().orElse(null);
     }
 
     public static void setSessions(Set<SessionEntity> sessions) {
@@ -78,7 +79,7 @@ public class TestContext {
     }
 
     public static TestEntity getTestByName(String sessionId, String testName) {
-        return getTestsBySessionId(sessionId).stream().filter((t)->t.getName().equals(testName)).findFirst().orElse(null);
+        return getTestsBySessionId(sessionId).stream().filter((t) -> t.getName().equals(testName)).findFirst().orElse(null);
     }
 
     public static void setTests(Map<String, Set<TestEntity>> tests) {
@@ -108,6 +109,22 @@ public class TestContext {
         get().metrics.put(sessionId, tmp);
     }
 
+    public static Map<MetricEntity, MetricSummaryValueEntity> getMetricSummaries() {
+        return  get().metricSummaries;
+    }
+
+    public static void setMetricSummaries(Map<MetricEntity, MetricSummaryValueEntity> metricSummaries) {
+        get().metricSummaries = metricSummaries;
+    }
+
+    public static Map<MetricEntity, List<MetricPlotPointEntity>> getMetricPlotData() {
+        return  get().metricPlotData;
+    }
+
+    public static void setMetricPlotData(Map<MetricEntity, List<MetricPlotPointEntity>> metricPlotData) {
+        get().metricPlotData = metricPlotData;
+    }
+
     /**
      * Returns set of expected DB configs (for testing of GET /jaas/dbs).
      */
@@ -117,7 +134,6 @@ public class TestContext {
 
     /**
      * Returns NULL if no matching DB config entity found.
-     *
      */
     public static DbConfigEntity getDbConfig(Long id) {
         return get().dbConfigs.stream().filter((c) -> id.equals(c.getId())).findFirst().orElse(null);
@@ -132,7 +148,7 @@ public class TestContext {
     }
 
     public static DbConfigEntity getDbConfigPrototype() {
-        if (null == get().dbConfigPrototype){
+        if (null == get().dbConfigPrototype) {
             generateDbConfigPrototype();
         }
         return get().dbConfigPrototype;
@@ -161,7 +177,7 @@ public class TestContext {
         dbConf.setDesc("Timestamp: " + LocalDateTime.now().toString());
         dbConf.setHibernateDialect(UUID.randomUUID().toString());
         dbConf.setJdbcDriver(UUID.randomUUID().toString());
-        dbConf.setUrl("jdbc:"+UUID.randomUUID().toString());
+        dbConf.setUrl("jdbc:" + UUID.randomUUID().toString());
 
         return dbConf;
     }

@@ -78,11 +78,13 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
                                             : testsAvailable.stream().skip(new Random().nextInt(testsAvailable.size() - 1)).findFirst().orElse(null);
                     metrics = getDataService().getMetrics(testToGetMetricsFrom);
 
-
                     if (metrics.isEmpty()) {
                         metrics = null; //Let's find another test which shall have some metrics stored.
                     }
                 }
+
+                TestContext.setMetricPlotData(getDataService().getMetricPlotData(metrics));
+                TestContext.setMetricSummaries(getDataService().getMetricSummary(metrics));
 
                 metrics.stream().forEach(this::correctDateFieldValue);
                 TestContext.addMetrics(sessionId, testToGetMetricsFrom.getName(), metrics);

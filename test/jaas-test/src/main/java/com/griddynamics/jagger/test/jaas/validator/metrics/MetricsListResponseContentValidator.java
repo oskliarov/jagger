@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertTrue;
 /**
  * Validates response of /sessions/{sessionId}/tests/{testName}/metrics.
  * Expected:
- * - list of tests is of size 1 and greater;
+ * - list of records is of size 1 and greater;
  * - the list's size is the same as the one's available via DataService;
  * - the list contains no duplicates;
  * - expected and actual sets are the same.

@@ -58,6 +58,13 @@
                 <test id="t_JaaS_GET_Metrics_List_SR_eq._1.0" testDescription="td_JaaS_MetricsList" parent="t_JaaS_Standard"/>
             </test-group>
 
+            <test-group id="tg_JaaS_GET_Metric_Summaries">
+                <test id="t_JaaS_GET_Metric_Summary_List_SR_eq._1.0" testDescription="td_JaaS_MetricSummaryList" parent="t_JaaS_Standard"/>
+            </test-group>
+
+            <test-group id="td_JaaS_MetricPlotList">
+                <test id="t_JaaS_GET_Metric_Plot_List_SR_eq._1.0" testDescription="td_JaaS_MetricPlotList" parent="t_JaaS_Standard"/>
+            </test-group>
             <test-group id="tg_JaaS_GET_DB_configs">
                 <test id="t_JaaS_GET_DBs_List_SR_eq._1.0" testDescription="td_JaaS_DBsList" parent="t_JaaS_Standard"/>
 
