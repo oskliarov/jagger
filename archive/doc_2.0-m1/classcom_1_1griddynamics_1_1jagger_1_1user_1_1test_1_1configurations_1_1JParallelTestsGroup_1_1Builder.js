@@ -1,0 +1,5 @@
+var classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder =
+[
+    [ "Builder", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder_ada4177fad88a1b9dcfff3bba0d170640.html#ada4177fad88a1b9dcfff3bba0d170640", null ],
+    [ "build", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder_ae33854872a09f8b55a298651a3264f0a.html#ae33854872a09f8b55a298651a3264f0a", null ]
+];

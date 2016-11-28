@@ -1,0 +1,8 @@
+var classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup =
+[
+    [ "Builder", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder.html", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder" ],
+    [ "builder", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_aac7e3289bc00753d552e731cecefa041.html#aac7e3289bc00753d552e731cecefa041", null ],
+    [ "builder", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_ad35255ff9673de73485f804485269f19.html#ad35255ff9673de73485f804485269f19", null ],
+    [ "getId", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_a1cbb89ffa10c20d441749d0b4bc78578.html#a1cbb89ffa10c20d441749d0b4bc78578", null ],
+    [ "getTests", "classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_a345cb54b80e803637537f5d79368e480.html#a345cb54b80e803637537f5d79368e480", null ]
+];
