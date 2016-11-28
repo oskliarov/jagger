@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['agent_20properties',['Agent properties',['../AgentProperties.html',1,'']]]
+  ['agent_20configuration',['Agent configuration',['../AgentProperties.html',1,'MonitoringSetup']]]
 ];

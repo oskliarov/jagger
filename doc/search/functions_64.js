@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['decisionperlimit',['DecisionPerLimit',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerLimit_a66bea990cc1b60012a59291794148531.html#a66bea990cc1b60012a59291794148531',1,'com::griddynamics::jagger::engine::e1::collector::limits::DecisionPerLimit']]],
-  ['decisionpermetric',['DecisionPerMetric',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerMetric_a0f43d227e5551093cb0fbdcfa608647d.html#a0f43d227e5551093cb0fbdcfa608647d',1,'com::griddynamics::jagger::engine::e1::collector::limits::DecisionPerMetric']]],
-  ['decisionpertest',['DecisionPerTest',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerTest_acafa0e4d48a4d48ec083433798a32f4a.html#acafa0e4d48a4d48ec083433798a32f4a',1,'com::griddynamics::jagger::engine::e1::collector::limits::DecisionPerTest']]],
-  ['displayname',['displayName',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricDescription_a136b615275ef97577acdd5dcd3a21f48.html#a136b615275ef97577acdd5dcd3a21f48',1,'com::griddynamics::jagger::engine::e1::collector::MetricDescription']]]
+  ['defaulthttpinvoker',['DefaultHttpInvoker',['../classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1DefaultHttpInvoker_a89094d0b3be2c8019028cd4312cc68df.html#a89094d0b3be2c8019028cd4312cc68df',1,'com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker.DefaultHttpInvoker()'],['../classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1DefaultHttpInvoker_a35cde8cf1bdd44f5bb353285b60968f5.html#a35cde8cf1bdd44f5bb353285b60968f5',1,'com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker.DefaultHttpInvoker(JHttpClient httpClient)']]],
+  ['delete',['delete',['../classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_afdc72924df25053f786727f026b9b42a.html#afdc72924df25053f786727f026b9b42a',1,'com::griddynamics::jagger::invoker::v2::JHttpQuery&lt; T &gt;']]]
 ];

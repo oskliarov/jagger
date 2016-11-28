@@ -1,5 +1,0 @@
-<map id="com.griddynamics.jagger.engine.e1.collector.CollectThreadsTestListener.provide" name="com.griddynamics.jagger.engine.e1.collector.CollectThreadsTestListener.provide">
-<area shape="rect" id="node2" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1ServicesAware_aa5ce14d854cfa16dfff3076cb3ad9099.html#aa5ce14d854cfa16dfff3076cb3ad9099" title="Gives access to MetricService. " alt="" coords="353,5,641,44"/>
-<area shape="rect" id="node3" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1test_1_1TestInfo_a967bf9004b07784b14240dead109649e.html#a967bf9004b07784b14240dead109649e" title="Returns current number of threads, used by Jagger to generate load. " alt="" coords="341,68,653,107"/>
-<area shape="rect" id="node4" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1MetricService_a406430f1a27c52f7570550b900f5a940.html#a406430f1a27c52f7570550b900f5a940" title="Saves metric value during test run. " alt="" coords="353,131,641,169"/>
-</map>

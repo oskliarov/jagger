@@ -1,6 +1,2 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1JaggerService.html" title="Internal Jagger service that can be used in custom components. " alt="" coords="5,68,293,107"/>
-<area shape="rect" id="node2" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1DataService.html" title="Service provides access to tests results, stored in jagger database. " alt="" coords="341,5,628,44"/>
-<area shape="rect" id="node3" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1MetricService.html" title="Service gives an ability to create and describe metrics, save metric values. " alt="" coords="341,68,628,107"/>
-<area shape="rect" id="node4" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1SessionInfoService.html" title="Service gives ability to create and modify session metadata(such as session comment) ..." alt="" coords="341,131,628,169"/>
 </map>

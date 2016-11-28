@@ -9,12 +9,20 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -66,6 +74,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('MonitoringSetup.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,16 +103,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">How to start monitoring agent </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Section describes how to start monitoring agents to collect metrics on System Under Test site <br/>
+<div class="textblock"><p>Section describes how to start monitoring agents to collect system and JVM metrics <br/>
 </p>
 <p><br/>
- Back to <a class="el" href="MonitoringMain.html">Jagger Monitoring Metrics</a> <br/>
+ Back to <a class="el" href="MonitoringMain.html">Collecting system and JVM metrics</a> <br/>
  <br/>
  </p>
 <ul>
@@ -113,7 +135,7 @@ Jagger server setup</h1>
 <div class="fragment"><div class="line">chassis.conditions.monitoring.enable=<span class="keyword">true</span></div>
 <div class="line">chassis.conditions.min.agents.count=2</div>
 </div><!-- fragment --><p> <br/>
- There are some more properties for monitoring setup. You can find them here: <a class="el" href="JaggerProperties.html#section_jagger_properties">Jagger environment properties</a> <br/>
+ There are some more properties for monitoring setup. You can find them here: <a class="el" href="JaggerProperties.html#section_jagger_properties">Jagger configuration properties</a> <br/>
  </p>
 <h1><a class="anchor" id="section_mon_agent_start"></a>
 Starting agent</h1>
@@ -135,16 +157,15 @@ Starting agent</h1>
 <div class="line">-Djava.rmi.server.hostname=192.168.1.1</div>
 </div><!-- fragment --> last property - IP of SUT host <br/>
  <br/>
- Example how to start agent with enable JMX monitoring: <div class="fragment"><div class="line">./start_agent.sh -Dchassis.coordination.http.url=http:<span class="comment">//192.168.56.1:8089 -Djmx.enabled=true -Dagent.name=someAgentOnSUT</span></div>
-<div class="line">-Djmx.services=localhost:9885,localhost:9875</div>
+ Example how to start agent with enable JMX monitoring: <div class="fragment"><div class="line">./start_agent.sh -Dchassis.coordination.http.url=http:<span class="comment">//192.168.56.1:8089 -Djmx.enabled=true -Dagent.name=someAgentOnSUT -Djmx.services=localhost:9870,localhost:9875</span></div>
 </div><!-- fragment --> <br/>
  <code>jmx.enabled</code> - flag to enable/disable JMX monitoring <br/>
  <code>jmx.services</code> - host:port of JMX service(s) <br/>
  <br/>
  Also you can define name for every JMX connection, like: <br/>
- <div class="fragment"><div class="line">-Djmx.services=localhost:9885{tomcat},localhost:9875{jetty} </div>
+ <div class="fragment"><div class="line">-Djmx.services=localhost:9870{tomcat},localhost:9875{jetty} </div>
 </div><!-- fragment --> <br/>
- There are some more properties for agent setup. You can find them here: <a class="el" href="AgentProperties.html#section_agent_properties">Agent properties</a> <br/>
+ There are some more properties for agent setup. You can find them here: <a class="el" href="AgentProperties.html">Agent configuration</a> <br/>
  </dd></dl>
 <h1><a class="anchor" id="section_mon_agent_start_jboss"></a>
 JMX monitoring configuration for JBoss 6 and later</h1>
@@ -180,11 +201,15 @@ JMX monitoring configuration for JBoss 6 and later</h1>
  <a href="https://docs.jboss.org/author/display/AS71/JMX+subsystem+configuration">JBoss JMX subsystem configuration</a> <br/>
  </p>
 </div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:18 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="MonitoringMain.html">Collecting system and JVM metrics</a></li>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:07 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

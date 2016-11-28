@@ -1,8 +1,0 @@
-<map id="com.griddynamics.jagger.engine.e1.collector.MetricAggregatorProvider" name="com.griddynamics.jagger.engine.e1.collector.MetricAggregatorProvider">
-<area shape="rect" id="node3" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1AvgMetricAggregatorProvider.html" title="Calculates average value on interval. " alt="" coords="585,5,872,44"/>
-<area shape="rect" id="node4" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1CumulativeMetricAggregatorProvider.html" title="Calculates increment of the value on interval. " alt="" coords="585,68,872,107"/>
-<area shape="rect" id="node5" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1StdDevMetricAggregatorProvider.html" title="Calculates standard deviation on interval. " alt="" coords="585,131,872,169"/>
-<area shape="rect" id="node6" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SuccessRateAggregatorProvider.html" title="Calculates accumulative success rate from data collected by SuccessRateCollector&lt;Q,R,E&gt; " alt="" coords="585,193,872,232"/>
-<area shape="rect" id="node7" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SuccessRateFailsAggregatorProvider.html" title="Calculates accumulative number of failed invokes from data collected by SuccessRateCollector&lt;Q,R,E&gt; " alt="" coords="585,256,872,295"/>
-<area shape="rect" id="node8" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SumMetricAggregatorProvider.html" title="Calculates summary of all values on interval. " alt="" coords="585,319,872,357"/>
-</map>

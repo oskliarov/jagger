@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['limit_2ejava',['Limit.java',['../Limit_8java.html',1,'']]],
-  ['loadbalancer_2ejava',['LoadBalancer.java',['../LoadBalancer_8java.html',1,'']]]
+  ['licence_2edox',['Licence.dox',['../Licence_8dox.html',1,'']]]
 ];

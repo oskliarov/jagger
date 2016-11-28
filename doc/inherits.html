@@ -9,12 +9,20 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -75,6 +83,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('hierarchy.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -97,609 +119,408 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#AbstractHttpClient"/>
-<map name="AbstractHttpClient" id="AbstractHttpClient">
-</map>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#AbstractHttpInvoker"/>
+<map name="AbstractHttpInvoker" id="AbstractHttpInvoker">
+<area shape="rect" id="node1" href="classAbstractHttpInvoker.html" title="AbstractHttpInvoker" alt="" coords="5,12,144,37"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1DefaultHttpInvoker.html" title="Default HTTP&#45;invoker that invokes services of SuT via http(s) protocol. " alt="" coords="192,5,428,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#AbstractIterator"/>
-<map name="AbstractIterator" id="AbstractIterator">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#ApacheAbstractHttpInvoker"/>
-<map name="ApacheAbstractHttpInvoker" id="ApacheAbstractHttpInvoker">
-<area shape="rect" id="node1" href="classApacheAbstractHttpInvoker.html" title="ApacheAbstractHttpInvoker" alt="" coords="5,44,189,69"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1http_1_1ApacheHttpInvoker.html" title="Invoker that invokes services of SuT via http protocol. " alt="" coords="237,5,481,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1http_1_1HttpInvoker.html" title="Invoker that invokes services of SuT via http protocol. " alt="" coords="237,68,481,107"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#ArrayList"/>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#ArrayList"/>
 <map name="ArrayList" id="ArrayList">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#AtomicBoolean"/>
-<map name="AtomicBoolean" id="AtomicBoolean">
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#Class"/>
+<map name="Class" id="Class">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#BasicHttpParams"/>
-<map name="BasicHttpParams" id="BasicHttpParams">
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#Class_3_04extends_01Invoker_01_4"/>
+<map name="Class_3_04extends_01Invoker_01_4" id="Class_3_04extends_01Invoker_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#BasicNameValuePair"/>
-<map name="BasicNameValuePair" id="BasicNameValuePair">
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#ClientHttpRequestFactory"/>
+<map name="ClientHttpRequestFactory" id="ClientHttpRequestFactory">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#boolean"/>
-<map name="boolean" id="boolean">
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#ClientHttpRequestInterceptor"/>
+<map name="ClientHttpRequestInterceptor" id="ClientHttpRequestInterceptor">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#BufferedReader"/>
-<map name="BufferedReader" id="BufferedReader">
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#CloseableHttpClient"/>
+<map name="CloseableHttpClient" id="CloseableHttpClient">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#ByteArrayOutputStream"/>
-<map name="ByteArrayOutputStream" id="ByteArrayOutputStream">
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#Collections"/>
+<map name="Collections" id="Collections">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#CalculatorContextAware"/>
-<map name="CalculatorContextAware" id="CalculatorContextAware">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricCollectorProvider_3_01Q_00_01R_00_01E_01_4.html" title="com.griddynamics.jagger.engine.e1.collector.\lMetricCollectorProvider\&lt; Q, R, E \&gt;" alt="" coords="228,24,515,63"/><area shape="rect" id="node3" href="classCalculatorContextAware.html" title="CalculatorContextAware" alt="" coords="10,55,175,80"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#CalibrationInfo"/>
-<map name="CalibrationInfo" id="CalibrationInfo">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#Collection"/>
-<map name="Collection" id="Collection">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#Collection_3_01CalibrationInfo_3_01Q_00_01E_00_01R_01_4_01_4"/>
-<map name="Collection_3_01CalibrationInfo_3_01Q_00_01E_00_01R_01_4_01_4" id="Collection_3_01CalibrationInfo_3_01Q_00_01E_00_01R_01_4_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationInfo_3_01Q_00_01R_00_01E_01_4"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationInfo_3_01Q_00_01R_00_01E_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationInfo_3_01Q_00_01R_00_01E_01_4">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1invocation_1_1InvocationInfo_3_01Q_00_01R_00_01E_01_4.html" title="Class, which contains some information about invocation execution. " alt="" coords="5,5,356,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationListener_3_01Q_00_01R_00_01E_01_4"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationListener_3_01Q_00_01R_00_01E_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8invocation_8InvocationListener_3_01Q_00_01R_00_01E_01_4">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1invocation_1_1InvocationListener_3_01Q_00_01R_00_01E_01_4.html" title="Listener, executed before, after invocation. " alt="" coords="5,5,356,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerLimit.html" title="Class is used to describe result of comparison of metrics to some limit. " alt="" coords="5,5,327,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerMetric.html" title="Class is used to describe result of comparison of particular metric to some limit. " alt="" coords="5,5,327,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1DecisionPerTest.html" title="Class is used to describe result of comparison of all metrics in some test to limits. " alt="" coords="5,5,327,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8Limit"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8Limit" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8Limit">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1limits_1_1Limit.html" title="Class is used to describe individual limits for some metric. " alt="" coords="5,5,327,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_20.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregator_3_01C_01extends_01Number_01_4"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregator_3_01C_01extends_01Number_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregator_3_01C_01extends_01Number_01_4">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricAggregator_3_01C_01extends_01Number_01_4.html" title="Aggregates raw data, available after test, to final value that will be saved to database. " alt="" coords="5,5,293,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_21.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricAggregatorSettings.html" title="Class that describes settings of aggregator. " alt="" coords="5,5,293,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_22.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricCollector_3_01Q_00_01R_00_01E_01_4"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricCollector_3_01Q_00_01R_00_01E_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricCollector_3_01Q_00_01R_00_01E_01_4">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricCollector_3_01Q_00_01R_00_01E_01_4.html" title="Created with IntelliJ IDEA. " alt="" coords="180,5,467,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SuccessRateCollector_3_01Q_00_01R_00_01E_01_4.html" title="Collects number of pass and fail invokes. " alt="" coords="515,5,803,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_23.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8ResponseValidator_3_01Q_00_01E_00_01R_01_4"/>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8ResponseValidator_3_01Q_00_01E_00_01R_01_4"/>
 <map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8ResponseValidator_3_01Q_00_01E_00_01R_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8ResponseValidator_3_01Q_00_01E_00_01R_01_4">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ResponseValidator_3_01Q_00_01E_00_01R_01_4.html" title="Validates the result of invocation. " alt="" coords="178,37,466,76"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ConsistencyValidator_3_01Q_00_01E_00_01R_01_4.html" title="Compare invocation result with calibration result. " alt="" coords="514,5,801,44"/><area shape="rect" id="node4" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1NotNullResponseValidator_3_01Q_00_01E_00_01R_01_4.html" title="Validates that invocation result is not null. " alt="" coords="514,68,801,107"/></map>
+<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ResponseValidator_3_01Q_00_01E_00_01R_01_4.html" title="Validates the result of invocation. " alt="" coords="178,5,466,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_24.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestInfo"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestInfo" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestInfo">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1test_1_1TestInfo.html" title="Class, which contains some information about test execution. " alt="" coords="5,5,318,44"/></map>
+<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8Invoker_3_01Q_00_01R_00_01E_01_4"/>
+<map name="com_8griddynamics_8jagger_8invoker_8Invoker_3_01Q_00_01R_00_01E_01_4" id="com_8griddynamics_8jagger_8invoker_8Invoker_3_01Q_00_01R_00_01E_01_4">
+<area shape="rect" id="node2" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1Invoker_3_01Q_00_01R_00_01E_01_4.html" title="Responsible for action invocation on specified endpoint and query. " alt="" coords="152,5,371,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint.html" title="An object that represents HTTP&#45;endpoint. " alt="" coords="144,68,380,107"/><area shape="rect" id="node4" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4.html" title="An object that represents HTTP&#45;request. " alt="" coords="144,131,380,169"/><area shape="rect" id="node5" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4.html" title="An object that represents HTTP&#45;response. " alt="" coords="144,193,380,232"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_25.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1test_1_1TestListener.html" title="Listener, executed before, after test and periodically during test. " alt="" coords="5,5,318,44"/></map>
+<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8v2_8AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4"/>
+<map name="com_8griddynamics_8jagger_8invoker_8v2_8AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4" id="com_8griddynamics_8jagger_8invoker_8v2_8AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4">
+<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4.html" title="An object that represents abstract HTTP&#45;invoker that invokes services of SuT via http protocol..." alt="" coords="118,5,358,57"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_26.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerInfo"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerInfo" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerInfo">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testgroup_1_1TestGroupDecisionMakerInfo.html" title="Class, which contains information for decision making for some test group. " alt="" coords="5,5,352,44"/></map>
+<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8v2_8JHttpClient"/>
+<map name="com_8griddynamics_8jagger_8invoker_8v2_8JHttpClient" id="com_8griddynamics_8jagger_8invoker_8v2_8JHttpClient">
+<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpClient.html" title="An object that represents HTTP&#45;client. " alt="" coords="5,5,242,44"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient.html" title="Implementation of JHttpClient. " alt="" coords="290,5,526,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_27.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testgroup_1_1TestGroupDecisionMakerListener.html" title="Listener, executed after test&#45;group execution. " alt="" coords="5,5,352,44"/></map>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8v2_8JHttpEndpoint_8Protocol"/>
+<map name="com_8griddynamics_8jagger_8invoker_8v2_8JHttpEndpoint_8Protocol" id="com_8griddynamics_8jagger_8invoker_8v2_8JHttpEndpoint_8Protocol">
+<area shape="rect" id="node1" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_1_1Protocol.html" title="Enum representing HTTP and HTTPS protocols. " alt="" coords="5,5,242,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_28.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupInfo"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupInfo" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupInfo">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testgroup_1_1TestGroupInfo.html" title="Class, which contains some information about test&#45;group execution. " alt="" coords="5,5,352,44"/></map>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8v2_8SpringBasedHttpClient_8JSpringBasedHttpClientParameters"/>
+<map name="com_8griddynamics_8jagger_8invoker_8v2_8SpringBasedHttpClient_8JSpringBasedHttpClientParameters" id="com_8griddynamics_8jagger_8invoker_8v2_8SpringBasedHttpClient_8JSpringBasedHttpClientParameters">
+<area shape="rect" id="node1" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters.html" title="values: JSpringBasedHttpClientParameters#DEFAULT_URI_VARIABLES, JSpringBasedHttpClientParameters#ERRO..." alt="" coords="5,5,273,57"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_29.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testgroup_1_1TestGroupListener.html" title="Listener, executed before and after test&#45;group execution. " alt="" coords="5,5,352,44"/></map>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8auxiliary_8Id"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8auxiliary_8Id" id="com_8griddynamics_8jagger_8user_8test_8configurations_8auxiliary_8Id">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1auxiliary_1_1Id.html" title="Represents an ID for Jagger load test description entities. " alt="" coords="5,5,381,31"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_30.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteInfo"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteInfo" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteInfo">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testsuite_1_1TestSuiteInfo.html" title="Class, which contains some information about test suite execution. " alt="" coords="5,5,346,44"/></map>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario.html" title="Describes the execution sequence of the load tests during single run &#160;. " alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_31.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener" id="com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1testsuite_1_1TestSuiteListener.html" title="Listener, executed before and after test suite. " alt="" coords="5,5,346,44"/></map>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadScenario_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.\lJLoadScenario.Builder" alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_32.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8Provider_3_01T_01_4"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8Provider_3_01T_01_4" id="com_8griddynamics_8jagger_8engine_8e1_8Provider_3_01T_01_4">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1Provider_3_01T_01_4.html" title="An object that provides new elements(test listeners, test&#45;group listeners, etc) for jagger purposes..." alt="" coords="5,5,240,44"/></map>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest.html" title="Describes the instance of a load test performed by Jagger &#160;. " alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_33.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8scenario_8TerminationStrategy"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8scenario_8TerminationStrategy" id="com_8griddynamics_8jagger_8engine_8e1_8scenario_8TerminationStrategy">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1TerminationStrategy.html" title="This class say when Jagger has to terminate workload. " alt="" coords="5,5,294,44"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy.html" title="Terminate workload by time or when exact number of samples is reached. " alt="" coords="342,5,631,44"/></map>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.\lJLoadTest.Builder" alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_34.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricEntity"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricEntity" id="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricEntity">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1data_1_1service_1_1MetricEntity.html" title="Class is a model of some metric. " alt="" coords="5,5,368,44"/></map>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup.html" title="Describes step in the JLoadScenario execution sequence &#160;. " alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_35.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricPlotPointEntity"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricPlotPointEntity" id="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricPlotPointEntity">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1data_1_1service_1_1MetricPlotPointEntity.html" title="Class is a model of single point in metric detailed results (values vs time) " alt="" coords="5,5,368,44"/></map>
+<tr><td><img src="inherit_graph_20.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.\lJParallelTestsGroup.Builder" alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_36.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricSummaryValueEntity"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricSummaryValueEntity" id="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8MetricSummaryValueEntity">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1data_1_1service_1_1MetricSummaryValueEntity.html" title="Class is a model of summary for some metric. " alt="" coords="5,5,368,44"/></map>
+<tr><td><img src="inherit_graph_21.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition.html" title="Definition of the load test &#45; describes test data sources and the protocol, used during load test &#160;..." alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_37.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8SessionEntity"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8SessionEntity" id="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8SessionEntity">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1data_1_1service_1_1SessionEntity.html" title="Class is a model of session. " alt="" coords="5,5,368,44"/></map>
+<tr><td><img src="inherit_graph_22.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8JTestDefinition_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.\lJTestDefinition.Builder" alt="" coords="5,5,319,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_38.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8TestEntity"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8TestEntity" id="com_8griddynamics_8jagger_8engine_8e1_8services_8data_8service_8TestEntity">
-<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1data_1_1service_1_1TestEntity.html" title="Class is a model of test. " alt="" coords="5,5,368,44"/></map>
+<tr><td><img src="inherit_graph_23.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8NumberOfUsers"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8NumberOfUsers" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8NumberOfUsers">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1NumberOfUsers.html" title="The number of virtual users for performing workload. " alt="" coords="5,5,399,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_39.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8services_8JaggerService"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8services_8JaggerService" id="com_8griddynamics_8jagger_8engine_8e1_8services_8JaggerService">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1JaggerService.html" title="Internal Jagger service that can be used in custom components. " alt="" coords="5,68,293,107"/><area shape="rect" id="node2" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1DataService.html" title="Service provides access to tests results, stored in jagger database. " alt="" coords="341,5,628,44"/><area shape="rect" id="node3" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1MetricService.html" title="Service gives an ability to create and describe metrics, save metric values. " alt="" coords="341,68,628,107"/><area shape="rect" id="node4" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1SessionInfoService.html" title="Service gives ability to create and modify session metadata(such as session comment) ..." alt="" coords="341,131,628,169"/></map>
+<tr><td><img src="inherit_graph_24.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8RequestsPerSecond"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8RequestsPerSecond" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8auxiliary_8RequestsPerSecond">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1RequestsPerSecond.html" title="The number of requests per second Jagger shall perform. " alt="" coords="5,5,399,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_40.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8engine_8e1_8sessioncomparation_8DecisionMaker"/>
-<map name="com_8griddynamics_8jagger_8engine_8e1_8sessioncomparation_8DecisionMaker" id="com_8griddynamics_8jagger_8engine_8e1_8sessioncomparation_8DecisionMaker">
-<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1sessioncomparation_1_1DecisionMaker.html" title="Make a decision(OK, WARNING, FATAL, ERROR) by current test. " alt="" coords="5,5,362,44"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1sessioncomparation_1_1WorstCaseDecisionMaker.html" title="Returns the worst decision of comparisons. " alt="" coords="410,5,767,44"/></map>
+<tr><td><img src="inherit_graph_25.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfile"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfile" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfile">
+<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfile.html" title="com.griddynamics.jagger.user.test.configurations.load.\lJLoadProfile" alt="" coords="5,37,348,76"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps.html" title="This type of load implements an exact number of requests per second performed by Jagger. " alt="" coords="396,5,738,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups.html" title="This load is a list of user groups JLoadProfileUsers. " alt="" coords="396,68,738,107"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_41.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8invoker_8hessian_8HessianInvoker_3_01S_00_01Q_00_01R_01_4"/>
-<map name="com_8griddynamics_8jagger_8invoker_8hessian_8HessianInvoker_3_01S_00_01Q_00_01R_01_4" id="com_8griddynamics_8jagger_8invoker_8hessian_8HessianInvoker_3_01S_00_01Q_00_01R_01_4">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1hessian_1_1HessianInvoker_3_01S_00_01Q_00_01R_01_4.html" title="Abstract class for invokers which create request to Hessian services. " alt="" coords="118,5,387,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1http_1_1ApacheAbstractHttpInvoker_3_01Q_01_4.html" title="This class creates http request to the services of SuT. " alt="" coords="130,68,375,107"/><area shape="rect" id="node4" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1http_1_1HttpVisitorInvoker.html" title="Creates http request via java.net.URL. " alt="" coords="130,131,375,169"/><area shape="rect" id="node5" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1http_1_1TcpTrafficInvoker.html" title="Creates TCP connections. " alt="" coords="130,193,375,232"/><area shape="rect" id="node6" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1soap_1_1SOAPInvoker.html" title="Create a SOAP request to SuT. " alt="" coords="127,256,378,295"/><area shape="rect" id="node7" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1stubs_1_1WaitingInvoker_3_01Q_00_01R_00_01E_01_4.html" title="Sleeps for specified time. " alt="" coords="125,319,379,357"/></map>
+<tr><td><img src="inherit_graph_26.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileRps_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileRps_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileRps_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.load.\lJLoadProfileRps.Builder" alt="" coords="5,5,348,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_42.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8providers_8creators_8StringCreator"/>
-<map name="com_8griddynamics_8jagger_8providers_8creators_8StringCreator" id="com_8griddynamics_8jagger_8providers_8creators_8StringCreator">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1providers_1_1creators_1_1StringCreator.html" title="Takes row data and returns concatenation of it. " alt="" coords="158,5,441,44"/></map>
+<tr><td><img src="inherit_graph_27.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUserGroups_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUserGroups_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUserGroups_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.load.\lJLoadProfileUserGroups.Builder" alt="" coords="5,5,348,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_43.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8util_8Decision"/>
-<map name="com_8griddynamics_8jagger_8util_8Decision" id="com_8griddynamics_8jagger_8util_8Decision">
-<area shape="rect" id="node1" href="enumcom_1_1griddynamics_1_1jagger_1_1util_1_1Decision.html" title="com.griddynamics.jagger.util.\lDecision" alt="" coords="5,5,199,44"/></map>
+<tr><td><img src="inherit_graph_28.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers.html" title="This class represents a user group in JLoadProfileUserGroups. " alt="" coords="5,5,348,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_44.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8util_8TimeUnits"/>
-<map name="com_8griddynamics_8jagger_8util_8TimeUnits" id="com_8griddynamics_8jagger_8util_8TimeUnits">
-<area shape="rect" id="node1" href="enumcom_1_1griddynamics_1_1jagger_1_1util_1_1TimeUnits.html" title="Class that describes settings for normalization vs time. " alt="" coords="5,5,199,44"/></map>
+<tr><td><img src="inherit_graph_29.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_8Builder"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_8Builder" id="com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_8Builder">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_1_1Builder.html" title="com.griddynamics.jagger.user.test.configurations.load.\lJLoadProfileUsers.Builder" alt="" coords="5,5,348,44"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_45.png" border="0" alt="" usemap="#CompositeTask"/>
-<map name="CompositeTask" id="CompositeTask">
+<tr><td><img src="inherit_graph_30.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8DurationInSeconds"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8DurationInSeconds" id="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8DurationInSeconds">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1DurationInSeconds.html" title="Test load execution time in seconds. " alt="" coords="5,5,440,44"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_31.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8IterationsNumber"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8IterationsNumber" id="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8IterationsNumber">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1IterationsNumber.html" title="The target number of requests to the system under test. " alt="" coords="5,5,440,44"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_32.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8MaxDurationInSeconds"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8MaxDurationInSeconds" id="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8auxiliary_8MaxDurationInSeconds">
+<area shape="rect" id="node1" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1MaxDurationInSeconds.html" title="The timeout for the test execution. " alt="" coords="5,5,440,44"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_33.png" border="0" alt="" usemap="#com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8JTerminationCriteria"/>
+<map name="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8JTerminationCriteria" id="com_8griddynamics_8jagger_8user_8test_8configurations_8termination_8JTerminationCriteria">
+<area shape="rect" id="node1" href="interfacecom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteria.html" title="com.griddynamics.jagger.user.test.configurations.termination.\lJTerminationCriteria" alt="" coords="5,68,388,107"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaBackground.html" title="Test with such termination strategy will wait another tests in test&#45;group to be stopped. " alt="" coords="436,5,819,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaDuration.html" title="Test with such termination strategy will be executed for the defined time &#45; duration. " alt="" coords="436,68,819,107"/><area shape="rect" id="node4" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations.html" title="Test with such termination strategy will last till defined number of requests are executed..." alt="" coords="436,131,819,169"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_34.png" border="0" alt="" usemap="#DEFAULT__URI__VARIABLES"/>
+<map name="DEFAULT__URI__VARIABLES" id="DEFAULT__URI__VARIABLES">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_46.png" border="0" alt="" usemap="#ConcurrentHashMap"/>
-<map name="ConcurrentHashMap" id="ConcurrentHashMap">
+<tr><td><img src="inherit_graph_35.png" border="0" alt="" usemap="#equalsIgnoreCase"/>
+<map name="equalsIgnoreCase" id="equalsIgnoreCase">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_47.png" border="0" alt="" usemap="#ConcurrentHashMap_3_01String_00_01S_01_4"/>
-<map name="ConcurrentHashMap_3_01String_00_01S_01_4" id="ConcurrentHashMap_3_01String_00_01S_01_4">
+<tr><td><img src="inherit_graph_36.png" border="0" alt="" usemap="#ERROR__HANDLER"/>
+<map name="ERROR__HANDLER" id="ERROR__HANDLER">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_48.png" border="0" alt="" usemap="#CSVParser"/>
-<map name="CSVParser" id="CSVParser">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_49.png" border="0" alt="" usemap="#CSVStrategy"/>
-<map name="CSVStrategy" id="CSVStrategy">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_50.png" border="0" alt="" usemap="#Date"/>
-<map name="Date" id="Date">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_51.png" border="0" alt="" usemap="#Double"/>
-<map name="Double" id="Double">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_52.png" border="0" alt="" usemap="#E"/>
-<map name="E" id="E">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_53.png" border="0" alt="" usemap="#EntityUtils"/>
-<map name="EntityUtils" id="EntityUtils">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_54.png" border="0" alt="" usemap="#Equivalence"/>
-<map name="Equivalence" id="Equivalence">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_55.png" border="0" alt="" usemap="#Equivalence_3_01E_01_4"/>
-<map name="Equivalence_3_01E_01_4" id="Equivalence_3_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_56.png" border="0" alt="" usemap="#Equivalence_3_01Q_01_4"/>
-<map name="Equivalence_3_01Q_01_4" id="Equivalence_3_01Q_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_57.png" border="0" alt="" usemap="#Equivalence_3_01R_01_4"/>
-<map name="Equivalence_3_01R_01_4" id="Equivalence_3_01R_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_58.png" border="0" alt="" usemap="#File"/>
-<map name="File" id="File">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_59.png" border="0" alt="" usemap="#final_01E"/>
-<map name="final_01E" id="final_01E">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_60.png" border="0" alt="" usemap="#final_01int"/>
+<tr><td><img src="inherit_graph_37.png" border="0" alt="" usemap="#final_01int"/>
 <map name="final_01int" id="final_01int">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_61.png" border="0" alt="" usemap="#final_01Object"/>
-<map name="final_01Object" id="final_01Object">
+<tr><td><img src="inherit_graph_38.png" border="0" alt="" usemap="#final_01Iterable"/>
+<map name="final_01Iterable" id="final_01Iterable">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_62.png" border="0" alt="" usemap="#final_01Q"/>
-<map name="final_01Q" id="final_01Q">
+<tr><td><img src="inherit_graph_39.png" border="0" alt="" usemap="#final_01long"/>
+<map name="final_01long" id="final_01long">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_63.png" border="0" alt="" usemap="#final_01R"/>
-<map name="final_01R" id="final_01R">
+<tr><td><img src="inherit_graph_40.png" border="0" alt="" usemap="#final_01String"/>
+<map name="final_01String" id="final_01String">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_64.png" border="0" alt="" usemap="#GeneralNodeInfo"/>
-<map name="GeneralNodeInfo" id="GeneralNodeInfo">
+<tr><td><img src="inherit_graph_41.png" border="0" alt="" usemap="#format"/>
+<map name="format" id="format">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_65.png" border="0" alt="" usemap="#HashMap"/>
+<tr><td><img src="inherit_graph_42.png" border="0" alt="" usemap="#fromUri"/>
+<map name="fromUri" id="fromUri">
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_43.png" border="0" alt="" usemap="#HashMap"/>
 <map name="HashMap" id="HashMap">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_66.png" border="0" alt="" usemap="#HessianProxyFactory"/>
-<map name="HessianProxyFactory" id="HessianProxyFactory">
+<tr><td><img src="inherit_graph_44.png" border="0" alt="" usemap="#HTTP"/>
+<map name="HTTP" id="HTTP">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_67.png" border="0" alt="" usemap="#HttpEntity"/>
-<map name="HttpEntity" id="HttpEntity">
+<tr><td><img src="inherit_graph_45.png" border="0" alt="" usemap="#HTTP__CLIENT"/>
+<map name="HTTP__CLIENT" id="HTTP__CLIENT">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_68.png" border="0" alt="" usemap="#HttpParams"/>
-<map name="HttpParams" id="HttpParams">
+<tr><td><img src="inherit_graph_46.png" border="0" alt="" usemap="#HttpClients"/>
+<map name="HttpClients" id="HttpClients">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_69.png" border="0" alt="" usemap="#HttpRequestBase"/>
-<map name="HttpRequestBase" id="HttpRequestBase">
+<tr><td><img src="inherit_graph_47.png" border="0" alt="" usemap="#HttpComponentsClientHttpRequestFactory"/>
+<map name="HttpComponentsClientHttpRequestFactory" id="HttpComponentsClientHttpRequestFactory">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_70.png" border="0" alt="" usemap="#HttpURLConnection"/>
-<map name="HttpURLConnection" id="HttpURLConnection">
+<tr><td><img src="inherit_graph_48.png" border="0" alt="" usemap="#HttpHeaders"/>
+<map name="HttpHeaders" id="HttpHeaders">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_71.png" border="0" alt="" usemap="#ImmutableList"/>
-<map name="ImmutableList" id="ImmutableList">
+<tr><td><img src="inherit_graph_49.png" border="0" alt="" usemap="#HttpMessageConverter"/>
+<map name="HttpMessageConverter" id="HttpMessageConverter">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_72.png" border="0" alt="" usemap="#InputStream"/>
-<map name="InputStream" id="InputStream">
+<tr><td><img src="inherit_graph_50.png" border="0" alt="" usemap="#HttpMethod"/>
+<map name="HttpMethod" id="HttpMethod">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_73.png" border="0" alt="" usemap="#InputStreamReader"/>
-<map name="InputStreamReader" id="InputStreamReader">
+<tr><td><img src="inherit_graph_51.png" border="0" alt="" usemap="#HTTPS"/>
+<map name="HTTPS" id="HTTPS">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_74.png" border="0" alt="" usemap="#int"/>
+<tr><td><img src="inherit_graph_52.png" border="0" alt="" usemap="#HttpStatus"/>
+<map name="HttpStatus" id="HttpStatus">
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_53.png" border="0" alt="" usemap="#HttpsURL"/>
+<map name="HttpsURL" id="HttpsURL">
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_54.png" border="0" alt="" usemap="#HttpURL"/>
+<map name="HttpURL" id="HttpURL">
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_55.png" border="0" alt="" usemap="#int"/>
 <map name="int" id="int">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_75.png" border="0" alt="" usemap="#Integer"/>
-<map name="Integer" id="Integer">
+<tr><td><img src="inherit_graph_56.png" border="0" alt="" usemap="#INTERCEPTORS"/>
+<map name="INTERCEPTORS" id="INTERCEPTORS">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_76.png" border="0" alt="" usemap="#InvocationException"/>
+<tr><td><img src="inherit_graph_57.png" border="0" alt="" usemap="#InvocationException"/>
 <map name="InvocationException" id="InvocationException">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_77.png" border="0" alt="" usemap="#Invoker_3_01Nothing_00_01String_00_01String_01_4"/>
-<map name="Invoker_3_01Nothing_00_01String_00_01String_01_4" id="Invoker_3_01Nothing_00_01String_00_01String_01_4">
+<tr><td><img src="inherit_graph_58.png" border="0" alt="" usemap="#Invoker_3_01JHttpQuery_00_01JHttpResponse_00_01JHttpEndpoint_01_4"/>
+<map name="Invoker_3_01JHttpQuery_00_01JHttpResponse_00_01JHttpEndpoint_01_4" id="Invoker_3_01JHttpQuery_00_01JHttpResponse_00_01JHttpEndpoint_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_78.png" border="0" alt="" usemap="#Invoker_3_01Q_00_01HttpResponse_00_01String_01_4"/>
-<map name="Invoker_3_01Q_00_01HttpResponse_00_01String_01_4" id="Invoker_3_01Q_00_01HttpResponse_00_01String_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_79.png" border="0" alt="" usemap="#Invoker_3_01Q_00_01R_00_01E_01_4"/>
-<map name="Invoker_3_01Q_00_01R_00_01E_01_4" id="Invoker_3_01Q_00_01R_00_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_80.png" border="0" alt="" usemap="#Invoker_3_01Q_00_01R_00_01String_01_4"/>
-<map name="Invoker_3_01Q_00_01R_00_01String_01_4" id="Invoker_3_01Q_00_01R_00_01String_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_81.png" border="0" alt="" usemap="#Invoker_3_01SOAPQuery_00_01String_00_01String_01_4"/>
-<map name="Invoker_3_01SOAPQuery_00_01String_00_01String_01_4" id="Invoker_3_01SOAPQuery_00_01String_00_01String_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_82.png" border="0" alt="" usemap="#IOException"/>
-<map name="IOException" id="IOException">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_83.png" border="0" alt="" usemap="#Iterable"/>
+<tr><td><img src="inherit_graph_59.png" border="0" alt="" usemap="#Iterable"/>
 <map name="Iterable" id="Iterable">
-<area shape="rect" id="node2" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricCalculator_3_01R_01_4.html" title="Calculates information based on invocation response. " alt="" coords="220,5,507,44"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricDescription.html" title="Class to describe metric. " alt="" coords="220,68,507,107"/><area shape="rect" id="node4" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1Invoker_3_01Q_00_01R_00_01E_01_4.html" title="Responsible for action invocation on specified endpoint and query. " alt="" coords="254,131,473,169"/><area shape="rect" id="node5" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1LoadBalancer_3_01Q_00_01E_01_4.html" title="An object which provides pairs of queries and endpoints for Invoker. " alt="" coords="254,256,473,295"/><area shape="rect" id="node12" href="interfacecom_1_1griddynamics_1_1jagger_1_1providers_1_1creators_1_1ObjectCreator_3_01T_01_4.html" title="Creates objects from row data. " alt="" coords="222,193,505,232"/><area shape="rect" id="node13" href="classcom_1_1griddynamics_1_1jagger_1_1providers_1_1CsvProvider_3_01T_01_4.html" title="Reads information from CSV files. " alt="" coords="248,319,479,357"/><area shape="rect" id="node14" href="classcom_1_1griddynamics_1_1jagger_1_1providers_1_1FileProvider_3_01T_01_4.html" title="Reads data from files. " alt="" coords="248,381,479,420"/><area shape="rect" id="node6" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1QueryPoolLoadBalancer_3_01Q_00_01E_01_4.html" title="LoadBalancer which uses query and endpoint provider. " alt="" coords="555,225,774,264"/><area shape="rect" id="node11" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1SimpleLoadBalancer_3_01Q_00_01E_01_4.html" title="Contains only one query and endpoint. " alt="" coords="555,288,774,327"/><area shape="rect" id="node7" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1OneByOneLoadBalancer_3_01Q_00_01E_01_4.html" title="Schedules queries across endpoints one by one. " alt="" coords="847,163,1067,201"/><area shape="rect" id="node8" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1PairSupplierFactoryLoadBalancer_3_01Q_00_01E_01_4.html" title="com.griddynamics.jagger.invoker.\lPairSupplierFactoryLoadBalancer\&lt; Q, E \&gt;" alt="" coords="822,225,1092,264"/><area shape="rect" id="node10" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1RoundRobinLoadBalancer_3_01Q_00_01E_01_4.html" title="Encapsulates Round&#45;Robin algorithm. " alt="" coords="843,288,1071,327"/><area shape="rect" id="node9" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1SimpleCircularLoadBalancer_3_01Q_00_01E_01_4.html" title="com.griddynamics.jagger.invoker.\lSimpleCircularLoadBalancer\&lt; Q, E \&gt;" alt="" coords="1140,225,1380,264"/><area shape="rect" id="node15" href="classAbstractMetricCalculator.html" title="AbstractMetricCalculator" alt="" coords="5,12,172,37"/><area shape="rect" id="node16" href="classIterable.html" title="Iterable" alt="" coords="56,325,122,351"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_84.png" border="0" alt="" usemap="#Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener_01_4"/>
-<map name="Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener_01_4" id="Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8test_8TestListener_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_85.png" border="0" alt="" usemap="#Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener_01_4"/>
-<map name="Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener_01_4" id="Iterable_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testsuite_8TestSuiteListener_01_4">
+<tr><td><img src="inherit_graph_60.png" border="0" alt="" usemap="#LinkedMultiValueMap"/>
+<map name="LinkedMultiValueMap" id="LinkedMultiValueMap">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_86.png" border="0" alt="" usemap="#Iterable_3_01E_01_4"/>
-<map name="Iterable_3_01E_01_4" id="Iterable_3_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_87.png" border="0" alt="" usemap="#Iterable_3_01Q_01_4"/>
-<map name="Iterable_3_01Q_01_4" id="Iterable_3_01Q_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_88.png" border="0" alt="" usemap="#Iterator"/>
-<map name="Iterator" id="Iterator">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_89.png" border="0" alt="" usemap="#KernelSideObjectProvider_3_01ScenarioCollector_3_01Q_00_01R_00_01E_01_4_01_4"/>
-<map name="KernelSideObjectProvider_3_01ScenarioCollector_3_01Q_00_01R_00_01E_01_4_01_4" id="KernelSideObjectProvider_3_01ScenarioCollector_3_01Q_00_01R_00_01E_01_4_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_90.png" border="0" alt="" usemap="#List"/>
+<tr><td><img src="inherit_graph_61.png" border="0" alt="" usemap="#List"/>
 <map name="List" id="List">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_91.png" border="0" alt="" usemap="#List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener_01_4"/>
-<map name="List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener_01_4" id="List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupDecisionMakerListener_01_4">
+<tr><td><img src="inherit_graph_62.png" border="0" alt="" usemap="#List_3_01Class_3_04extends_01ResponseValidator_01_4_01_4"/>
+<map name="List_3_01Class_3_04extends_01ResponseValidator_01_4_01_4" id="List_3_01Class_3_04extends_01ResponseValidator_01_4_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_92.png" border="0" alt="" usemap="#List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener_01_4"/>
-<map name="List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener_01_4" id="List_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8testgroup_8TestGroupListener_01_4">
+<tr><td><img src="inherit_graph_63.png" border="0" alt="" usemap="#List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_01_4"/>
+<map name="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_01_4" id="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JLoadTest_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_93.png" border="0" alt="" usemap="#List_3_01InvocationListener_3_01Q_00_01R_00_01E_01_4_01_4"/>
-<map name="List_3_01InvocationListener_3_01Q_00_01R_00_01E_01_4_01_4" id="List_3_01InvocationListener_3_01Q_00_01R_00_01E_01_4_01_4">
+<tr><td><img src="inherit_graph_64.png" border="0" alt="" usemap="#List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_01_4"/>
+<map name="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_01_4" id="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8JParallelTestsGroup_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_94.png" border="0" alt="" usemap="#List_3_01Number_01_4"/>
-<map name="List_3_01Number_01_4" id="List_3_01Number_01_4">
+<tr><td><img src="inherit_graph_65.png" border="0" alt="" usemap="#List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_01_4"/>
+<map name="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_01_4" id="List_3_01com_8griddynamics_8jagger_8user_8test_8configurations_8load_8JLoadProfileUsers_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_95.png" border="0" alt="" usemap="#Lists"/>
-<map name="Lists" id="Lists">
+<tr><td><img src="inherit_graph_66.png" border="0" alt="" usemap="#List_3_01Double_01_4"/>
+<map name="List_3_01Double_01_4" id="List_3_01Double_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_96.png" border="0" alt="" usemap="#Logger"/>
-<map name="Logger" id="Logger">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_97.png" border="0" alt="" usemap="#LoggerFactory"/>
-<map name="LoggerFactory" id="LoggerFactory">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_98.png" border="0" alt="" usemap="#LogReader"/>
-<map name="LogReader" id="LogReader">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_99.png" border="0" alt="" usemap="#LogWriter"/>
-<map name="LogWriter" id="LogWriter">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_100.png" border="0" alt="" usemap="#Long"/>
-<map name="Long" id="Long">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_101.png" border="0" alt="" usemap="#long"/>
+<tr><td><img src="inherit_graph_67.png" border="0" alt="" usemap="#long"/>
 <map name="long" id="long">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_102.png" border="0" alt="" usemap="#MalformedURLException"/>
+<tr><td><img src="inherit_graph_68.png" border="0" alt="" usemap="#MalformedURLException"/>
 <map name="MalformedURLException" id="MalformedURLException">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_103.png" border="0" alt="" usemap="#Map"/>
+<tr><td><img src="inherit_graph_69.png" border="0" alt="" usemap="#Map"/>
 <map name="Map" id="Map">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_104.png" border="0" alt="" usemap="#Map_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorProvider_00_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings_01_4"/>
-<map name="Map_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorProvider_00_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings_01_4" id="Map_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorProvider_00_01com_8griddynamics_8jagger_8engine_8e1_8collector_8MetricAggregatorSettings_01_4">
+<tr><td><img src="inherit_graph_70.png" border="0" alt="" usemap="#Map_3_01String_00_01Object_01_4"/>
+<map name="Map_3_01String_00_01Object_01_4" id="Map_3_01String_00_01Object_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_105.png" border="0" alt="" usemap="#Map_3_01NodeId_00_01GeneralNodeInfo_01_4"/>
-<map name="Map_3_01NodeId_00_01GeneralNodeInfo_01_4" id="Map_3_01NodeId_00_01GeneralNodeInfo_01_4">
+<tr><td><img src="inherit_graph_71.png" border="0" alt="" usemap="#Map_3_01String_00_01String_01_4"/>
+<map name="Map_3_01String_00_01String_01_4" id="Map_3_01String_00_01String_01_4">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_106.png" border="0" alt="" usemap="#Maps"/>
-<map name="Maps" id="Maps">
+<tr><td><img src="inherit_graph_72.png" border="0" alt="" usemap="#MapUtils"/>
+<map name="MapUtils" id="MapUtils">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_107.png" border="0" alt="" usemap="#MetricAggregator"/>
-<map name="MetricAggregator" id="MetricAggregator">
-<area shape="rect" id="node1" href="classMetricAggregator.html" title="MetricAggregator" alt="" coords="5,5,129,31"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_108.png" border="0" alt="" usemap="#MetricCalculator"/>
-<map name="MetricCalculator" id="MetricCalculator">
-<area shape="rect" id="node1" href="classMetricCalculator.html" title="MetricCalculator" alt="" coords="5,12,123,37"/><area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SimpleMetricCalculator.html" title="Calculates not null responses. " alt="" coords="171,5,458,44"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_109.png" border="0" alt="" usemap="#MetricLogEntry"/>
-<map name="MetricLogEntry" id="MetricLogEntry">
+<tr><td><img src="inherit_graph_73.png" border="0" alt="" usemap="#MESSAGE__CONVERTERS"/>
+<map name="MESSAGE__CONVERTERS" id="MESSAGE__CONVERTERS">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_110.png" border="0" alt="" usemap="#MetricNameDto"/>
-<map name="MetricNameDto" id="MetricNameDto">
+<tr><td><img src="inherit_graph_74.png" border="0" alt="" usemap="#MultiValueMap"/>
+<map name="MultiValueMap" id="MultiValueMap">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_111.png" border="0" alt="" usemap="#Multimap"/>
-<map name="Multimap" id="Multimap">
+<tr><td><img src="inherit_graph_75.png" border="0" alt="" usemap="#newArrayList"/>
+<map name="newArrayList" id="newArrayList">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_112.png" border="0" alt="" usemap="#NameValuePair"/>
-<map name="NameValuePair" id="NameValuePair">
+<tr><td><img src="inherit_graph_76.png" border="0" alt="" usemap="#newInstance"/>
+<map name="newInstance" id="newInstance">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_113.png" border="0" alt="" usemap="#NodeContext"/>
+<tr><td><img src="inherit_graph_77.png" border="0" alt="" usemap="#NodeContext"/>
 <map name="NodeContext" id="NodeContext">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_114.png" border="0" alt="" usemap="#NodeId"/>
-<map name="NodeId" id="NodeId">
+<tr><td><img src="inherit_graph_78.png" border="0" alt="" usemap="#NoopHostnameVerifier"/>
+<map name="NoopHostnameVerifier" id="NoopHostnameVerifier">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_115.png" border="0" alt="" usemap="#NoSuchElementException"/>
-<map name="NoSuchElementException" id="NoSuchElementException">
+<tr><td><img src="inherit_graph_79.png" border="0" alt="" usemap="#Objects"/>
+<map name="Objects" id="Objects">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_116.png" border="0" alt="" usemap="#Nothing"/>
-<map name="Nothing" id="Nothing">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_117.png" border="0" alt="" usemap="#ObjectCreator_3_01String_01_4"/>
-<map name="ObjectCreator_3_01String_01_4" id="ObjectCreator_3_01String_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_118.png" border="0" alt="" usemap="#ObjectCreator_3_01T_01_4"/>
-<map name="ObjectCreator_3_01T_01_4" id="ObjectCreator_3_01T_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_119.png" border="0" alt="" usemap="#Pair"/>
-<map name="Pair" id="Pair">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_120.png" border="0" alt="" usemap="#PairSupplier_3_01Q_00_01E_01_4"/>
-<map name="PairSupplier_3_01Q_00_01E_01_4" id="PairSupplier_3_01Q_00_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_121.png" border="0" alt="" usemap="#PairSupplierFactory_3_01Q_00_01E_01_4"/>
-<map name="PairSupplierFactory_3_01Q_00_01E_01_4" id="PairSupplierFactory_3_01Q_00_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_122.png" border="0" alt="" usemap="#Parser"/>
-<map name="Parser" id="Parser">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_123.png" border="0" alt="" usemap="#Preconditions"/>
+<tr><td><img src="inherit_graph_80.png" border="0" alt="" usemap="#Preconditions"/>
 <map name="Preconditions" id="Preconditions">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_124.png" border="0" alt="" usemap="#ProcessingConfig"/>
-<map name="ProcessingConfig" id="ProcessingConfig">
+<tr><td><img src="inherit_graph_81.png" border="0" alt="" usemap="#REQUEST__FACTORY"/>
+<map name="REQUEST__FACTORY" id="REQUEST__FACTORY">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_125.png" border="0" alt="" usemap="#Provider_3_01MetricAggregator_01_4"/>
-<map name="Provider_3_01MetricAggregator_01_4" id="Provider_3_01MetricAggregator_01_4">
+<tr><td><img src="inherit_graph_82.png" border="0" alt="" usemap="#RequestEntity"/>
+<map name="RequestEntity" id="RequestEntity">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_126.png" border="0" alt="" usemap="#Provider_3_01TestGroupDecisionMakerListener_01_4"/>
-<map name="Provider_3_01TestGroupDecisionMakerListener_01_4" id="Provider_3_01TestGroupDecisionMakerListener_01_4">
+<tr><td><img src="inherit_graph_83.png" border="0" alt="" usemap="#ResponseEntity"/>
+<map name="ResponseEntity" id="ResponseEntity">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_127.png" border="0" alt="" usemap="#Provider_3_01TestListener_01_4"/>
-<map name="Provider_3_01TestListener_01_4" id="Provider_3_01TestListener_01_4">
+<tr><td><img src="inherit_graph_84.png" border="0" alt="" usemap="#ResponseErrorHandler"/>
+<map name="ResponseErrorHandler" id="ResponseErrorHandler">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_128.png" border="0" alt="" usemap="#Q"/>
-<map name="Q" id="Q">
+<tr><td><img src="inherit_graph_85.png" border="0" alt="" usemap="#ResponseValidator"/>
+<map name="ResponseValidator" id="ResponseValidator">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_129.png" border="0" alt="" usemap="#R"/>
-<map name="R" id="R">
+<tr><td><img src="inherit_graph_86.png" border="0" alt="" usemap="#RestTemplate"/>
+<map name="RestTemplate" id="RestTemplate">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_130.png" border="0" alt="" usemap="#Required"/>
-<map name="Required" id="Required">
+<tr><td><img src="inherit_graph_87.png" border="0" alt="" usemap="#singletonList"/>
+<map name="singletonList" id="singletonList">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_131.png" border="0" alt="" usemap="#Scanner"/>
-<map name="Scanner" id="Scanner">
+<tr><td><img src="inherit_graph_88.png" border="0" alt="" usemap="#static_01final_01int"/>
+<map name="static_01final_01int" id="static_01final_01int">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_132.png" border="0" alt="" usemap="#ScenarioCollector_3_01Q_00_01R_00_01E_01_4"/>
-<map name="ScenarioCollector_3_01Q_00_01R_00_01E_01_4" id="ScenarioCollector_3_01Q_00_01R_00_01E_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_133.png" border="0" alt="" usemap="#ServicesInitializable"/>
-<map name="ServicesInitializable" id="ServicesInitializable">
-<area shape="rect" id="node2" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1BasicTGDecisionMakerListener.html" title="Listener, after test group to make decision about test group execution status. " alt="" coords="553,100,788,139"/><area shape="rect" id="node3" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1CollectThreadsTestListener.html" title="Listener, executed periodically during test to collect number of workload threads. " alt="" coords="527,37,815,76"/><area shape="rect" id="node4" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricAggregatorProvider.html" title="com.griddynamics.jagger.engine.e1.collector.\lMetricAggregatorProvider" alt="" coords="527,163,815,201"/><area shape="rect" id="node5" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1AvgMetricAggregatorProvider.html" title="Calculates average value on interval. " alt="" coords="863,5,1150,44"/><area shape="rect" id="node6" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1CumulativeMetricAggregatorProvider.html" title="Calculates increment of the value on interval. " alt="" coords="863,68,1150,107"/><area shape="rect" id="node7" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1StdDevMetricAggregatorProvider.html" title="Calculates standard deviation on interval. " alt="" coords="863,131,1150,169"/><area shape="rect" id="node8" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SuccessRateAggregatorProvider.html" title="Calculates accumulative success rate from data collected by SuccessRateCollector&lt;Q,R,E&gt; " alt="" coords="863,193,1150,232"/><area shape="rect" id="node9" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SuccessRateFailsAggregatorProvider.html" title="Calculates accumulative number of failed invokes from data collected by SuccessRateCollector&lt;Q,R,E&gt; " alt="" coords="863,256,1150,295"/><area shape="rect" id="node10" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1SumMetricAggregatorProvider.html" title="Calculates summary of all values on interval. " alt="" coords="863,319,1150,357"/><area shape="rect" id="node11" href="classServicesInitializable.html" title="ServicesInitializable" alt="" coords="5,48,144,73"/><area shape="rect" id="node12" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1ServicesAware.html" title="An abstract class, that gives user an access to Jagger services. " alt="" coords="192,41,479,80"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_134.png" border="0" alt="" usemap="#Set"/>
-<map name="Set" id="Set">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_135.png" border="0" alt="" usemap="#Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit_01_4"/>
-<map name="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit_01_4" id="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerLimit_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_136.png" border="0" alt="" usemap="#Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric_01_4"/>
-<map name="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric_01_4" id="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerMetric_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_137.png" border="0" alt="" usemap="#Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest_01_4"/>
-<map name="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest_01_4" id="Set_3_01com_8griddynamics_8jagger_8engine_8e1_8collector_8limits_8DecisionPerTest_01_4">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_138.png" border="0" alt="" usemap="#static_01final_01long"/>
-<map name="static_01final_01long" id="static_01final_01long">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_139.png" border="0" alt="" usemap="#String"/>
+<tr><td><img src="inherit_graph_89.png" border="0" alt="" usemap="#String"/>
 <map name="String" id="String">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_140.png" border="0" alt="" usemap="#TaskDataDto"/>
-<map name="TaskDataDto" id="TaskDataDto">
+<tr><td><img src="inherit_graph_90.png" border="0" alt="" usemap="#StringUtils"/>
+<map name="StringUtils" id="StringUtils">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_141.png" border="0" alt="" usemap="#TechnicalException"/>
-<map name="TechnicalException" id="TechnicalException">
+<tr><td><img src="inherit_graph_91.png" border="0" alt="" usemap="#StringUtils"/>
+<map name="StringUtils" id="StringUtils">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_142.png" border="0" alt="" usemap="#Throwables"/>
-<map name="Throwables" id="Throwables">
+<tr><td><img src="inherit_graph_92.png" border="0" alt="" usemap="#T"/>
+<map name="T" id="T">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_143.png" border="0" alt="" usemap="#UnsupportedEncodingException"/>
-<map name="UnsupportedEncodingException" id="UnsupportedEncodingException">
+<tr><td><img src="inherit_graph_93.png" border="0" alt="" usemap="#toMap"/>
+<map name="toMap" id="toMap">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_144.png" border="0" alt="" usemap="#URI"/>
+<tr><td><img src="inherit_graph_94.png" border="0" alt="" usemap="#URI"/>
 <map name="URI" id="URI">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_145.png" border="0" alt="" usemap="#URIBuilder"/>
-<map name="URIBuilder" id="URIBuilder">
+<tr><td><img src="inherit_graph_95.png" border="0" alt="" usemap="#URI__TEMPLATE__HANDLER"/>
+<map name="URI__TEMPLATE__HANDLER" id="URI__TEMPLATE__HANDLER">
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_146.png" border="0" alt="" usemap="#URL"/>
+<tr><td><img src="inherit_graph_96.png" border="0" alt="" usemap="#UriTemplateHandler"/>
+<map name="UriTemplateHandler" id="UriTemplateHandler">
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_97.png" border="0" alt="" usemap="#URL"/>
 <map name="URL" id="URL">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_147.png" border="0" alt="" usemap="#UrlEncodedFormEntity"/>
-<map name="UrlEncodedFormEntity" id="UrlEncodedFormEntity">
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_148.png" border="0" alt="" usemap="#WorkloadTask"/>
-<map name="WorkloadTask" id="WorkloadTask">
 </map>
 </td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:21 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:08 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

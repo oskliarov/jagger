@@ -1,4 +1,2 @@
 <map id="com.griddynamics.jagger.engine.e1.collector.ResponseValidator&lt; Q, E, R &gt;" name="com.griddynamics.jagger.engine.e1.collector.ResponseValidator&lt; Q, E, R &gt;">
-<area shape="rect" id="node3" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ConsistencyValidator_3_01Q_00_01E_00_01R_01_4.html" title="Compare invocation result with calibration result. " alt="" coords="514,5,801,44"/>
-<area shape="rect" id="node4" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1NotNullResponseValidator_3_01Q_00_01E_00_01R_01_4.html" title="Validates that invocation result is not null. " alt="" coords="514,68,801,107"/>
 </map>

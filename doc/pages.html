@@ -9,12 +9,20 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -67,6 +75,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('pages.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,39 +109,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiUserCommentsAndTags.html" target="_self">WebUi user comments and operations with tags</a></td><td class="desc">Section describes how to set user commenta and mark sessions with tags from Jagger Web client <br/>
+<div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span>]</div><table class="directory">
+<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="Installation.html" target="_self">Installation</a></td><td class="desc">How to setup Jagger locally or on the CI environment </td></tr>
+<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="GettingStarted.html" target="_self">Getting started</a></td><td class="desc"></td></tr>
+<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WritingTest.html" target="_self">Creating load test</a></td><td class="desc"></td></tr>
+<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="JaggerProperties.html" target="_self">Jagger configuration</a></td><td class="desc">Section provides full information about Jagger configuration <br/>
  </td></tr>
-<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiProperties.html" target="_self">WebUi properties</a></td><td class="desc">Section describes jagger Web client properties <br/>
+<tr id="row_4_" class="even"><td class="entry"><img id="arr_4_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('4_')"/><a class="el" href="MonitoringMain.html" target="_self">Collecting system and JVM metrics</a></td><td class="desc">Section provides full information about collection system metrics <br/>
  </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiOverview.html" target="_self">WebUi features overview</a></td><td class="desc">Section describes main features of Jagger Web client <br/>
+<tr id="row_4_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img id="arr_4_0_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('4_0_')"/><a class="el" href="MonitoringSetup.html" target="_self">How to start monitoring agent</a></td><td class="desc">Section describes how to start monitoring agents to collect system and JVM metrics <br/>
  </td></tr>
-<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiInstallation.html" target="_self">WebUi installation</a></td><td class="desc">Section describes installation of Jagger Web client <br/>
+<tr id="row_4_0_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="AgentProperties.html" target="_self">Agent configuration</a></td><td class="desc">Section describes all available properties for Jagger agents <br/>
  </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiMain.html" target="_self">Jagger WebUi</a></td><td class="desc">Section provides full information about Jagger Web client <br/>
+<tr id="row_4_1_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="MonitoringMetricsSetup.html" target="_self">Monitoring metrics settings</a></td><td class="desc">Section describes available settings for monitoring metrics <br/>
  </td></tr>
-<tr id="row_5_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="JaggerProperties.html" target="_self">Jagger properties</a></td><td class="desc">Section provides full information about properties used by Jagger <br/>
+<tr id="row_5_" class="even"><td class="entry"><img id="arr_5_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('5_')"/><a class="el" href="FrameworkComponents.html" target="_self">Framework components</a></td><td class="desc">TODO section is under construction<br/>
  </td></tr>
-<tr id="row_6_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="AgentProperties.html" target="_self">Agent properties</a></td><td class="desc">Section describes all available properties for Jagger agents <br/>
+<tr id="row_5_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img id="arr_5_0_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('5_0_')"/><a class="el" href="WebUiMain.html" target="_self">Jagger WebUi</a></td><td class="desc">Section provides full information about Jagger Web client <br/>
  </td></tr>
-<tr id="row_7_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="DecisionMakerBasedOnLimits.html" target="_self">Making decision based on limits for measured parameters</a></td><td class="desc">Section describes approach how to automatically make decision about results of performance test <br/>
+<tr id="row_5_0_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiOverview.html" target="_self">WebUi features overview</a></td><td class="desc">Section describes main features of Jagger Web client <br/>
  </td></tr>
-<tr id="row_8_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="MonitoringMain.html" target="_self">Jagger Monitoring Metrics</a></td><td class="desc">Section provides full information about collection metrics on System Under Test site <br/>
+<tr id="row_5_0_1_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiInstallation.html" target="_self">WebUi installation</a></td><td class="desc">Section describes installation of Jagger Web client <br/>
  </td></tr>
-<tr id="row_9_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="MonitoringSetup.html" target="_self">How to start monitoring agent</a></td><td class="desc">Section describes how to start monitoring agents to collect metrics on System Under Test site <br/>
+<tr id="row_5_0_2_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="WebUiProperties.html" target="_self">WebUi configuration</a></td><td class="desc">Section describes jagger Web client properties <br/>
  </td></tr>
-<tr id="row_10_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="MonitoringMetricsSetup.html" target="_self">Monitoring metrics settings</a></td><td class="desc">Section describes available settings for monitoring metrics <br/>
+<tr id="row_5_0_3_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="WebUiUserCommentsAndTags.html" target="_self">WebUi user comments and operations with tags</a></td><td class="desc">Section describes how to set user commenta and mark sessions with tags from Jagger Web client <br/>
  </td></tr>
-<tr id="row_11_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="todo.html" target="_self">Todo List</a></td><td class="desc"></td></tr>
-<tr id="row_12_" class="even"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="deprecated.html" target="_self">Deprecated List</a></td><td class="desc"></td></tr>
+<tr id="row_5_1_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img id="arr_5_1_" src="ftv2mlastnode.png" alt="\" width="16" height="22" onclick="toggleFolder('5_1_')"/><a class="el" href="JaasMain.html" target="_self">Jagger as a Service REST API</a></td><td class="desc">JaaS - provides REST API for test results managements and CI environments orchestration <br/>
+ </td></tr>
+<tr id="row_5_1_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="JaasInstallation.html" target="_self">JaaS installation</a></td><td class="desc">Section describes installation of the JaaS <br/>
+ </td></tr>
+<tr id="row_6_" class="even"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="Licence.html" target="_self">Licence</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:21 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:08 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

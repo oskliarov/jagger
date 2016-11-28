@@ -5,16 +5,24 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>Jagger: Jagger Monitoring Metrics</title>
+<title>Jagger: Collecting system and JVM metrics</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -66,6 +74,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('MonitoringMain.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,16 +103,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Jagger Monitoring Metrics </div>  </div>
+<div class="title">Collecting system and JVM metrics </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Section provides full information about collection metrics on System Under Test site <br/>
+<div class="textblock"><p>Section provides full information about collection system metrics <br/>
 </p>
 <p><br/>
- Jagger is able to collect information about resources utilization on System Under Test (SUT) site. <br/>
+ Jagger is able to collect information about system and JVM resources utilization <br/>
  For this purpose monitoring agents can be launched. Agent will collect following monitoring metrics: <br/>
  <br/>
 </p>
@@ -108,20 +130,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 </ol>
-<p><br/>
- See also: <br/>
- </p>
 <ul>
 <li><a class="el" href="MonitoringSetup.html">How to start monitoring agent</a> </li>
 <li><a class="el" href="MonitoringMetricsSetup.html">Monitoring metrics settings</a> </li>
 <li><a class="el" href="JaggerProperties.html#section_default_properties_for_monitoring_metrics">List of all monitoring metrics and default settings</a> </li>
 </ul>
 </div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:18 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:06 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

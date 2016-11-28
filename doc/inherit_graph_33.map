@@ -1,4 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1TerminationStrategy.html" title="This class say when Jagger has to terminate workload. " alt="" coords="5,5,294,44"/>
-<area shape="rect" id="node2" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy.html" title="Terminate workload by time or when exact number of samples is reached. " alt="" coords="342,5,631,44"/>
+<area shape="rect" id="node1" href="$interfacecom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteria.html" title="com.griddynamics.jagger.user.test.configurations.termination.\lJTerminationCriteria" alt="" coords="5,68,388,107"/>
+<area shape="rect" id="node2" href="$classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaBackground.html" title="Test with such termination strategy will wait another tests in test&#45;group to be stopped. " alt="" coords="436,5,819,44"/>
+<area shape="rect" id="node3" href="$classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaDuration.html" title="Test with such termination strategy will be executed for the defined time &#45; duration. " alt="" coords="436,68,819,107"/>
+<area shape="rect" id="node4" href="$classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations.html" title="Test with such termination strategy will last till defined number of requests are executed..." alt="" coords="436,131,819,169"/>
 </map>

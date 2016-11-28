@@ -9,12 +9,20 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -83,29 +91,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
-      <li class="current"><a href="functions.html#index_a"><span>a</span></a></li>
-      <li><a href="functions_0x63.html#index_c"><span>c</span></a></li>
-      <li><a href="functions_0x64.html#index_d"><span>d</span></a></li>
-      <li><a href="functions_0x65.html#index_e"><span>e</span></a></li>
-      <li><a href="functions_0x66.html#index_f"><span>f</span></a></li>
-      <li><a href="functions_0x67.html#index_g"><span>g</span></a></li>
-      <li><a href="functions_0x68.html#index_h"><span>h</span></a></li>
-      <li><a href="functions_0x69.html#index_i"><span>i</span></a></li>
-      <li><a href="functions_0x6c.html#index_l"><span>l</span></a></li>
-      <li><a href="functions_0x6d.html#index_m"><span>m</span></a></li>
-      <li><a href="functions_0x6e.html#index_n"><span>n</span></a></li>
-      <li><a href="functions_0x6f.html#index_o"><span>o</span></a></li>
-      <li><a href="functions_0x70.html#index_p"><span>p</span></a></li>
-      <li><a href="functions_0x71.html#index_q"><span>q</span></a></li>
-      <li><a href="functions_0x72.html#index_r"><span>r</span></a></li>
-      <li><a href="functions_0x73.html#index_s"><span>s</span></a></li>
-      <li><a href="functions_0x74.html#index_t"><span>t</span></a></li>
-      <li><a href="functions_0x75.html#index_u"><span>u</span></a></li>
-      <li><a href="functions_0x76.html#index_v"><span>v</span></a></li>
-      <li><a href="functions_0x77.html#index_w"><span>w</span></a></li>
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_b"><span>b</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_j"><span>j</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_q"><span>q</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_v"><span>v</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -124,25 +145,448 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>addAggregator()
-: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricDescription_a062f40f4418430d5d299426655f573c0.html#a062f40f4418430d5d299426655f573c0">com.griddynamics.jagger.engine.e1.collector.MetricDescription</a>
+<li>AbstractHttpInvoker()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4_aee17341caa023f6b5bfa3ec7922ff5e5.html#aee17341caa023f6b5bfa3ec7922ff5e5">com.griddynamics.jagger.invoker.v2.AbstractHttpInvoker&lt; HTTP_CLIENT extends JHttpClient &gt;</a>
 </li>
-<li>aggregatorsWithSettings
-: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricDescription_a29c215b4f64a4e585bfbed002277cb19.html#a29c215b4f64a4e585bfbed002277cb19">com.griddynamics.jagger.engine.e1.collector.MetricDescription</a>
+<li>appendParameters()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a5200b141dce462bd4493bd746b689b91.html#a5200b141dce462bd4493bd746b689b91">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
 </li>
-<li>append()
-: <a class="el" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1MetricAggregator_3_01C_01extends_01Number_01_4_a75345a237817edc474f842630d2089b1.html#a75345a237817edc474f842630d2089b1">com.griddynamics.jagger.engine.e1.collector.MetricAggregator&lt; C extends Number &gt;</a>
+</ul>
+
+
+<h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>body()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a46d234e85a5eb46941f84b1a83b04163.html#a46d234e85a5eb46941f84b1a83b04163">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
 </li>
-<li>appendToComment()
-: <a class="el" href="interfacecom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1services_1_1SessionInfoService_aebc34c43adcf40d001df664368a82592.html#aebc34c43adcf40d001df664368a82592">com.griddynamics.jagger.engine.e1.services.SessionInfoService</a>
+<li>build()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_1_1Builder_ac3cc8742169fec5a7332afedb182fb29.html#ac3cc8742169fec5a7332afedb182fb29">com.griddynamics.jagger.user.test.configurations.JLoadScenario.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder_ae33854872a09f8b55a298651a3264f0a.html#ae33854872a09f8b55a298651a3264f0a">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_1_1Builder_a619b68ec08833979413523cee43fa5cb.html#a619b68ec08833979413523cee43fa5cb">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder_a5172875418a81196aaafa9cfaa49a3d8.html#a5172875418a81196aaafa9cfaa49a3d8">com.griddynamics.jagger.user.test.configurations.JTestDefinition.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_1_1Builder_ac802a07f365e3af841bf4d510319774d.html#ac802a07f365e3af841bf4d510319774d">com.griddynamics.jagger.user.test.configurations.JLoadTest.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_1_1Builder_aaf73f307c8f4e28e0bd5bc85be5bef93.html#aaf73f307c8f4e28e0bd5bc85be5bef93">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_1_1Builder_a2288f7c4a0077e5c8909534c5f89c13b.html#a2288f7c4a0077e5c8909534c5f89c13b">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups.Builder</a>
+</li>
+<li>builder()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_ad898543fbb57c7067c9e3eed862d0316.html#ad898543fbb57c7067c9e3eed862d0316">com.griddynamics.jagger.user.test.configurations.JLoadTest</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_aad33cf2862d26cc0d9f90a89c72b6206.html#aad33cf2862d26cc0d9f90a89c72b6206">com.griddynamics.jagger.user.test.configurations.JLoadScenario</a>
+</li>
+<li>Builder()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_1_1Builder_a20646b3ff5574e544ce784d36da57a93.html#a20646b3ff5574e544ce784d36da57a93">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_1_1Builder_a27e6ecbdcd8ada7f3e3791900eb3dd6f.html#a27e6ecbdcd8ada7f3e3791900eb3dd6f">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_1_1Builder_ada4177fad88a1b9dcfff3bba0d170640.html#ada4177fad88a1b9dcfff3bba0d170640">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup.Builder</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_1_1Builder_a080d24639de39841c1f297e911649b0e.html#a080d24639de39841c1f297e911649b0e">com.griddynamics.jagger.user.test.configurations.JLoadScenario.Builder</a>
+</li>
+<li>builder()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_a0e7acc972588571d3b7baf96051413b9.html#a0e7acc972588571d3b7baf96051413b9">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_ad35255ff9673de73485f804485269f19.html#ad35255ff9673de73485f804485269f19">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_afee9a272d07b947a2738beb630ef8cf9.html#afee9a272d07b947a2738beb630ef8cf9">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_a3580b7e9519047ac9f2244bfc3dd21b9.html#a3580b7e9519047ac9f2244bfc3dd21b9">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_aac7e3289bc00753d552e731cecefa041.html#aac7e3289bc00753d552e731cecefa041">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_afea2604b465fd070b4efb938997d8a71.html#afea2604b465fd070b4efb938997d8a71">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>cookie()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a011c44c9084e64d6879f2d9c0a11fa9b.html#a011c44c9084e64d6879f2d9c0a11fa9b">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>cookies()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a7f05e5f2107529444bf87f64e24ff65f.html#a7f05e5f2107529444bf87f64e24ff65f">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>DEF_PROTOCOL
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_ae591caed3b90bc970bd1c0b1ca67f8b2.html#ae591caed3b90bc970bd1c0b1ca67f8b2">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>DEFAULT_URI_VARIABLES
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_ae4641dff26539e96180f9ce0037028ff.html#ae4641dff26539e96180f9ce0037028ff">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>DefaultHttpInvoker()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1DefaultHttpInvoker_a35cde8cf1bdd44f5bb353285b60968f5.html#a35cde8cf1bdd44f5bb353285b60968f5">com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker</a>
+</li>
+<li>delete()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_afdc72924df25053f786727f026b9b42a.html#afdc72924df25053f786727f026b9b42a">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>equals()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a6c03b885ed4507507012e16d1993516a.html#a6c03b885ed4507507012e16d1993516a">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>ERROR_HANDLER
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_a106aeb7aa4c82f995b8f57b1c5f58f48.html#a106aeb7aa4c82f995b8f57b1c5f58f48">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>execute()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_a260fa9d186f901bd1c1c106ad429b826.html#a260fa9d186f901bd1c1c106ad429b826">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient</a>
+, <a class="el" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpClient_a117523f5bcddce4ba9ca09dde93d7d0a.html#a117523f5bcddce4ba9ca09dde93d7d0a">com.griddynamics.jagger.invoker.v2.JHttpClient</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_a89b6e69ce9eb46b1e0b759497ba38fa3.html#a89b6e69ce9eb46b1e0b759497ba38fa3">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>get()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_ab0bb608c7e6b6ba494a8977cff1ade7b.html#ab0bb608c7e6b6ba494a8977cff1ade7b">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>getBody()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_aac9f6f73ef86fa20b729480c9c57c3d9.html#aac9f6f73ef86fa20b729480c9c57c3d9">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_ae78dc955480c7c1dcfa56d02b1a40686.html#ae78dc955480c7c1dcfa56d02b1a40686">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>getClientParams()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_a2ec3f2eb0c92e214885bb1bd9c144375.html#a2ec3f2eb0c92e214885bb1bd9c144375">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient</a>
+</li>
+<li>getComment()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_a74c839fc8139dc494349d5b789210d29.html#a74c839fc8139dc494349d5b789210d29">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getCookies()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_ae31fb6bd3fa618ebf5e5b0d934b17124.html#ae31fb6bd3fa618ebf5e5b0d934b17124">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>getDelayBetweenInvocationsInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_ab14964504b70cadd06fbe3d0ee844704.html#ab14964504b70cadd06fbe3d0ee844704">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups</a>
+</li>
+<li>getDescription()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_ae7f63709b9952d76f52c6e3ab186d77a.html#ae7f63709b9952d76f52c6e3ab186d77a">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getDurationInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaDuration_a8ffbfa7ec16df37115958070eb3b8016.html#a8ffbfa7ec16df37115958070eb3b8016">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaDuration</a>
+</li>
+<li>getEndpoints()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_a8dc10340d430b5b3a364b718e03f98d1.html#a8dc10340d430b5b3a364b718e03f98d1">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getHeaders()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a45609ef4c5001b849434df0abbd35c71.html#a45609ef4c5001b849434df0abbd35c71">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_a6b60dab012ed4c9ba3aa20fdd9860afb.html#a6b60dab012ed4c9ba3aa20fdd9860afb">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>getHostname()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a53fa1a3d70a896078d575630d4a36e86.html#a53fa1a3d70a896078d575630d4a36e86">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>getHttpClient()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4_ad512f89f02bfeed7181b86c2e78bc792.html#ad512f89f02bfeed7181b86c2e78bc792">com.griddynamics.jagger.invoker.v2.AbstractHttpInvoker&lt; HTTP_CLIENT extends JHttpClient &gt;</a>
+</li>
+<li>getId()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_af2bf96f5cdc512ff3381df2178886c3b.html#af2bf96f5cdc512ff3381df2178886c3b">com.griddynamics.jagger.user.test.configurations.JLoadTest</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_a1cbb89ffa10c20d441749d0b4bc78578.html#a1cbb89ffa10c20d441749d0b4bc78578">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_afe1a080fb9d905e01ecd462b92d27265.html#afe1a080fb9d905e01ecd462b92d27265">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_a0e3e5e06d1452a654d049919e7ce88aa.html#a0e3e5e06d1452a654d049919e7ce88aa">com.griddynamics.jagger.user.test.configurations.JLoadScenario</a>
+</li>
+<li>getInstance()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaBackground_a1fe06ee6d6377c58a1906af31287e6d9.html#a1fe06ee6d6377c58a1906af31287e6d9">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaBackground</a>
+</li>
+<li>getInvoker()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_abe24ba4d4376ad0db76168738421d7f9.html#abe24ba4d4376ad0db76168738421d7f9">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getIterationsNumber()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations_a64a3157a2857693fb9d1d191da400ff4.html#a64a3157a2857693fb9d1d191da400ff4">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations</a>
+</li>
+<li>getLifeTimeInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_a375e8c25f92b78f30736315471cc95ff.html#a375e8c25f92b78f30736315471cc95ff">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers</a>
+</li>
+<li>getLoad()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_ae93e90408fe3308f7cd2f990334c7ed8.html#ae93e90408fe3308f7cd2f990334c7ed8">com.griddynamics.jagger.user.test.configurations.JLoadTest</a>
+</li>
+<li>getMaxDurationInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations_a2285f8326fbe7126b0ae771b142ffeb1.html#a2285f8326fbe7126b0ae771b142ffeb1">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations</a>
+</li>
+<li>getMaxLoadThreads()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_aa043db101d00196addf5c43d696df46e.html#aa043db101d00196addf5c43d696df46e">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps</a>
+</li>
+<li>getMethod()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_ab78675a3edf9b95af1a55bc551a8aa12.html#ab78675a3edf9b95af1a55bc551a8aa12">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>getName()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ResponseValidator_3_01Q_00_01E_00_01R_01_4_ab11947024a6bd329eb779cd5dac56b06.html#ab11947024a6bd329eb779cd5dac56b06">com.griddynamics.jagger.engine.e1.collector.ResponseValidator&lt; Q, E, R &gt;</a>
+</li>
+<li>getNumberOfUsers()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_ac789a9ee0717d8f8c57305db506d75b4.html#ac789a9ee0717d8f8c57305db506d75b4">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers</a>
+</li>
+<li>getPath()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_af07fdf11d6ad97945d3f7bbfacf1598b.html#af07fdf11d6ad97945d3f7bbfacf1598b">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>getPercentileValues()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_a14d03886527a130b963b2de921dcd755.html#a14d03886527a130b963b2de921dcd755">com.griddynamics.jagger.user.test.configurations.JLoadScenario</a>
+</li>
+<li>getPort()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a6aab9f3d760e5ed59edb3e0bd4889b8c.html#a6aab9f3d760e5ed59edb3e0bd4889b8c">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>getProtocol()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a25b2d71c585c8e96df8b0ac4f86b33cd.html#a25b2d71c585c8e96df8b0ac4f86b33cd">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>getQueries()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_a9e8195cc230125a683be207098515b34.html#a9e8195cc230125a683be207098515b34">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getQueryParams()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a18a9db917e86b9107d413024c0671464.html#a18a9db917e86b9107d413024c0671464">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>getRequestsPerSecond()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_a5357e854ff40ff6df386e12df5292ca2.html#a5357e854ff40ff6df386e12df5292ca2">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps</a>
+</li>
+<li>getResponseBodyType()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a490646b86cff8dab7d25253e5564e59b.html#a490646b86cff8dab7d25253e5564e59b">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>getSlewRateUsersPerSecond()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_af78020d13f5ad61e104b795802b7da88.html#af78020d13f5ad61e104b795802b7da88">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers</a>
+</li>
+<li>getStartDelayInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_aa36757da8e628ebb0536473af1925217.html#aa36757da8e628ebb0536473af1925217">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers</a>
+</li>
+<li>getStatus()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_a329fe82639cbe586ed6ab188d7adec0c.html#a329fe82639cbe586ed6ab188d7adec0c">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>getTermination()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_a5d30a2cdd0b304463ef4b6e70ef005cc.html#a5d30a2cdd0b304463ef4b6e70ef005cc">com.griddynamics.jagger.user.test.configurations.JLoadTest</a>
+</li>
+<li>getTestDescription()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadTest_ac68689c91e19d5e41ab0679ff65854c7.html#ac68689c91e19d5e41ab0679ff65854c7">com.griddynamics.jagger.user.test.configurations.JLoadTest</a>
+</li>
+<li>getTestGroups()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_a46b7cba1770d29d59f744ea27d59c75c.html#a46b7cba1770d29d59f744ea27d59c75c">com.griddynamics.jagger.user.test.configurations.JLoadScenario</a>
+</li>
+<li>getTests()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JParallelTestsGroup_a345cb54b80e803637537f5d79368e480.html#a345cb54b80e803637537f5d79368e480">com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup</a>
+</li>
+<li>getTickInterval()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_a52a6bb9f003d9c68a1d0f73061bcb74a.html#a52a6bb9f003d9c68a1d0f73061bcb74a">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_a632aa6f7951a63127045bb1a60196ff2.html#a632aa6f7951a63127045bb1a60196ff2">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups</a>
+</li>
+<li>getURI()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a0a7148ba446ef4f6e87c21b0ff687097.html#a0a7148ba446ef4f6e87c21b0ff687097">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>getUserGroups()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_aa2d0dc6b05f02bebfda883f71d9a001d.html#aa2d0dc6b05f02bebfda883f71d9a001d">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups</a>
+</li>
+<li>getValidators()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_a16f06944157b2db0cdbbaad93a6799ad.html#a16f06944157b2db0cdbbaad93a6799ad">com.griddynamics.jagger.user.test.configurations.JTestDefinition</a>
+</li>
+<li>getValue()
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_a70fa2f3fd497897728916e7d66002a3e.html#a70fa2f3fd497897728916e7d66002a3e">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>getWarmUpTimeInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_aeaf29d288930729ec4cdfb41ee859ac7.html#aeaf29d288930729ec4cdfb41ee859ac7">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>hashCode()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a94c83959060fdb6feb4baa85eaad10d5.html#a94c83959060fdb6feb4baa85eaad10d5">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>head()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_aa8886d25b58fa0394164fe0f9b4396ea.html#aa8886d25b58fa0394164fe0f9b4396ea">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>header()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_aa425cd71f84fbd11407f8b9475cda424.html#aa425cd71f84fbd11407f8b9475cda424">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>headers()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a95d0e88bb49bc53b9462ffb3dde28d92.html#a95d0e88bb49bc53b9462ffb3dde28d92">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>HTTP
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_1_1Protocol_a44ddb65dd68efa825e99295546dfa148.html#a44ddb65dd68efa825e99295546dfa148">com.griddynamics.jagger.invoker.v2.JHttpEndpoint.Protocol</a>
+</li>
+<li>httpClient
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4_ae32612bd4cd79062ed32590b786a8023.html#ae32612bd4cd79062ed32590b786a8023">com.griddynamics.jagger.invoker.v2.AbstractHttpInvoker&lt; HTTP_CLIENT extends JHttpClient &gt;</a>
+</li>
+<li>HTTPS
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_1_1Protocol_a9b10f1b5c9d3e1fb01f4205d28ff4663.html#a9b10f1b5c9d3e1fb01f4205d28ff4663">com.griddynamics.jagger.invoker.v2.JHttpEndpoint.Protocol</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>Id()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1auxiliary_1_1Id_a68511b8bc59342627cff0ee93aef1881.html#a68511b8bc59342627cff0ee93aef1881">com.griddynamics.jagger.user.test.configurations.auxiliary.Id</a>
+</li>
+<li>INTERCEPTORS
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_a58aa3706c71ef233048a2165d8325878.html#a58aa3706c71ef233048a2165d8325878">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>invoke()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1AbstractHttpInvoker_3_01HTTP__CLIENT_01extends_01JHttpClient_01_4_ae29d40daf7dad2d04e75b8637553bc85.html#ae29d40daf7dad2d04e75b8637553bc85">com.griddynamics.jagger.invoker.v2.AbstractHttpInvoker&lt; HTTP_CLIENT extends JHttpClient &gt;</a>
+, <a class="el" href="interfacecom_1_1griddynamics_1_1jagger_1_1invoker_1_1Invoker_3_01Q_00_01R_00_01E_01_4_abb3e5e1cf2008c46ecbd018efd6d2dce.html#abb3e5e1cf2008c46ecbd018efd6d2dce">com.griddynamics.jagger.invoker.Invoker&lt; Q, R, E &gt;</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1DefaultHttpInvoker_a1bb5106265f86096015cbefd89f23072.html#a1bb5106265f86096015cbefd89f23072">com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_j"></a>- j -</h3><ul>
+<li>JHttpEndpoint()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_aa0d89b5d581602342f51d0965152bcab.html#aa0d89b5d581602342f51d0965152bcab">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+</li>
+<li>JHttpResponse()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_abf9555fe2cfb4fb83e3ac764de824d48.html#abf9555fe2cfb4fb83e3ac764de824d48">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>JSpringBasedHttpClientParameters()
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_a598368fdc811765811436c3c6ce284f8.html#a598368fdc811765811436c3c6ce284f8">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>JTerminationCriteriaDuration()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaDuration_a77769b9e80ed6d6381834b94ea03cf8e.html#a77769b9e80ed6d6381834b94ea03cf8e">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaDuration</a>
+</li>
+<li>JTerminationCriteriaIterations()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations_a363fe87f3857526dc1803afb71a005fe.html#a363fe87f3857526dc1803afb71a005fe">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>MaxDurationInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1MaxDurationInSeconds_a49a860e38eb2cc0f5e93077ba409b705.html#a49a860e38eb2cc0f5e93077ba409b705">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds</a>
+</li>
+<li>MESSAGE_CONVERTERS
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_a0fcc864c60cd4f3537df88cd4fac5ea8.html#a0fcc864c60cd4f3537df88cd4fac5ea8">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>method()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_aeced94fd21a95409db9d2b3111d34a46.html#aeced94fd21a95409db9d2b3111d34a46">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>of()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1auxiliary_1_1Id_a235dbd3fd2516e484ed8b928cf14555f.html#a235dbd3fd2516e484ed8b928cf14555f">com.griddynamics.jagger.user.test.configurations.auxiliary.Id</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1NumberOfUsers_a8ede05531d02ee00e4351ac4ea91fa4f.html#a8ede05531d02ee00e4351ac4ea91fa4f">com.griddynamics.jagger.user.test.configurations.load.auxiliary.NumberOfUsers</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1DurationInSeconds_a402a13aa86fe1be8a0bcd7403f87943d.html#a402a13aa86fe1be8a0bcd7403f87943d">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.DurationInSeconds</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaDuration_ac1e7eb8a9f793d936aab911df9b139df.html#ac1e7eb8a9f793d936aab911df9b139df">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaDuration</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1MaxDurationInSeconds_aab4971252b973b81b42f366bc69918f9.html#aab4971252b973b81b42f366bc69918f9">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1IterationsNumber_ab08d87b6d101808457caa52c60fa10e1.html#ab08d87b6d101808457caa52c60fa10e1">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1JTerminationCriteriaIterations_ac80fed3b51ebf0f477ab794e144c5e07.html#ac80fed3b51ebf0f477ab794e144c5e07">com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1RequestsPerSecond_a6606b5845a1127bd3c77dc77015dfc24.html#a6606b5845a1127bd3c77dc77015dfc24">com.griddynamics.jagger.user.test.configurations.load.auxiliary.RequestsPerSecond</a>
+</li>
+<li>options()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a1f8b382abd7f50d6f78bbffeefdbaff6.html#a1f8b382abd7f50d6f78bbffeefdbaff6">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>patch()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a033704b7d1feb02ad4ed26505c55f9a7.html#a033704b7d1feb02ad4ed26505c55f9a7">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>path()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a982811cbf0a5423d4048bdf9fcf92e9d.html#a982811cbf0a5423d4048bdf9fcf92e9d">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>post()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a9b591729c55a63dddd92b8496d04b9f0.html#a9b591729c55a63dddd92b8496d04b9f0">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>put()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a514bab777003d1fae9175f848c4ab513.html#a514bab777003d1fae9175f848c4ab513">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>queryParam()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a42cb5835ad8f866541efb5036447aebd.html#a42cb5835ad8f866541efb5036447aebd">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>queryParams()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_a94ac577b7893cef3a9eb18f8b26aeac9.html#a94ac577b7893cef3a9eb18f8b26aeac9">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>REQUEST_FACTORY
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_abda41ba6e9a4f530a3818d498737f5d0.html#abda41ba6e9a4f530a3818d498737f5d0">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+<li>responseBodyType()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_ae930568ae44891229067207ec7105c3d.html#ae930568ae44891229067207ec7105c3d">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+<li>ResponseValidator()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ResponseValidator_3_01Q_00_01E_00_01R_01_4_a44a3f8e656805844bbd9f559518f6003.html#a44a3f8e656805844bbd9f559518f6003">com.griddynamics.jagger.engine.e1.collector.ResponseValidator&lt; Q, E, R &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>setClientParams()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_a4d66f164f0dae951688acb6483cd7330.html#a4d66f164f0dae951688acb6483cd7330">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient</a>
+</li>
+<li>SpringBasedHttpClient()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_ab1fdf4ff57a523a28c5eeb5de0468471.html#ab1fdf4ff57a523a28c5eeb5de0468471">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>toString()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpEndpoint_a19cdabe7534bc25b8ce8968fcdb06471.html#a19cdabe7534bc25b8ce8968fcdb06471">com.griddynamics.jagger.invoker.v2.JHttpEndpoint</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_ae5567de1cb377c4fe862b44731baff32.html#ae5567de1cb377c4fe862b44731baff32">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpResponse_3_01T_01_4_a6250179ab021bc9709ba34e85f1b0539.html#a6250179ab021bc9709ba34e85f1b0539">com.griddynamics.jagger.invoker.v2.JHttpResponse&lt; T &gt;</a>
+</li>
+<li>trace()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1JHttpQuery_3_01T_01_4_af22792721778358985a61980a22c0987.html#af22792721778358985a61980a22c0987">com.griddynamics.jagger.invoker.v2.JHttpQuery&lt; T &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>URI_TEMPLATE_HANDLER
+: <a class="el" href="enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_ae55e13fa1125ec4ecd9a4fb5184a818a.html#ae55e13fa1125ec4ecd9a4fb5184a818a">com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient.JSpringBasedHttpClientParameters</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>validate()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1collector_1_1ResponseValidator_3_01Q_00_01E_00_01R_01_4_a3fa917190b6f48e6015ccbf1cdbeff8d.html#a3fa917190b6f48e6015ccbf1cdbeff8d">com.griddynamics.jagger.engine.e1.collector.ResponseValidator&lt; Q, E, R &gt;</a>
+</li>
+<li>value()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1MaxDurationInSeconds_ab51f26cd1193596583bcfc41a231f88b.html#ab51f26cd1193596583bcfc41a231f88b">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.MaxDurationInSeconds</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1IterationsNumber_a1da6bd58a9f185f15d7d9a6f83223de2.html#a1da6bd58a9f185f15d7d9a6f83223de2">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1termination_1_1auxiliary_1_1DurationInSeconds_a813391a7179cfad88d2dd66045004706.html#a813391a7179cfad88d2dd66045004706">com.griddynamics.jagger.user.test.configurations.termination.auxiliary.DurationInSeconds</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1RequestsPerSecond_afb1dc6d7a612f40758e5ea26ed8e9979.html#afb1dc6d7a612f40758e5ea26ed8e9979">com.griddynamics.jagger.user.test.configurations.load.auxiliary.RequestsPerSecond</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1auxiliary_1_1NumberOfUsers_aa4065bf3a59fc5842df83715467f8cf7.html#aa4065bf3a59fc5842df83715467f8cf7">com.griddynamics.jagger.user.test.configurations.load.auxiliary.NumberOfUsers</a>
+, <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1auxiliary_1_1Id_a87d61b0e487a7be438bb440a453763e4.html#a87d61b0e487a7be438bb440a453763e4">com.griddynamics.jagger.user.test.configurations.auxiliary.Id</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>withComment()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder_a2f7ad6311689f8b9608af1a93e936256.html#a2f7ad6311689f8b9608af1a93e936256">com.griddynamics.jagger.user.test.configurations.JTestDefinition.Builder</a>
+</li>
+<li>withDelayBetweenInvocationsInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUserGroups_1_1Builder_abb2815df2d4ee9030d2e3a175d29c9b3.html#abb2815df2d4ee9030d2e3a175d29c9b3">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups.Builder</a>
+</li>
+<li>withInvoker()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder_a997521d79873dfab5810d630ec72438c.html#a997521d79873dfab5810d630ec72438c">com.griddynamics.jagger.user.test.configurations.JTestDefinition.Builder</a>
+</li>
+<li>withLatencyPercentiles()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JLoadScenario_1_1Builder_a8027a5151f310f5a7f37a084d84f05ab.html#a8027a5151f310f5a7f37a084d84f05ab">com.griddynamics.jagger.user.test.configurations.JLoadScenario.Builder</a>
+</li>
+<li>withLifeTimeInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_1_1Builder_a6db7df716a5a0274e8d039ffd7a3a0ef.html#a6db7df716a5a0274e8d039ffd7a3a0ef">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers.Builder</a>
+</li>
+<li>withMaxLoadThreads()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_1_1Builder_a90f37d26eb04362d3fa595fc6b178906.html#a90f37d26eb04362d3fa595fc6b178906">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps.Builder</a>
+</li>
+<li>withQueryProvider()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder_ad1caff9098fa8c6744c7d349f24f492f.html#ad1caff9098fa8c6744c7d349f24f492f">com.griddynamics.jagger.user.test.configurations.JTestDefinition.Builder</a>
+</li>
+<li>withSlewRateUsersPerSecond()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_1_1Builder_a86d419a03b1595ee17cc9595f0c65e2b.html#a86d419a03b1595ee17cc9595f0c65e2b">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers.Builder</a>
+</li>
+<li>withStartDelayInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileUsers_1_1Builder_ad1a059edff01c5a272831f161abaac44.html#ad1a059edff01c5a272831f161abaac44">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers.Builder</a>
+</li>
+<li>withValidators()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1JTestDefinition_1_1Builder_ad7f8db60e30d8cd37f3f523485c4cbef.html#ad7f8db60e30d8cd37f3f523485c4cbef">com.griddynamics.jagger.user.test.configurations.JTestDefinition.Builder</a>
+</li>
+<li>withWarmUpTimeInSeconds()
+: <a class="el" href="classcom_1_1griddynamics_1_1jagger_1_1user_1_1test_1_1configurations_1_1load_1_1JLoadProfileRps_1_1Builder_a7f7302e8007fc2bae8ae7bdd60378450.html#a7f7302e8007fc2bae8ae7bdd60378450">com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps.Builder</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:21 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:08 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

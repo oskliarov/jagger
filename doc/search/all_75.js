@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['userterminationstrategy',['UserTerminationStrategy',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy.html',1,'com::griddynamics::jagger::engine::e1::scenario']]],
-  ['userterminationstrategy',['UserTerminationStrategy',['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy_a12a77e00f39a27bf2864fbadc1fd66b5.html#a12a77e00f39a27bf2864fbadc1fd66b5',1,'com.griddynamics.jagger.engine.e1.scenario.UserTerminationStrategy.UserTerminationStrategy(ProcessingConfig.Test testConfig, ProcessingConfig.Test.Task taskConfig, AtomicBoolean shutdown)'],['../classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy_a4fa50b031e20f001d8433e9f311d7b86.html#a4fa50b031e20f001d8433e9f311d7b86',1,'com.griddynamics.jagger.engine.e1.scenario.UserTerminationStrategy.UserTerminationStrategy(String duration, Integer samples, AtomicBoolean shutdown)']]],
-  ['userterminationstrategy_2ejava',['UserTerminationStrategy.java',['../UserTerminationStrategy_8java.html',1,'']]]
+  ['uri_5ftemplate_5fhandler',['URI_TEMPLATE_HANDLER',['../enumcom_1_1griddynamics_1_1jagger_1_1invoker_1_1v2_1_1SpringBasedHttpClient_1_1JSpringBasedHttpClientParameters_ae55e13fa1125ec4ecd9a4fb5184a818a.html#ae55e13fa1125ec4ecd9a4fb5184a818a',1,'com::griddynamics::jagger::invoker::v2::SpringBasedHttpClient::JSpringBasedHttpClientParameters']]]
 ];

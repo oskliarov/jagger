@@ -5,16 +5,24 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>Jagger: Jagger source code documentation</title>
+<title>Jagger: Jagger user manual</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="my_customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -67,6 +75,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('index.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,48 +105,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Jagger source code documentation </div>  </div>
+<div class="title">Jagger user manual </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Documentation version:  <div class="fragment"><div class="line">Version: 1.2.6</div>
+<div class="textblock"><p>Documentation version:  <div class="fragment"><div class="line">Version: 2.0-m1</div>
 </div><!-- fragment --> <br/>
  Back to <a href="https://github.com/griddynamics/jagger/wiki">GitHub</a> documentation <br/>
  <br/>
  </p>
-<ul>
-<li><a class="el" href="group__Main__Test__Suite__Flow__group.html">Test suite execution sequence</a> </li>
-<li><a class="el" href="group__Main__Test__Flow__group.html">Test execution sequence</a></li>
-</ul>
-<ul>
-<li><a class="el" href="group__Main__Aggregators__General__group.html">Aggregators main page</a> </li>
-<li><a class="el" href="group__Main__Collectors__General__group.html">Collectors main page</a> </li>
-<li><a class="el" href="group__Main__Distributors__General__group.html">Distributors main page</a> </li>
-<li><a class="el" href="group__Main__Listeners__General__group.html">Listeners main page</a> </li>
-<li><a class="el" href="group__Main__Providers__General__group.html">Providers main page</a> </li>
-<li><a class="el" href="group__Main__Services__General__group.html">Services main page</a> </li>
-<li><a class="el" href="group__Main__Decision__Maker__General__group.html">Decision Maker main page</a></li>
-</ul>
-<ul>
-<li><a class="el" href="group__Main__Custom__Components__group.html">Custom component</a></li>
-</ul>
-<ul>
-<li><a class="el" href="group__Main__Properties__group.html">Jagger properties main page</a></li>
-</ul>
-<ul>
-<li><a class="el" href="WebUiMain.html">Jagger WebUi</a></li>
-</ul>
-<ul>
-<li><a class="el" href="MonitoringMain.html">Jagger Monitoring Metrics</a></li>
-</ul>
-<p><br/>
+<h1><a class="anchor" id="section_main_introduction"></a>
+Introduction</h1>
+<p>Jagger is performance test framework, suitable for local usage and for building continuous performance testing. <br/>
+ Easy deployment, simple configuration and rich set of the features available out of the box makes it a good choice for developers and QA engineers <br/>
  <br/>
- Other documentation <a href="../archive/index.html">versions</a> </p>
+ </p>
+<h1><a class="anchor" id="section_main_what_is_jagger"></a>
+Capabilities overview</h1>
+<p>Main features: </p>
+<ul>
+<li><a class="el" href="WritingTest.html">Generate load</a> </li>
+<li>Collect performance metrics (TODO link to main performance metrics) </li>
+<li>Validate responses from the system under test </li>
+<li><a class="el" href="MonitoringMain.html">Collect system and JVM monitoring metrics</a> </li>
+<li>Store test results </li>
+<li>Report test results </li>
+<li><a class="el" href="WebUiMain.html">Display, compare, share test results via WebUI</a> </li>
+<li><a class="el" href="JaasMain.html">Provide REST API for the test results access</a> </li>
+<li>Integrate to CI </li>
+<li>Rise pass/warning/fail alerts in the CI </li>
+<li>Work with custom components </li>
+<li>Run in single node or distributed mode <br/>
+ <br/>
+ Other documentation <a href="../archive/index.html">versions</a> </li>
+</ul>
 </div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 7 2016 18:07:21 for Jagger by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Mon Nov 28 2016 13:42:08 for Jagger by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>

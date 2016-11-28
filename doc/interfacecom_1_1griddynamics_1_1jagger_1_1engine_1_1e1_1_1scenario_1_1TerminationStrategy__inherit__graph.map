@@ -1,3 +1,0 @@
-<map id="com.griddynamics.jagger.engine.e1.scenario.TerminationStrategy" name="com.griddynamics.jagger.engine.e1.scenario.TerminationStrategy">
-<area shape="rect" id="node2" href="$classcom_1_1griddynamics_1_1jagger_1_1engine_1_1e1_1_1scenario_1_1UserTerminationStrategy.html" title="Terminate workload by time or when exact number of samples is reached. " alt="" coords="5,92,294,131"/>
-</map>
