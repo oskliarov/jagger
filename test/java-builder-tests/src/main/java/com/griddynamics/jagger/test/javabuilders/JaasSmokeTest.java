@@ -28,11 +28,12 @@ public class JaasSmokeTest {
                 .header("Content-Type", "application/json")
                 .path("/jaas/projects"));
 
-        JLoadTest deleteProjectTest = getTest("DELETE", new JHttpQuery().delete().path("/jaas/projects/1"));
+// TODO rework with custom invoker
+// JLoadTest deleteProjectTest = getTest("DELETE", new JHttpQuery().delete().path("/jaas/projects/1"));
 
         JParallelTestsGroup testsGroup1 = JParallelTestsGroup.builder(Id.of("Group 1"), getSessionsTest, getProjectsTest).build();
         JParallelTestsGroup testsGroup2 = JParallelTestsGroup.builder(Id.of("Group 2"), postProjectTest).build();
-        JParallelTestsGroup testsGroup3 = JParallelTestsGroup.builder(Id.of("Group 3"), deleteProjectTest).build();
+        JParallelTestsGroup testsGroup3 = JParallelTestsGroup.builder(Id.of("Group 3"), getProjectsTest).build();
 
         return JLoadScenario.builder(Id.of("JaasSmokeTest"), testsGroup1, testsGroup2, testsGroup3).build();
     }
