@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TestDescriptions {
+public class TestDefinitions {
 
     private final List<Class<? extends ResponseValidator>> validators = Arrays.asList(NotNullResponseValidator.class, TrueValidator.class);
 
-    private Iterable<JHttpEndpoint> getEndpoints() {
+    private static Iterable<JHttpEndpoint> getEndpoints() {
         // TODO oskliarov: when JFG-972 will be done use properties
         return Collections.singletonList(new JHttpEndpoint("http://localhost:8080"));
     }
@@ -27,7 +27,7 @@ public class TestDescriptions {
         return Stream.of("55", "12", "77").map(q -> new JHttpQuery().get().path("/sleep", q)).collect(Collectors.toList());
     }
 
-    private Iterable<JHttpQuery> getQuery(String path){
+    private static Iterable<JHttpQuery> getQuery(String path){
         return Collections.singletonList(new JHttpQuery().get().path(path));
     }
 
@@ -176,13 +176,13 @@ public class TestDescriptions {
 //            </metric>
 //        </info-collectors>
 
-    public JTestDefinition load_cpu_service_10000000(){
+    static JTestDefinition load_cpu_service_10000000(){
         return JTestDefinition.builder(Id.of("load-cpu-service-10000000"), getEndpoints())
                 .withQueryProvider(getQuery("/load/10000000"))
                 .build();
     }
 
-    public JTestDefinition allocate_memory_service_1000000x200(){
+    static JTestDefinition allocate_memory_service_1000000x200(){
         return JTestDefinition.builder(Id.of("allocate-memory-service-1000000x200"), getEndpoints())
                 .withQueryProvider(getQuery("/allocate/1000000x200"))
                 .build();
