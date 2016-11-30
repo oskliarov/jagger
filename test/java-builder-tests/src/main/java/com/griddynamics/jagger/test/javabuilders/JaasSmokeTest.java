@@ -23,7 +23,7 @@ public class JaasSmokeTest {
 
         JLoadTest getSessionsTest = getTest("get sessions", new JHttpQuery().get().path("/jaas/db/sessions"));
         JLoadTest getExecutionsTest = getTest("get execution", new JHttpQuery().get().path("/jaas/executions"));
-        JLoadTest postProjectTest = getTest("POST", new JHttpQuery<String>()
+        JLoadTest postExecutionsTest = getTest("POST", new JHttpQuery<String>()
                 .post().body("{\"envId\": \"1\",\"loadScenarioId\": \"sid\"}")
                 .header("Content-Type", "application/json")
                 .path("/jaas/executions"));
@@ -32,7 +32,7 @@ public class JaasSmokeTest {
 // JLoadTest deleteProjectTest = getTest("DELETE", new JHttpQuery().delete().path("/jaas/executions/1"));
 
         JParallelTestsGroup testsGroup1 = JParallelTestsGroup.builder(Id.of("Group 1"), getSessionsTest, getExecutionsTest).build();
-        JParallelTestsGroup testsGroup2 = JParallelTestsGroup.builder(Id.of("Group 2"), postProjectTest).build();
+        JParallelTestsGroup testsGroup2 = JParallelTestsGroup.builder(Id.of("Group 2"), postExecutionsTest).build();
         JParallelTestsGroup testsGroup3 = JParallelTestsGroup.builder(Id.of("Group 3"), getExecutionsTest).build();
 
         return JLoadScenario.builder(Id.of("JaasSmokeTest"), testsGroup1, testsGroup2, testsGroup3).build();
