@@ -12,12 +12,12 @@ public class JLoadScenariosConfig {
     
     @Bean
     public JLoadScenario jaasSmokeTest() {
-        return new JaasSmokeTest().getHttpScenarios();
+        return new JaasSmokeTest().getHttpScenario();
     }
 
     @Bean
     public JLoadScenario jaagerSmokeTest() {
-        return new JaggerSmokeTest().jTestSuites();
+        return new JaggerSmokeTest().getJaggerScenario();
     }
 
 }

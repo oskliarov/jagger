@@ -19,21 +19,21 @@ import java.util.Collections;
 
 
 public class JaasSmokeTest {
-    public JLoadScenario getHttpScenarios(){
+    public JLoadScenario getHttpScenario(){
 
         JLoadTest getSessionsTest = getTest("get sessions", new JHttpQuery().get().path("/jaas/db/sessions"));
-        JLoadTest getProjectsTest = getTest("get projects", new JHttpQuery().get().path("/jaas/projects"));
+        JLoadTest getExecutionsTest = getTest("get execution", new JHttpQuery().get().path("/jaas/executions"));
         JLoadTest postProjectTest = getTest("POST", new JHttpQuery<String>()
-                .post().body("{\"dbId\": 1,\"description\": \"descr\",\"version\": \"2\",\"zipPath\":\"\"}")
+                .post().body("{\"envId\": \"1\",\"loadScenarioId\": \"sid\"}")
                 .header("Content-Type", "application/json")
-                .path("/jaas/projects"));
+                .path("/jaas/executions"));
 
-// TODO rework with custom invoker
-// JLoadTest deleteProjectTest = getTest("DELETE", new JHttpQuery().delete().path("/jaas/projects/1"));
+// TODO rework with custom invoker when JFG-1018 will be fixed
+// JLoadTest deleteProjectTest = getTest("DELETE", new JHttpQuery().delete().path("/jaas/executions/1"));
 
-        JParallelTestsGroup testsGroup1 = JParallelTestsGroup.builder(Id.of("Group 1"), getSessionsTest, getProjectsTest).build();
+        JParallelTestsGroup testsGroup1 = JParallelTestsGroup.builder(Id.of("Group 1"), getSessionsTest, getExecutionsTest).build();
         JParallelTestsGroup testsGroup2 = JParallelTestsGroup.builder(Id.of("Group 2"), postProjectTest).build();
-        JParallelTestsGroup testsGroup3 = JParallelTestsGroup.builder(Id.of("Group 3"), getProjectsTest).build();
+        JParallelTestsGroup testsGroup3 = JParallelTestsGroup.builder(Id.of("Group 3"), getExecutionsTest).build();
 
         return JLoadScenario.builder(Id.of("JaasSmokeTest"), testsGroup1, testsGroup2, testsGroup3).build();
     }
