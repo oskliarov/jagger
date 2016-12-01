@@ -28,7 +28,7 @@ public class JaggerTestSuit {
         terminate10Sec = JTerminationCriteriaDuration.of(DurationInSeconds.of(10));
     }
 
-    JLoadTest allDefaultsRps(){
+    private JLoadTest allDefaultsRps(){
         return JLoadTest.builder(Id.of("all definition default, all rps default, termination by duration"),
                 definitions.allDefaults(),
                 loads.oneRPSWithAllDefaults(),
@@ -36,7 +36,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest allFieldsRps(){
+    private JLoadTest allFieldsRps(){
         return JLoadTest.builder(Id.of("all definition fields, all rps fields, termination by iteration"),
                 definitions.allFields(),
                 loads.rpsAllFields(),
@@ -44,7 +44,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest queriesRotationWithWarmUp(){
+    private JLoadTest queriesRotationWithWarmUp(){
         return JLoadTest.builder(Id.of("Queries rotation with warm up and termination by max duration"),
                 definitions.listOfQueries(),
                 loads.rpsFiveSecWarmUp(),
@@ -52,7 +52,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest oneQueryOneThread(){
+    private JLoadTest oneQueryOneThread(){
         return JLoadTest.builder(Id.of("1 query, 1 thread"),
                 definitions.singleQuery(),
                 loads.rpsOneThreadMax(),
@@ -60,7 +60,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest zeroWarmUp(){
+    private JLoadTest zeroWarmUp(){
         return JLoadTest.builder(Id.of("zero warm up, definition with comment"),
                 definitions.withComment(),
                 loads.rpsWith0WarmUp(),
@@ -68,7 +68,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest groupLoadAllDefaultAndValidator(){
+    private JLoadTest groupLoadAllDefaultAndValidator(){
         return JLoadTest.builder(Id.of("Single group with one user and all defaults, single validator, one iteration"),
                 definitions.singleValidator(),
                 loads.singleGroupAllDefaults(),
@@ -84,7 +84,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest cpuLoadWithBackgroundTermination(){
+    private JLoadTest cpuLoadWithBackgroundTermination(){
         return JLoadTest.builder(Id.of("cpu load"),
                 TestDefinitions.load_cpu_service_10000000(),
                 loads.oneRPSWithAllDefaults(),
@@ -92,7 +92,7 @@ public class JaggerTestSuit {
                 .build();
     }
 
-    JLoadTest allocateMemoryDuring10Sec(){
+    private JLoadTest allocateMemoryDuring10Sec(){
         return JLoadTest.builder(Id.of("allocate memory"),
                 TestDefinitions.allocate_memory_service_1000000x200(),
                 loads.oneRPSWithAllDefaults(),
@@ -105,9 +105,13 @@ public class JaggerTestSuit {
         JParallelTestsGroup singleTest = JParallelTestsGroup.builder(Id.of("single test"), allDefaultsRps()).build();
         JParallelTestsGroup backgroundTermination = JParallelTestsGroup.builder(Id.of("background termination"),
                 cpuLoadWithBackgroundTermination(), allocateMemoryDuring10Sec()).build();
-        List<JParallelTestsGroup> groups = Stream.of(//listOfValidatorsAndGroups(),
-                groupLoadAllDefaultAndValidator(), zeroWarmUp(), queriesRotationWithWarmUp(), oneQueryOneThread(),
-                allFieldsRps())
+        List<JParallelTestsGroup> groups = Stream.of(
+                        groupLoadAllDefaultAndValidator(),
+                        zeroWarmUp(),
+                        queriesRotationWithWarmUp(),
+                        oneQueryOneThread(),
+                        //listOfValidatorsAndGroups(), TODO uncomment when JFG-1029 will be fixed
+                        allFieldsRps())
                 .map(t -> JParallelTestsGroup.builder(Id.of(t.getId()), t).build())
                 .collect(Collectors.toList());
         groups.add(backgroundTermination);
@@ -115,10 +119,5 @@ public class JaggerTestSuit {
         return JLoadScenario.builder(Id.of("JaggerTests"), singleTest, groups.toArray(new JParallelTestsGroup[]{})).build();
     }
 
-    public JLoadScenario test(){
-        return JLoadScenario.builder(Id.of("Test"),
-                JParallelTestsGroup.builder(Id.of("test"), listOfValidatorsAndGroups()).build())
-                .build();
-    }
 
 }
