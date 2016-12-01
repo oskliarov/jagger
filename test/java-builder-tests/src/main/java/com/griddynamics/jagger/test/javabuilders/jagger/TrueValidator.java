@@ -16,7 +16,6 @@ public class TrueValidator extends ResponseValidator {
 
     @Override
     public boolean validate(Object query, Object endpoint, Object result, long duration) {
-
         return true;
     }
 }

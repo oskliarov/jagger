@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * class to map tests from xml, remove when migration will be done
+ */
 public class TestDefinitions {
 
     private final List<Class<? extends ResponseValidator>> validators = Arrays.asList(NotNullResponseValidator.class, TrueValidator.class);
