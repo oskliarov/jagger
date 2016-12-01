@@ -22,9 +22,9 @@ import java.util.stream.Stream;
 
 public class JaggerSmokeTest {
     public JLoadScenario getJaggerScenario() {
-        JTestDefinition sleep_service_5ms_simple_http_query = JTestDefinition
-                .builder(Id.of("sleep-service-5ms-simple-http-query-provider"), getEndpoints())
-                .withComment("sleep-service-5ms-simple-http-query-provider")
+        JTestDefinition smokeTestDefinition = JTestDefinition
+                .builder(Id.of("smoke-test-definition"), getEndpoints())
+                .withComment("smoke test")
                 .withQueryProvider(getQueries())
                 .withValidators(Collections.singletonList(NotNullResponseValidator.class))
 //   TODO add the following things after clarifying
@@ -42,13 +42,12 @@ public class JaggerSmokeTest {
         JTerminationCriteria termination = new JTerminationCriteriaIterations(IterationsNumber.of(1000),
                 MaxDurationInSeconds.of(60));
 
-        JLoadTest test1 = JLoadTest.builder(Id.of("sleep-service-5ms-simple-http-query-provider"),
-                sleep_service_5ms_simple_http_query, load, termination).build();
+        JLoadTest test1 = JLoadTest.builder(Id.of("smoke-test"), smokeTestDefinition, load, termination).build();
 
-        JParallelTestsGroup testGroup = JParallelTestsGroup.builder(Id.of("sleep-service-5ms-http-query-provider"), test1)
+        JParallelTestsGroup testGroup = JParallelTestsGroup.builder(Id.of("smoke-test-group"), test1)
                 .build();
 
-        return JLoadScenario.builder(Id.of("ciJaggerTestSuite"), testGroup).build();
+        return JLoadScenario.builder(Id.of("JaggerSmokeTest"), testGroup).build();
     }
 
     private Iterable<JHttpEndpoint> getEndpoints() {
