@@ -14,7 +14,7 @@ class TestLoadVariations {
     }
 
     JLoadProfile rpsFiveSecWarmUp(){
-        return JLoadProfileRps.builder(RequestsPerSecond.of(1))
+        return JLoadProfileRps.builder(RequestsPerSecond.of(10))
                 .withWarmUpTimeInSeconds(5)
                 .build();
     }

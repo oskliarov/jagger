@@ -105,7 +105,7 @@ public class JaggerTestSuit {
         JParallelTestsGroup singleTest = JParallelTestsGroup.builder(Id.of("single test"), allDefaultsRps()).build();
         JParallelTestsGroup backgroundTermination = JParallelTestsGroup.builder(Id.of("background termination"),
                 cpuLoadWithBackgroundTermination(), allocateMemoryDuring10Sec()).build();
-        List<JParallelTestsGroup> groups = Stream.of(listOfValidatorsAndGroups(),
+        List<JParallelTestsGroup> groups = Stream.of(//listOfValidatorsAndGroups(),
                 groupLoadAllDefaultAndValidator(), zeroWarmUp(), queriesRotationWithWarmUp(), oneQueryOneThread(),
                 allFieldsRps())
                 .map(t -> JParallelTestsGroup.builder(Id.of(t.getId()), t).build())
@@ -113,6 +113,12 @@ public class JaggerTestSuit {
         groups.add(backgroundTermination);
 
         return JLoadScenario.builder(Id.of("JaggerTests"), singleTest, groups.toArray(new JParallelTestsGroup[]{})).build();
+    }
+
+    public JLoadScenario test(){
+        return JLoadScenario.builder(Id.of("Test"),
+                JParallelTestsGroup.builder(Id.of("test"), listOfValidatorsAndGroups()).build())
+                .build();
     }
 
 }

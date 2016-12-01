@@ -25,4 +25,7 @@ public class JLoadScenariosConfig {
     public JLoadScenario jaggetTests(){
         return new JaggerTestSuit().getJaggerTests();
     }
+
+    @Bean
+    public JLoadScenario test(){return new JaggerTestSuit().test();}
 }
