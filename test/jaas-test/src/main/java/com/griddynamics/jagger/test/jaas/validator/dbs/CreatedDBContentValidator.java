@@ -1,9 +1,9 @@
 package com.griddynamics.jagger.test.jaas.validator.dbs;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
-import com.griddynamics.jagger.invoker.http.v2.JHttpEndpoint;
-import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
-import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
+import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
+import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
 import junit.framework.Assert;
@@ -38,14 +38,13 @@ public class CreatedDBContentValidator extends DBsListResponseContentValidator {
         return true;
     }
 
-    public boolean equalsIgnoreId(DbConfigEntity expected, DbConfigEntity actual) {
-        if (expected == actual) return true;
-        if (!(actual instanceof DbConfigEntity)) return false;
-        return  Objects.equals(expected.getDesc(), actual.getDesc()) &&
-                Objects.equals(expected.getUrl(), actual.getUrl()) &&
-                Objects.equals(expected.getUser(), actual.getUser()) &&
-                Objects.equals(expected.getPass(), actual.getPass()) &&
-                Objects.equals(expected.getJdbcDriver(), actual.getJdbcDriver()) &&
-                Objects.equals(expected.getHibernateDialect(), actual.getHibernateDialect());
+    private boolean equalsIgnoreId(DbConfigEntity expected, DbConfigEntity actual) {
+        return expected == actual || actual != null
+                && Objects.equals(expected.getDesc(), actual.getDesc())
+                && Objects.equals(expected.getUrl(), actual.getUrl())
+                && Objects.equals(expected.getUser(), actual.getUser())
+                && Objects.equals(expected.getPass(), actual.getPass())
+                && Objects.equals(expected.getJdbcDriver(), actual.getJdbcDriver())
+                && Objects.equals(expected.getHibernateDialect(), actual.getHibernateDialect());
     }
 }

@@ -10,7 +10,6 @@ import java.util.*;
  * Stores and provides access to test context (expected data mainly).
  * Created by ELozovan on 2016-09-28.
  */
-@SuppressWarnings("unused")
 public class TestContext {
     private static volatile TestContext instance;
 

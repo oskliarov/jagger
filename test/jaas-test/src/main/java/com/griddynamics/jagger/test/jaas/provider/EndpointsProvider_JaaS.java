@@ -1,11 +1,8 @@
 package com.griddynamics.jagger.test.jaas.provider;
 
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +11,6 @@ import java.util.List;
  * Provides main endpoint of JaaS.
  */
 public class EndpointsProvider_JaaS implements Iterable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EndpointsProvider_JaaS.class);
     private List<JHttpEndpoint> endpoints = new LinkedList<>();
 
     @Value( "${jaas.endpoint}" )
@@ -25,11 +21,7 @@ public class EndpointsProvider_JaaS implements Iterable {
     @Override
     public Iterator iterator() {
         if (endpoints.isEmpty()) {
-            try {
-                endpoints.add(new JHttpEndpoint(endpoint));
-            } catch (URISyntaxException e) {
-                LOGGER.warn("Could not create an endpoint entity from {} due to: ", endpoint, e);
-            }
+            endpoints.add(new JHttpEndpoint(endpoint));
         }
 
         return endpoints.iterator();

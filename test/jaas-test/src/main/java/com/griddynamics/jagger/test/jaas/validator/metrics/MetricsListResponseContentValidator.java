@@ -2,9 +2,9 @@ package com.griddynamics.jagger.test.jaas.validator.metrics;
 
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
-import com.griddynamics.jagger.invoker.http.v2.JHttpEndpoint;
-import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
-import com.griddynamics.jagger.invoker.http.v2.JHttpResponse;
+import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
+import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import org.slf4j.Logger;
@@ -91,14 +91,13 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
      * Compares MetricEntity ignoring internal "test" instances (to avoid comparison of uniqueIds which are not equal in our case).
      * See JFG-943.
      */
-    private boolean areEqualIgnoringTestDto(MetricEntity ent1, MetricEntity ent2){
-        if (ent1 == ent2) return true;
-            if (ent2 == null || ent1.getClass() != ent2.getClass()) return false;
+    private boolean areEqualIgnoringTestDto(MetricEntity ent1, MetricEntity ent2) {
+        return ent1 == ent2 || !(ent2 == null || ent1.getClass() != ent2.getClass())
+                && ent1.isPlotAvailable() == ent2.isPlotAvailable()
+                && ent1.isSummaryAvailable() == ent2.isSummaryAvailable()
+                && ent1.getMetricId().equals(ent2.getMetricId())
+                && ent1.getDisplayName().equals(ent2.getDisplayName());
 
-            if (ent1.isPlotAvailable() != ent2.isPlotAvailable()) return false;
-            if (ent1.isSummaryAvailable() != ent2.isSummaryAvailable()) return false;
-            if (!ent1.getMetricId().equals(ent2.getMetricId())) return false;
-        return ent1.getDisplayName().equals(ent2.getDisplayName());
 
     }
 }

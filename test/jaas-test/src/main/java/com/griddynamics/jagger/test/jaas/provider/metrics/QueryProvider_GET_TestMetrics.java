@@ -1,18 +1,17 @@
 package com.griddynamics.jagger.test.jaas.provider.metrics;
 
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
-import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.test.jaas.provider.tests.QueryProvider_GET_TestsList;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Iterator;
-import java.util.stream.Collectors;
 
 /**
  * Provides a query for /jaas/sessions/{sessionId}/tests/{tesName}/metrics resource which shall return list of available metrics.
  */
-@SuppressWarnings("unused")
+
 public class QueryProvider_GET_TestMetrics extends QueryProvider_GET_TestsList {
 
     @Value("${jaas.rest.sub.tests.metrics}")

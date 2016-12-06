@@ -1,6 +1,6 @@
 package com.griddynamics.jagger.test.jaas.provider;
 
-import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.test.jaas.util.HttpRelated;
 
 import java.util.LinkedList;

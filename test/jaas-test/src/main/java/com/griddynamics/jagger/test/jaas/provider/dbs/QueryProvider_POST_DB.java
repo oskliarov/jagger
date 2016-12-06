@@ -1,9 +1,8 @@
 package com.griddynamics.jagger.test.jaas.provider.dbs;
 
-import com.griddynamics.jagger.invoker.http.v2.JHttpQuery;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 
-import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -19,7 +18,7 @@ public class QueryProvider_POST_DB extends QueryProvider_GET_DBsList {
             queries.add((new JHttpQuery<String>()
                         .post()
                         .body(TestContext.getDbConfigPrototype().toJson())
-                        .header(HDR_CONTENT_TYPE, Collections.singletonList(HDR_CONTENT_TYPE_VALUE_APP_JSON)) //TODO: re-factor once JFG-934 is ready.
+                        .header(HDR_CONTENT_TYPE, HDR_CONTENT_TYPE_VALUE_APP_JSON)
                         .path(uri)));
         }
 

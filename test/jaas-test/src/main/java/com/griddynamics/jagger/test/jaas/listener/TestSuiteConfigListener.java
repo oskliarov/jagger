@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * <p>
  * Created by ELozovan on 2016-09-27.
  */
-@SuppressWarnings("unused")
+
 public class TestSuiteConfigListener extends ServicesAware implements Provider<TestSuiteListener> {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestSuiteConfigListener.class);
 
@@ -42,7 +42,7 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
             public void onStart(TestSuiteInfo testSuiteInfo) {
                 super.onStart(testSuiteInfo);
                 Set<SessionEntity> sessionsAvailable = getDataService().getSessions(Collections.emptyList());
-                sessionsAvailable.stream().forEach(this::correctDateFieldValue);
+                sessionsAvailable.forEach(this::correctDateFieldValue);
                 TestContext.setSessions(sessionsAvailable);
 
                 findAndLoadExpectedTests(sessionsAvailable);
@@ -65,7 +65,7 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
                     }
                 }
 
-                tests.stream().forEach(this::correctDateFieldValue);
+                tests.forEach(this::correctDateFieldValue);
                 TestContext.addTests(sessionToGetTests.getId(), tests);
             }
 
@@ -86,7 +86,7 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
                 TestContext.setMetricPlotData(getDataService().getMetricPlotData(metrics));
                 TestContext.setMetricSummaries(getDataService().getMetricSummary(metrics));
 
-                metrics.stream().forEach(this::correctDateFieldValue);
+                metrics.forEach(this::correctDateFieldValue);
                 TestContext.addMetrics(sessionId, testToGetMetricsFrom.getName(), metrics);
             }
 

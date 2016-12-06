@@ -87,6 +87,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+            <groupId>com.griddynamics.jagger</groupId>
+            <artifactId>chassis.core</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 

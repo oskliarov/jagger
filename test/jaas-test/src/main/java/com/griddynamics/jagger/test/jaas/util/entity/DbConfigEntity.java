@@ -81,16 +81,14 @@ public class DbConfigEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DbConfigEntity{");
-        sb.append("id=").append(id);
-        sb.append(", desc='").append(desc).append('\'');
-        sb.append(", url='").append(url).append('\'');
-        sb.append(", user='").append(user).append('\'');
-        sb.append(", pass='").append(pass).append('\'');
-        sb.append(", jdbcDriver='").append(jdbcDriver).append('\'');
-        sb.append(", hibernateDialect='").append(hibernateDialect).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "DbConfigEntity{" + "id=" + id +
+                ", desc='" + desc + '\'' +
+                ", url='" + url + '\'' +
+                ", user='" + user + '\'' +
+                ", pass='" + pass + '\'' +
+                ", jdbcDriver='" + jdbcDriver + '\'' +
+                ", hibernateDialect='" + hibernateDialect + '\'' +
+                '}';
     }
 
     /**
