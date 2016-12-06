@@ -26,7 +26,7 @@ public class CreateDBResponseValidator extends BaseHttpResponseValidator {
 
     @Override
     public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
-        String locationHdr = result.getHeaders().getFirst(HDR_LOCATION);
+        String locationHdr = result.getHeaders().getFirst("Location");
         Assert.assertNotNull("Location header shall not be null.", locationHdr);
         Assert.assertTrue("Location header's value shall be longer than query path's ",
                 locationHdr.replace(endpoint.getURI().getPath(), "").length() > query.getPath().length());

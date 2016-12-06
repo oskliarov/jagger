@@ -5,14 +5,13 @@ import com.griddynamics.jagger.engine.e1.collector.ResponseValidator;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
-import com.griddynamics.jagger.test.jaas.util.HttpRelated;
 import junit.framework.AssertionFailedError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static junit.framework.Assert.assertTrue;
 
-public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQuery, JHttpEndpoint, JHttpResponse> implements HttpRelated {
+public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQuery, JHttpEndpoint, JHttpResponse>{
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseHttpResponseValidator.class);
 
     public BaseHttpResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
