@@ -46,7 +46,6 @@ public class ResponseStatusValidator extends BaseHttpResponseValidator {
 
     /**
      * By default expected status code is 200. Should be changed in child classes.
-     * @return
      */
     protected int getExpectedStatusCode(){ return 200; }
 }
