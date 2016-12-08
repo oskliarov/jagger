@@ -3,6 +3,7 @@ package com.griddynamics.jagger.test.jaas;
 import com.griddynamics.jagger.engine.e1.collector.NotNullResponseValidator;
 import com.griddynamics.jagger.engine.e1.collector.ResponseValidator;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
+import com.griddynamics.jagger.test.jaas.listener.TestSuiteConfigListener;
 import com.griddynamics.jagger.test.jaas.provider.QueryProvider;
 import com.griddynamics.jagger.test.jaas.validator.*;
 import com.griddynamics.jagger.test.jaas.validator.dbs.CreateDBResponseValidator;
@@ -104,7 +105,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 tg_JaaS_GET_After_POST_DB_configs, tg_JaaS_PUT_After_POST_DB_configs,
                 tg_JaaS_DELETE_DB_configs, tg_JaaS_GET_After_DELETE_DB_configs)
                 .withLatencyPercentiles(Collections.singletonList(99d))
-                // .withListener(TestSuiteConfigListener)
+                .addListener(new TestSuiteConfigListener())
                 .build();
     }
 
@@ -145,7 +146,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
         JTestDefinition definition = JTestDefinition.builder(Id.of(id + "def"),
                 Collections.singletonList(new JHttpEndpoint(getPropertyValue("jaas.endpoint"))))
                 .withQueryProvider(queryProvider)
-                .withValidators(validators)
+                .addValidators(validators)
                 .build();
 
         return JLoadTest.builder(Id.of(id), definition, standardGroupLoad, standardTermination)

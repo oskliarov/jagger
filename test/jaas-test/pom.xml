@@ -4,13 +4,12 @@
 
     <groupId>com.griddynamics.jagger.test.jagger-test</groupId>
     <artifactId>jaas-test</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>com.griddynamics.jagger.test.jagger-test:jaas</name>
     <packaging>jar</packaging>
 
     <properties>
         <spring.version>4.3.2.RELEASE</spring.version>
-        <jagger.version>1.2.6-SNAPSHOT</jagger.version>
     </properties>
 
     <repositories>
@@ -35,34 +34,14 @@
     </repositories>
 
     <dependencies>
-        <!-- Jagger service-->
+        <!-- Spring -->
         <dependency>
             <groupId>com.griddynamics.jagger</groupId>
             <artifactId>jagger-distribution</artifactId>
             <type>zip</type>
             <classifier>full</classifier>
-            <version>${jagger.version}</version>
+            <version>2.0-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.griddynamics.jagger</groupId>
-            <artifactId>chassis.spring.schema</artifactId>
-            <version>${jagger.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.griddynamics.jagger</groupId>
-            <artifactId>chassis.core</artifactId>
-            <version>${jagger.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.griddynamics.jagger</groupId>
-            <artifactId>chassis.invokers</artifactId>
-            <version>${jagger.version}</version>
-        </dependency>
-
-        <!-- Spring -->
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -97,14 +76,12 @@
             <artifactId>chassis.util</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
