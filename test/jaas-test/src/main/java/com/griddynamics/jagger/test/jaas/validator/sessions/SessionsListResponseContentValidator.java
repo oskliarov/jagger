@@ -47,6 +47,7 @@ public class SessionsListResponseContentValidator extends BaseHttpResponseValida
         SessionEntity randomActualEntity = actualSessions.get((new Random().nextInt(actlSize)));
         SessionEntity correspondingExpectedSession = TestContext.getSession(randomActualEntity.getId());
 
+        // TODO uncomment when JFG-1047
         // Assert.assertEquals("Randomly selected expected and actual sessions are not equal.", correspondingExpectedSession, randomActualEntity);
 
         return true;

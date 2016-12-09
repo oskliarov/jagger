@@ -23,7 +23,7 @@ import com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup;
 import com.griddynamics.jagger.user.test.configurations.JTestDefinition;
 import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
 import com.griddynamics.jagger.user.test.configurations.limits.JLimitVsRefValue;
-import com.griddynamics.jagger.user.test.configurations.limits.auxiliary.RefValue;
+import com.griddynamics.jagger.user.test.configurations.limits.auxiliary.*;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfile;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
@@ -150,7 +150,8 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 .build();
 
         return JLoadTest.builder(Id.of(id), definition, standardGroupLoad, standardTermination)
-                .withLimits(JLimitVsRefValue.builder("successRate", RefValue.of(1.0)).build())
+                .withLimits(JLimitVsRefValue.builder("successRate", RefValue.of(1.0))
+                        .withExactLimits(LowWarnThresh.of(1d), LowErrThresh.of(1d), UpWarnThresh.of(1.01), UpErrThresh.of(1.01)).build())
                 .build();
     }
 
