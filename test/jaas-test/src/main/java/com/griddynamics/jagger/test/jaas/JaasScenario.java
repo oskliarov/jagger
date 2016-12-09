@@ -3,13 +3,14 @@ package com.griddynamics.jagger.test.jaas;
 import com.griddynamics.jagger.engine.e1.collector.NotNullResponseValidator;
 import com.griddynamics.jagger.engine.e1.collector.ResponseValidator;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
+import com.griddynamics.jagger.test.jaas.invoker.Invoker;
 import com.griddynamics.jagger.test.jaas.listener.TestSuiteConfigListener;
 import com.griddynamics.jagger.test.jaas.provider.QueryProvider;
+import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.*;
-import com.griddynamics.jagger.test.jaas.validator.dbs.CreateDBResponseValidator;
-import com.griddynamics.jagger.test.jaas.validator.dbs.CreatedDBContentValidator;
-import com.griddynamics.jagger.test.jaas.validator.dbs.DBResponseContentValidator;
-import com.griddynamics.jagger.test.jaas.validator.dbs.DBsListResponseContentValidator;
+import com.griddynamics.jagger.test.jaas.validator.executions.CreateExecutionResponseValidator;
+import com.griddynamics.jagger.test.jaas.validator.executions.ExListResponseValidator;
+import com.griddynamics.jagger.test.jaas.validator.executions.ExResponseValidator;
 import com.griddynamics.jagger.test.jaas.validator.metrics.MetricsListResponseContentValidator;
 import com.griddynamics.jagger.test.jaas.validator.metrics.PlotListResponseContentValidator;
 import com.griddynamics.jagger.test.jaas.validator.metrics.SummaryListResponseContentValidator;
@@ -39,15 +40,13 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Configuration
 public class JaasScenario extends JaggerPropertiesProvider {
-
-    @Bean
-    public JLoadScenario getJaasTestScenario() {
-        QueryProvider queryProvider = new QueryProvider(this::getPropertyValue);
-
+    private Stream<JParallelTestsGroup> sessionTests(QueryProvider queryProvider){
         JParallelTestsGroup tg_JaaS_GET_Sessions = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_Sessions"),
                 getStandardTest("t_JaaS_GET_Sessions_List_SR_eq._1.0", queryProvider.GET_SessionsList(), SessionsListResponseContentValidator.class),
                 getStandardTest("t_JaaS_GET_Exact_Session_SR_eq._1.0", queryProvider.GET_SessionIds(), SessionResponseContentValidator.class)
@@ -67,43 +66,61 @@ public class JaasScenario extends JaggerPropertiesProvider {
         JParallelTestsGroup td_JaaS_MetricPlotList = getSingleStandardTest("t_JaaS_GET_Metric_Plot_List_SR_eq._1.0",
                 queryProvider.GET_MetricPlotData(), PlotListResponseContentValidator.class);
 
-        JParallelTestsGroup tg_JaaS_GET_DB_configs = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_DB_configs"),
-                getStandardTest("t_JaaS_GET_DBs_List_SR_eq._1.0", queryProvider.GET_DBsList(), DBsListResponseContentValidator.class),
-                getStandardTest("t_JaaS_GET_Exact_DB_SR_eq._1.0", queryProvider.GET_DBIds(), DBResponseContentValidator.class),
-                getStandardTest("t_JaaS_GET_DBsIds_Non_Numeric", queryProvider.GET_NonNumeric_DBIds(),
+        return Stream.of(
+//                tg_JaaS_GET_Sessions,
+//                tg_JaaS_GET_Tests,
+//                tg_JaaS_GET_Metrics,
+//                tg_JaaS_GET_Metric_Summaries,
+//                td_JaaS_MetricPlotList
+        );
+    }
+
+    private Stream<JParallelTestsGroup> executionsTests(QueryProvider queryProvider){
+        JParallelTestsGroup tg_JaaS_POST_execution = JParallelTestsGroup.builder(Id.of("tg_JaaS_POST_execution"),
+                getCommonLoadTest("t_JaaS_POST_execution", queryProvider.POST_execution(),
+                        Arrays.asList(NotNullResponseValidator.class, ResponseStatus201Validator.class, CreateExecutionResponseValidator.class),
+                        JLoadProfileUserGroups.builder(JLoadProfileUsers.builder(NumberOfUsers.of(1)).build()).build(),
+                        JTerminationCriteriaIterations.of(IterationsNumber.of(500), MaxDurationInSeconds.of(20)))
+        ).build();
+
+        JParallelTestsGroup tg_JaaS_GET_executions = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_executions"),
+                getStandardTest("t_JaaS_GET_Executions_List", queryProvider.GET_ExList(), ExListResponseValidator.class),
+                getStandardTest("t_JaaS_GET_Exact_Execution", queryProvider.GET_ExId(), ExResponseValidator.class),
+                getStandardTest("t_JaaS_GET_BadRequest", queryProvider.GET_NonNumeric_ExId(),
                         Arrays.asList(NotNullResponseValidator.class, ResponseStatus400Validator.class, BadRequest_ResponseContentValidator.class)),
-                getStandardTest("t_JaaS_GET_DBsIds_Not_Existent", queryProvider.GET_NonExisting_DBIds(),
+                getStandardTest("t_JaaS_GET_NotFound", queryProvider.GET_NonExisting_ExId(),
                         Arrays.asList(NotNullResponseValidator.class, ResponseStatus404Validator.class))
         ).build();
 
-        JParallelTestsGroup tg_JaaS_GET_After_POST_DB_configs = getSingleStandardTest("t_JaaS_GET_Created_DB_SR_eq._1.0",
-                queryProvider.GET_CreatedDBIds(), CreatedDBContentValidator.class);
-
-        JParallelTestsGroup tg_JaaS_PUT_After_POST_DB_configs = JParallelTestsGroup.builder(Id.of("tg_JaaS_PUT_After_POST_DB_configs"),
-                getStandardTest("t_JaaS_PUT_Created_DB_SR_eq._1.0", queryProvider.PUT_DB(),
-                        Arrays.asList(NotNullResponseValidator.class, ResponseStatus202Validator.class))
+        JParallelTestsGroup tg_JaaS_DELETE_Executions = JParallelTestsGroup.builder(Id.of("tg_JaaS_DELETE_Executions"),
+                getCommonLoadTest("t_JaaS_DELETE_Executions", queryProvider.DELETE_Execution(),
+                        Arrays.asList(ResponseStatus204Validator.class, NotNullResponseValidator.class),
+                        JLoadProfileUserGroups.builder(JLoadProfileUsers.builder(NumberOfUsers.of(1)).build()).build(),
+                        JTerminationCriteriaIterations.of(IterationsNumber.of(300), MaxDurationInSeconds.of(15)))
         ).build();
 
-        JParallelTestsGroup tg_JaaS_POST_DB_configs = JParallelTestsGroup.builder(Id.of("tg_JaaS_POST_DB_configs"),
-                getInvocationTest("t_JaaS_POST_DB_SR_eq._1.0", queryProvider.POST_DB(),
-                        Arrays.asList(CreateDBResponseValidator.class, ResponseStatus201Validator.class, NotNullResponseValidator.class))
-        ).build();
-
-        JParallelTestsGroup tg_JaaS_DELETE_DB_configs = JParallelTestsGroup.builder(Id.of("tg_JaaS_DELETE_DB_configs"),
-                getInvocationTest("t_JaaS_DELETE_DB_SR_eq._1.0", queryProvider.DELETE_DB(),
-                        Arrays.asList(ResponseStatus204Validator.class, NotNullResponseValidator.class))
-        ).build();
-
-        JParallelTestsGroup tg_JaaS_GET_After_DELETE_DB_configs = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_After_DELETE_DB_configs"),
-                getInvocationTest("t_JaaS_GET_Deleted_DB", queryProvider.GET_Deleted_DB(),
+        JParallelTestsGroup tg_JaaS_GET_deleted_execution = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_deleted_execution"),
+                getStandardTest("t_JaaS_GET_deleted_execution", queryProvider.GET_Deleted_Ex(),
                         Arrays.asList(NotNullResponseValidator.class, ResponseStatus404Validator.class))
         ).build();
 
-        return JLoadScenario.builder(Id.of("ts_JaaSTestSuit"), tg_JaaS_GET_Sessions,
-                tg_JaaS_GET_Tests, tg_JaaS_GET_Metrics, tg_JaaS_GET_Metric_Summaries, td_JaaS_MetricPlotList,
-                tg_JaaS_GET_DB_configs, tg_JaaS_POST_DB_configs,
-                tg_JaaS_GET_After_POST_DB_configs, tg_JaaS_PUT_After_POST_DB_configs,
-                tg_JaaS_DELETE_DB_configs, tg_JaaS_GET_After_DELETE_DB_configs)
+
+        return Stream.of(
+                tg_JaaS_POST_execution,
+                tg_JaaS_GET_executions,
+                tg_JaaS_DELETE_Executions,
+                tg_JaaS_GET_deleted_execution
+        );
+    }
+
+    @Bean
+    public JLoadScenario getJaasTestScenario() {
+        TestContext.initUri(this);
+
+        QueryProvider queryProvider = new QueryProvider(this::getPropertyValue);
+        return JLoadScenario.builder(Id.of("ts_JaaSTestSuit"), Stream.concat(
+                        sessionTests(queryProvider),
+                        executionsTests(queryProvider)).collect(Collectors.toList()))
                 .withLatencyPercentiles(Collections.singletonList(99d))
                 .addListener(new TestSuiteConfigListener())
                 .build();
@@ -132,20 +149,11 @@ public class JaasScenario extends JaggerPropertiesProvider {
         return getCommonLoadTest(id, queryProvider, validators, standardGroupLoad, standardTermination);
     }
 
-    private JLoadTest getInvocationTest(String id, Iterable queryProvider, List<Class<? extends ResponseValidator>> validators) {
-        JLoadProfile oneInvocation = JLoadProfileUserGroups
-                .builder(JLoadProfileUsers.builder(NumberOfUsers.of(1)).build())
-                .build();
-        JTerminationCriteria invocationTermination = JTerminationCriteriaIterations
-                .of(IterationsNumber.of(1), MaxDurationInSeconds.of(1));
-
-        return getCommonLoadTest(id, queryProvider, validators, oneInvocation, invocationTermination);
-    }
-
     private JLoadTest getCommonLoadTest(String id, Iterable queryProvider, List<Class<? extends ResponseValidator>> validators, JLoadProfile standardGroupLoad, JTerminationCriteria standardTermination) {
         JTestDefinition definition = JTestDefinition.builder(Id.of(id + "def"),
-                Collections.singletonList(new JHttpEndpoint(getPropertyValue("jaas.endpoint"))))
+                Collections.singletonList(new JHttpEndpoint(TestContext.getEndpointUri())))
                 .withQueryProvider(queryProvider)
+                .withInvoker(Invoker.class)
                 .addValidators(validators)
                 .build();
 

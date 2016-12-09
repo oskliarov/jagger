@@ -5,7 +5,7 @@ import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
-import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
+import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 
 import java.util.*;
 import java.util.function.Function;
@@ -18,14 +18,14 @@ public class QueryProvider {
 
     private final String sessions_uri;
     private final String tests_uri;
-    private final String db_uri;
     private Function<String, String> getPropertyValue;
+    private String executions_uri;
 
     public QueryProvider(Function<String, String> getPropertyValue) {
         this.getPropertyValue = getPropertyValue;
-        sessions_uri = getValue("jaas.rest.base.sessions");
-        tests_uri = getValue("jaas.rest.sub.sessions.tests");
-        db_uri = getValue("jaas.rest.base.dbs");
+        sessions_uri = TestContext.getSessionsUri();
+        tests_uri = TestContext.getTestsUri();
+        executions_uri = TestContext.getExecutionsUri();
     }
 
     private String getValue(String key){
@@ -80,86 +80,6 @@ public class QueryProvider {
                 .iterator();
     }
 
-    public Iterable GET_DBsList() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
-                .get().responseBodyType(DbConfigEntity[].class).path(db_uri))
-                .iterator();
-    }
-
-    public Iterable GET_DBIds() {
-        return ()->TestContext
-                .getDbConfigs()
-                .stream()
-                .map(c -> new JHttpQuery<String>()
-                        .get().responseBodyType(DbConfigEntity.class).path(db_uri + "/" + c.getId()))
-                .iterator();
-    }
-
-    public Iterable GET_NonNumeric_DBIds() {
-        return ()->Stream.of("/abvgdeyka", "/ABVGD")
-                .map(q -> new JHttpQuery<String>()
-                        .get().responseBodyType(String.class).path(db_uri + q))
-                .iterator();
-    }
-
-    public Iterable GET_NonExisting_DBIds() {
-        return ()->Stream.of(Integer.MAX_VALUE, Integer.MIN_VALUE)
-                .map(q -> new JHttpQuery<String>()
-                        .get().responseBodyType(String.class).path(db_uri + "/" + q))
-                .iterator();
-    }
-
-    public Iterable GET_CreatedDBIds() {
-        return ()->TestContext
-                .getCreatedDbConfigIds()
-                .stream()
-                .map(id -> new JHttpQuery<String>()
-                        .get().responseBodyType(DbConfigEntity.class)
-                        .path(db_uri + "/" + id))
-                .iterator();
-    }
-
-    public Iterable PUT_DB() {
-        return () -> {
-            List<JHttpQuery<String>> queries = new LinkedList<>();
-
-            for (String id : TestContext.getCreatedDbConfigIds()) {
-                DbConfigEntity conf = TestContext.provideFakeDbConfig_NoId();
-                conf.setId(new Long(id));
-                conf.setDesc("MODIFIED " + conf.getDesc());
-                TestContext.addDbConfig(conf); //Assumption - POST test(s) passed and there are newly created records.
-
-                queries.add((new JHttpQuery<String>()
-                        .put()
-                        .body(conf.toJson())
-                        .header(HDR_CONTENT_TYPE, HDR_CONTENT_TYPE_VALUE_APP_JSON)
-                        .path(db_uri + "/" + id)));
-            }
-            return queries.iterator();
-        };
-    }
-
-    public Iterable POST_DB() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
-                .post()
-                .body(TestContext.getDbConfigPrototype().toJson())
-                .header(HDR_CONTENT_TYPE, HDR_CONTENT_TYPE_VALUE_APP_JSON)
-                .path(db_uri))
-                .iterator();
-    }
-
-    public Iterable DELETE_DB() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
-                .delete().path(db_uri + "/" + TestContext.getCreatedDbConfigIds().get(0)))
-                .iterator();
-    }
-
-    public Iterable GET_Deleted_DB() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
-                .get().path(db_uri + "/" + TestContext.getCreatedDbConfigIds().get(0)))
-                .iterator();
-    }
-
     private String getMetricPath() {
         return sessions_uri + "/" + getSessionId() + tests_uri + "/"
                 + TestContext.getMetrics().get(getSessionId()).keySet().toArray(new String[]{})[0]
@@ -170,4 +90,64 @@ public class QueryProvider {
         return (TestContext.getTests().keySet().toArray(new String[]{}))[0];
     }
 
+    public Iterable POST_execution() {
+        return ()->Collections.singletonList(new JHttpQuery<String>()
+                .post()
+                .header(HDR_CONTENT_TYPE, HDR_CONTENT_TYPE_VALUE_APP_JSON)
+                .body(TestContext.getExecutionConfigPrototype())
+                .responseBodyType(ExecutionEntity.class)
+                .path(executions_uri))
+                .iterator();
+    }
+
+    public Iterable GET_ExList() {
+        return ()->Collections.singletonList(new JHttpQuery<String>()
+                .get().responseBodyType(ExecutionEntity[].class).path(executions_uri))
+                .iterator();
+    }
+
+    public Iterable GET_ExId() {
+        return ()->TestContext.getCreatedExecutionIds().stream()
+                .map(id -> new JHttpQuery<String>()
+                        .get().responseBodyType(ExecutionEntity.class)
+                        .path(executions_uri + "/" + id))
+                .iterator();
+    }
+
+    public Iterable GET_NonNumeric_ExId() {
+        return ()->Stream.of("/abvgdeyka", "/ABVGD")
+                .map(q -> new JHttpQuery<String>()
+                        .get().responseBodyType(String.class).path(executions_uri + q))
+                .iterator();
+    }
+
+    public Iterable GET_NonExisting_ExId() {
+        return  ()->Stream.of(Integer.MAX_VALUE, Integer.MIN_VALUE)
+                .map(q -> new JHttpQuery<String>()
+                        .get().responseBodyType(String.class).path(executions_uri + "/" + q))
+                .iterator();
+    }
+
+    public Iterable DELETE_Execution() {
+        return ()-> new Iterator() {
+            @Override
+            public boolean hasNext() {
+                return TestContext.getCreatedExecutionIds().size() > 0;
+            }
+
+            @Override
+            public Object next() {
+                Long id = TestContext.getCreatedExecutionIds().remove(0);
+                TestContext.setFirstRemovedExecution(id);
+                return new JHttpQuery<String>()
+                        .delete().path(executions_uri + "/" + id);
+            }
+        };
+    }
+
+    public Iterable GET_Deleted_Ex() {
+        return ()->Collections.singletonList(new JHttpQuery<String>()
+                .get().path(executions_uri + "/" + TestContext.getFirstRemovedExecution()))
+                .iterator();
+    }
 }

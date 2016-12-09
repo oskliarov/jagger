@@ -26,9 +26,7 @@ public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidat
     @Override
     public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
         String actualEntity = (String)result.getBody();
-        Assert.assertTrue(actualEntity.toLowerCase().contains("error page"));
         Assert.assertTrue(actualEntity.contains("NumberFormatException"));
-
         return true;
     }
 }

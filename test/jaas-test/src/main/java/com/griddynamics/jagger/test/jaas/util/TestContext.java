@@ -1,9 +1,10 @@
 package com.griddynamics.jagger.test.jaas.util;
 
 import com.griddynamics.jagger.engine.e1.services.data.service.*;
-import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
+import com.griddynamics.jagger.test.jaas.JaasScenario;
+import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
+import com.griddynamics.jagger.util.JaggerPropertiesProvider;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -12,6 +13,10 @@ import java.util.*;
  */
 public class TestContext {
     private static volatile TestContext instance;
+    private static String sessionsUri;
+    private static String testsUri;
+    private static String executionsUri;
+    private static String endpointUri;
 
     private Set<SessionEntity> sessions = new TreeSet<>();
     private Map<String, Set<TestEntity>> tests = new HashMap<>();
@@ -23,20 +28,12 @@ public class TestContext {
     private Map<MetricEntity, MetricSummaryValueEntity> metricSummaries = new HashMap<>();
     private Map<MetricEntity, List<MetricPlotPointEntity>> metricPlotData = new HashMap<>();
 
-    /**
-     * To be loaded and used in Read tests for /jaas/dbs resource.
-     */
-    private Set<DbConfigEntity> dbConfigs = new TreeSet<>();
-
-    /**
-     * A prototype, to be generated and used in Create/Update/Delete tests for /jaas/dbs resource.
-     */
-    private DbConfigEntity dbConfigPrototype;
 
     /**
      * DB Config Ids (Strings) which were created during test run.
      */
-    private List<String> createdDbConfigIds = new ArrayList<>();
+    private List<Long> createdExecutionsIds = new ArrayList<>();
+    private Long firstRemovedExecution;
 
     private TestContext() {
     }
@@ -124,64 +121,50 @@ public class TestContext {
         get().metricPlotData = metricPlotData;
     }
 
-    /**
-     * Returns set of expected DB configs (for testing of GET /jaas/dbs).
-     */
-    public static Set<DbConfigEntity> getDbConfigs() {
-        return get().dbConfigs;
+
+    public static List<Long> getCreatedExecutionIds() {
+        return get().createdExecutionsIds;
     }
 
-    /**
-     * Returns NULL if no matching DB config entity found.
-     */
-    public static DbConfigEntity getDbConfig(Long id) {
-        return get().dbConfigs.stream().filter((c) -> id.equals(c.getId())).findFirst().orElse(null);
+    public static void addCreatedExecutionId(Long createdExecutionId) {
+        get().createdExecutionsIds.add(createdExecutionId);
     }
 
-    public static void setDbConfigs(Set<DbConfigEntity> dbConfigs) {
-        get().dbConfigs = dbConfigs;
+    public static String getExecutionConfigPrototype() {
+        return ExecutionEntity.getDefault().toJson();
     }
 
-    public static void addDbConfig(DbConfigEntity dbConfig) {
-        get().dbConfigs.add(dbConfig);
-    }
-
-    public static DbConfigEntity getDbConfigPrototype() {
-        if (null == get().dbConfigPrototype) {
-            generateDbConfigPrototype();
+    public static void setFirstRemovedExecution(Long firstRemovedExecution) {
+        if(get().firstRemovedExecution == null) {
+            get().firstRemovedExecution = firstRemovedExecution;
         }
-        return get().dbConfigPrototype;
     }
 
-    private static void setDbConfigPrototype(DbConfigEntity dbConfigToCreate) {
-        get().dbConfigPrototype = dbConfigToCreate;
+    public static Long getFirstRemovedExecution() {
+        return get().firstRemovedExecution;
     }
 
-    public static List<String> getCreatedDbConfigIds() {
-        return get().createdDbConfigIds;
+
+    public static void initUri(JaggerPropertiesProvider provider) {
+        sessionsUri = provider.getPropertyValue("jaas.rest.base.sessions");
+        testsUri = provider.getPropertyValue("jaas.rest.sub.sessions.tests");
+        executionsUri = provider.getPropertyValue("jaas.rest.executions");
+        endpointUri = provider.getPropertyValue("jaas.endpoint");
     }
 
-    public static void setCreatedDbConfigIds(List<String> createdDbConfigIds) {
-        get().createdDbConfigIds = createdDbConfigIds;
+    public static String getSessionsUri() {
+        return sessionsUri;
     }
 
-    public static void addCreatedDbConfigId(String createdDbConfigId) {
-        get().createdDbConfigIds.add(createdDbConfigId);
+    public static String getTestsUri() {
+        return testsUri;
     }
 
-    public static DbConfigEntity provideFakeDbConfig_NoId() {
-        DbConfigEntity dbConf = new DbConfigEntity();
-        dbConf.setUser("Proto-" + UUID.randomUUID().toString());
-        dbConf.setPass("[TO DELETE]" + UUID.randomUUID().toString());
-        dbConf.setDesc("Timestamp: " + LocalDateTime.now().toString());
-        dbConf.setHibernateDialect(UUID.randomUUID().toString());
-        dbConf.setJdbcDriver(UUID.randomUUID().toString());
-        dbConf.setUrl("jdbc:" + UUID.randomUUID().toString());
-
-        return dbConf;
+    public static String getExecutionsUri() {
+        return executionsUri;
     }
 
-    private static void generateDbConfigPrototype() {
-        TestContext.setDbConfigPrototype(provideFakeDbConfig_NoId());
+    public static String getEndpointUri() {
+        return endpointUri;
     }
 }

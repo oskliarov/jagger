@@ -1,6 +1,5 @@
 package com.griddynamics.jagger.test.jaas.listener;
 
-import com.alibaba.fastjson.JSON;
 import com.griddynamics.jagger.engine.e1.Provider;
 import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteInfo;
 import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteListener;
@@ -8,20 +7,23 @@ import com.griddynamics.jagger.engine.e1.services.ServicesAware;
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
+import com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker;
+import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
+import com.griddynamics.jagger.invoker.v2.JHttpQuery;
+import com.griddynamics.jagger.test.jaas.JaasScenario;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
-import com.griddynamics.jagger.test.jaas.util.entity.DbConfigEntity;
+import com.griddynamics.jagger.util.JaggerPropertiesProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Loads expected data into temp storage({@link TestContext}).
@@ -31,9 +33,6 @@ import java.util.stream.Collectors;
 
 public class TestSuiteConfigListener extends ServicesAware implements Provider<TestSuiteListener> {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestSuiteConfigListener.class);
-
-    @Value("${jaas.rest.dbs.expcted_dbs_path}")
-    private String pathToExpectedDbConfigJSON;
 
     @Override
     public TestSuiteListener provide() {
@@ -49,8 +48,18 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
 
                 String tmpSessionId = TestContext.getTests().keySet().toArray(new String[]{})[0];
                 findAndLoadExpectedMetrics(tmpSessionId, TestContext.getTestsBySessionId(tmpSessionId));
+            }
 
-                loadExpectedDbConfigs();
+            @Override
+            public void onStop(TestSuiteInfo testSuiteInfo) {
+                super.onStop(testSuiteInfo);
+                DefaultHttpInvoker invoker = new DefaultHttpInvoker();
+                JHttpEndpoint jaasEndpoint = new JHttpEndpoint(TestContext.getEndpointUri());
+
+                // Request to delete executions not deleted during test run.
+                for (Long executionId : TestContext.getCreatedExecutionIds()) {
+                    invoker.invoke(new JHttpQuery<String>().delete().path(TestContext.getExecutionsUri() + "/" + executionId), jaasEndpoint);
+                }
             }
 
             private void findAndLoadExpectedTests(Set<SessionEntity> sessionsAvailable) {
@@ -88,16 +97,6 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
 
                 metrics.forEach(this::correctDateFieldValue);
                 TestContext.addMetrics(sessionId, testToGetMetricsFrom.getName(), metrics);
-            }
-
-            private void loadExpectedDbConfigs() {
-                try {
-                    String tmp = new String(Files.readAllBytes(Paths.get(pathToExpectedDbConfigJSON).toAbsolutePath()));
-                    List<DbConfigEntity> configs = JSON.parseArray(tmp, DbConfigEntity.class);
-                    TestContext.setDbConfigs(configs.stream().collect(Collectors.toSet()));
-                } catch (IOException e) {
-                    LOGGER.warn("Could not read expected DB configs due to {}", e.getMessage(), e);
-                }
             }
 
             /**

@@ -12,26 +12,6 @@
         <spring.version>4.3.2.RELEASE</spring.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>gd-jagger-nexus-snapshots</id>
-            <name>gd-jagger-nexus-snapshots</name>
-            <url>https://nexus.griddynamics.net/nexus/content/repositories/jagger-snapshots/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>gd-jagger-nexus-releases</id>
-            <name>gd-jagger-nexus-releases</name>
-            <url>https://nexus.griddynamics.net/nexus/content/repositories/jagger-releases/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>gd-public</id>
-            <name>gd-public</name>
-            <url>https://nexus.griddynamics.net/nexus/content/repositories/public/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 
     <dependencies>
         <!-- Spring -->
