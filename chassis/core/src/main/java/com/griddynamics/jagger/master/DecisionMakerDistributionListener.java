@@ -293,13 +293,22 @@ public class DecisionMakerDistributionListener extends HibernateDaoSupport imple
                         break;
                 }
             } else {
-                Double rate = value / refValue;
-                if (rate < limit.getLowerErrorThreshold() || rate > limit.getUpperErrorThreshold()) {
-                    decision = Decision.FATAL;
-                } else if (rate < limit.getLowerWarningThreshold() || rate > limit.getUpperWarningThreshold()) {
-                    decision = Decision.WARNING;
-                } else {
-                    decision = Decision.OK;
+                if(refValue.equals(0D)){
+                    if(value.equals(0D)){
+                        decision = Decision.OK;
+                    }else{
+                        decision = Decision.FATAL;
+                    }
+                    log.warn("Limit thresholds are skipped due to refValue = 0. Limit: {}", limit);
+                }else {
+                    Double rate = value / refValue;
+                    if (rate < limit.getLowerErrorThreshold() || rate > limit.getUpperErrorThreshold()) {
+                        decision = Decision.FATAL;
+                    } else if (rate < limit.getLowerWarningThreshold() || rate > limit.getUpperWarningThreshold()) {
+                        decision = Decision.WARNING;
+                    } else {
+                        decision = Decision.OK;
+                    }
                 }
             }
 
