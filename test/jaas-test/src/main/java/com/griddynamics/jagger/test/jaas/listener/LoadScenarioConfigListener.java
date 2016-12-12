@@ -1,8 +1,8 @@
 package com.griddynamics.jagger.test.jaas.listener;
 
 import com.griddynamics.jagger.engine.e1.Provider;
-import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteInfo;
-import com.griddynamics.jagger.engine.e1.collector.testsuite.TestSuiteListener;
+import com.griddynamics.jagger.engine.e1.collector.loadscenario.LoadScenarioInfo;
+import com.griddynamics.jagger.engine.e1.collector.loadscenario.LoadScenarioListener;
 import com.griddynamics.jagger.engine.e1.services.ServicesAware;
 import com.griddynamics.jagger.engine.e1.services.data.service.*;
 import com.griddynamics.jagger.invoker.InvocationException;
@@ -24,16 +24,15 @@ import java.util.*;
  * <p>
  * Created by ELozovan on 2016-09-27.
  */
-
-public class TestSuiteConfigListener extends ServicesAware implements Provider<TestSuiteListener> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestSuiteConfigListener.class);
+public class LoadScenarioConfigListener extends ServicesAware implements Provider<LoadScenarioListener> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoadScenarioConfigListener.class);
 
     @Override
-    public TestSuiteListener provide() {
-        return new TestSuiteListener() {
+    public LoadScenarioListener provide() {
+        return new LoadScenarioListener() {
             @Override
-            public void onStart(TestSuiteInfo testSuiteInfo) {
-                super.onStart(testSuiteInfo);
+            public void onStart(LoadScenarioInfo loadScenarioInfo) {
+                super.onStart(loadScenarioInfo);
                 Set<SessionEntity> sessionsAvailable = getDataService().getSessions(Collections.emptyList());
                 sessionsAvailable.forEach(this::correctDateFieldValue);
                 TestContext.setSessions(sessionsAvailable);
@@ -45,8 +44,8 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
             }
 
             @Override
-            public void onStop(TestSuiteInfo testSuiteInfo) {
-                super.onStop(testSuiteInfo);
+            public void onStop(LoadScenarioInfo loadScenarioInfo) {
+                super.onStop(loadScenarioInfo);
                 DefaultHttpInvoker invoker = new DefaultHttpInvoker();
                 JHttpEndpoint jaasEndpoint = new JHttpEndpoint(TestContext.getEndpointUri());
 
