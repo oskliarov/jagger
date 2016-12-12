@@ -129,20 +129,10 @@ public class QueryProvider {
     }
 
     public Iterable DELETE_Execution() {
-        return ()-> new Iterator() {
-            @Override
-            public boolean hasNext() {
-                return TestContext.getCreatedExecutionIds().size() > 0;
-            }
-
-            @Override
-            public Object next() {
-                Long id = TestContext.getCreatedExecutionIds().remove(0);
-                TestContext.setFirstRemovedExecution(id);
-                return new JHttpQuery<String>()
-                        .delete().path(executions_uri + "/" + id);
-            }
-        };
+        return () -> TestContext.getCreatedExecutionIds().stream()
+                .map(id -> new JHttpQuery<String>()
+                        .delete().path(executions_uri + "/" + id))
+                .iterator();
     }
 
     public Iterable GET_Deleted_Ex() {

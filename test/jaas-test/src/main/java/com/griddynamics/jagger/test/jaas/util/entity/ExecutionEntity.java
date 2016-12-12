@@ -14,8 +14,6 @@ public class ExecutionEntity {
 
     private String loadScenarioId;
 
-    private String testProjectURL;
-
     private Long executionStartTimeoutInSeconds;
 
     private ExecutionEntity.TestExecutionStatus status;
@@ -42,14 +40,6 @@ public class ExecutionEntity {
 
     public void setLoadScenarioId(String loadScenarioId) {
         this.loadScenarioId = loadScenarioId;
-    }
-
-    public String getTestProjectURL() {
-        return testProjectURL;
-    }
-
-    public void setTestProjectURL(String testProjectURL) {
-        this.testProjectURL = testProjectURL;
     }
 
     public Long getExecutionStartTimeoutInSeconds() {
@@ -79,7 +69,6 @@ public class ExecutionEntity {
         if (loadScenarioId != null ? !loadScenarioId.equals(that.loadScenarioId) : that.loadScenarioId != null) return false;
         if (executionStartTimeoutInSeconds != null ? !executionStartTimeoutInSeconds.equals(that.executionStartTimeoutInSeconds) :
                 that.executionStartTimeoutInSeconds != null) return false;
-        if (testProjectURL != null ? !testProjectURL.equals(that.testProjectURL) : that.testProjectURL != null) return false;
         return status == that.status;
 
     }
@@ -88,7 +77,6 @@ public class ExecutionEntity {
     public int hashCode() {
         int result = envId != null ? envId.hashCode() : 0;
         result = 31 * result + (loadScenarioId != null ? loadScenarioId.hashCode() : 0);
-        result = 31 * result + (testProjectURL != null ? testProjectURL.hashCode() : 0);
         result = 31 * result + (executionStartTimeoutInSeconds != null ? executionStartTimeoutInSeconds.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
@@ -100,7 +88,6 @@ public class ExecutionEntity {
                 "id=" + id +
                 ", envId='" + envId + '\'' +
                 ", loadScenarioId='" + loadScenarioId + '\'' +
-                ", testProjectURL='" + testProjectURL + '\'' +
                 ", executionStartTimeoutInSeconds=" + executionStartTimeoutInSeconds +
                 ", status=" + status +
                 '}';

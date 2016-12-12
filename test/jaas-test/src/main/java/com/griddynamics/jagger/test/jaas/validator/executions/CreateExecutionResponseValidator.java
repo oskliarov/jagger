@@ -4,7 +4,6 @@ import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
-import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.Assert;
@@ -39,8 +38,6 @@ public class CreateExecutionResponseValidator  extends BaseHttpResponseValidator
         ExecutionEntity actual = (ExecutionEntity) result.getBody();
 
         Assert.assertEquals("Response execution is as expected", expected, actual);
-
-        TestContext.addCreatedExecutionId(theLast); //Store it for further clean-up.
 
         return true;
     }

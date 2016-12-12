@@ -1,7 +1,6 @@
 package com.griddynamics.jagger.test.jaas.util;
 
 import com.griddynamics.jagger.engine.e1.services.data.service.*;
-import com.griddynamics.jagger.test.jaas.JaasScenario;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 import com.griddynamics.jagger.util.JaggerPropertiesProvider;
 
@@ -32,7 +31,7 @@ public class TestContext {
     /**
      * DB Config Ids (Strings) which were created during test run.
      */
-    private List<Long> createdExecutionsIds = new ArrayList<>();
+    private Set<Long> createdExecutionsIds = new HashSet<>();
     private Long firstRemovedExecution;
 
     private TestContext() {
@@ -122,7 +121,7 @@ public class TestContext {
     }
 
 
-    public static List<Long> getCreatedExecutionIds() {
+    public static Set<Long> getCreatedExecutionIds() {
         return get().createdExecutionsIds;
     }
 

@@ -5,6 +5,7 @@
        default-lazy-init="true">
 
     <!--This xml file will contain bean declaration of custom invokers-->
-    <bean id="pageInvoker" class="com.griddynamics.jagger.test.jaas.invoker.Invoker"/>
+    <bean id="pageInvoker" class="com.griddynamics.jagger.test.jaas.invoker.InvokerWithoutStatusCodeValidation"/>
+    <bean id="executionInvoker" class="com.griddynamics.jagger.test.jaas.invoker.ExecutionManipulateInvoker"/>
 
 </beans>

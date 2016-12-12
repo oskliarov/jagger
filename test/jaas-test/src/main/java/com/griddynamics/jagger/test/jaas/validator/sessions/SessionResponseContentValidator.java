@@ -6,7 +6,6 @@ import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
-import junit.framework.Assert;
 
 /**
  * Validates response of /jaas/sessions/{id}.

@@ -31,7 +31,7 @@ public class ExListResponseValidator extends BaseHttpResponseValidator {
     @Override
     public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
         List<ExecutionEntity> actualEntities = Arrays.asList((ExecutionEntity[]) result.getBody());
-        List<Long> expectedIds = TestContext.getCreatedExecutionIds();
+        Set<Long> expectedIds = TestContext.getCreatedExecutionIds();
 
         int actlSize = actualEntities.size();
 
@@ -45,7 +45,7 @@ public class ExListResponseValidator extends BaseHttpResponseValidator {
         Assert.assertTrue("Actual set of executions should contains all expected ids.",
                 expectedIds.stream().allMatch(actualIds::contains));
 
-        Long randomId = expectedIds.get((new Random().nextInt(expectedIds.size())));
+        Long randomId = (Long) expectedIds.toArray()[new Random().nextInt(expectedIds.size())];
 
         ExecutionEntity randomActualEntity = actualEntities.stream().filter( e-> e.getId().equals(randomId)).findFirst().orElse(null);
         ExecutionEntity expected = ExecutionEntity.getDefault();

@@ -3,12 +3,13 @@ package com.griddynamics.jagger.test.jaas.validator.metrics;
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricPlotPointEntity;
-import com.griddynamics.jagger.engine.e1.services.data.service.MetricSummaryValueEntity;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ import static junit.framework.Assert.assertTrue;
  * - expected and actual sets are the same.
  */
 public class PlotListResponseContentValidator extends BaseHttpResponseValidator {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlotListResponseContentValidator.class);
+
     public PlotListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
     }
@@ -36,6 +39,10 @@ public class PlotListResponseContentValidator extends BaseHttpResponseValidator 
     @Override
     public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         Map<MetricEntity, List<MetricPlotPointEntity>> actualEntities = (Map<MetricEntity, List<MetricPlotPointEntity>>)result.getBody();
+        if(actualEntities == null){
+            LOGGER.warn("There are no plot data.");
+            return false;
+        }
 
         Map<MetricEntity, List<MetricPlotPointEntity>> expectedEntities = TestContext.getMetricPlotData();
         int actlSize = actualEntities.size();

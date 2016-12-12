@@ -7,15 +7,13 @@ import com.griddynamics.jagger.engine.e1.services.ServicesAware;
 import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
 import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
+import com.griddynamics.jagger.invoker.InvocationException;
 import com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
-import com.griddynamics.jagger.test.jaas.JaasScenario;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
-import com.griddynamics.jagger.util.JaggerPropertiesProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -58,7 +56,10 @@ public class TestSuiteConfigListener extends ServicesAware implements Provider<T
 
                 // Request to delete executions not deleted during test run.
                 for (Long executionId : TestContext.getCreatedExecutionIds()) {
-                    invoker.invoke(new JHttpQuery<String>().delete().path(TestContext.getExecutionsUri() + "/" + executionId), jaasEndpoint);
+                    try {
+                        invoker.invoke(new JHttpQuery<String>().delete().path(TestContext.getExecutionsUri() + "/" + executionId), jaasEndpoint);
+                    } catch (InvocationException ignored) {
+                    }
                 }
             }
 

@@ -7,8 +7,8 @@ import com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Invoker extends DefaultHttpInvoker{
-    public Invoker() {
+public class InvokerWithoutStatusCodeValidation extends DefaultHttpInvoker{
+    public InvokerWithoutStatusCodeValidation() {
         super();
         Map<String, Object> params = new HashMap<>();
         params.put(SpringBasedHttpClient.JSpringBasedHttpClientParameters.ERROR_HANDLER.getValue(), new ResponseHandler());
