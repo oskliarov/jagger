@@ -163,8 +163,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 .build();
 
         return JLoadTest.builder(Id.of(id), definition, standardGroupLoad, standardTermination)
-                .withLimits(JLimitVsRefValue.builder("successRate", RefValue.of(1.0))
-                        .withExactLimits(LowWarnThresh.of(1d), LowErrThresh.of(1d), UpWarnThresh.of(1.01), UpErrThresh.of(1.01)).build())
+                .withLimits(JLimitVsRefValue.builder("successRate-Success rate", RefValue.of(1.0)).build())
                 .build();
     }
 
@@ -177,8 +176,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 .build();
 
         return JLoadTest.builder(Id.of(id), definition, standardGroupLoad, standardTermination)
-                .withLimits(JLimitVsRefValue.builder("successRate", RefValue.of(1.0))
-                        .withExactLimits(LowWarnThresh.of(1d), LowErrThresh.of(1d), UpWarnThresh.of(1.01), UpErrThresh.of(1.01)).build())
+                .withLimits(JLimitVsRefValue.builder("successRate-Success rate", RefValue.of(1.0)).build())
                 .build();
     }
 

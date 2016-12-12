@@ -15,7 +15,7 @@
 
     <properties>
         <spring.version>4.3.2.RELEASE</spring.version>
-        <jagger.version>2.0-m1</jagger.version>
+        <jagger.version>${parent.version}</jagger.version>
         <jagger.targetJdkVersion>1.8</jagger.targetJdkVersion>
     </properties>
 
