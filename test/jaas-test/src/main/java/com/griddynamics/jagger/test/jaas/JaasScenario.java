@@ -5,7 +5,7 @@ import com.griddynamics.jagger.engine.e1.collector.ResponseValidator;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.test.jaas.invoker.ExecutionManipulateInvoker;
 import com.griddynamics.jagger.test.jaas.invoker.InvokerWithoutStatusCodeValidation;
-import com.griddynamics.jagger.test.jaas.listener.TestSuiteConfigListener;
+import com.griddynamics.jagger.test.jaas.listener.LoadScenarioConfigListener;
 import com.griddynamics.jagger.test.jaas.provider.QueryProvider;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.validator.*;
@@ -123,7 +123,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                         sessionTests(queryProvider),
                         executionsTests(queryProvider)).collect(Collectors.toList()))
                 .withLatencyPercentiles(Collections.singletonList(99d))
-                .addListener(new TestSuiteConfigListener())
+                .addListener(new LoadScenarioConfigListener())
                 .build();
     }
 
