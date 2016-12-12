@@ -2,16 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.griddynamics.jagger.test.jagger-test</groupId>
+    <groupId>com.griddynamics.jagger.test.jaas-test</groupId>
     <artifactId>jaas-test</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-    <name>com.griddynamics.jagger.test.jagger-test:jaas</name>
+    <version>2.0-SNAPSHOT</version>
+    <name>${groupId}:${artifactId}</name>
     <packaging>jar</packaging>
 
     <properties>
         <spring.version>4.3.2.RELEASE</spring.version>
+        <jagger.version>2.0-SNAPSHOT</jagger.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>gd-jagger-nexus-snapshots</id>
+            <name>gd-jagger-nexus-snapshots</name>
+            <url>https://nexus.griddynamics.net/nexus/content/repositories/jagger-snapshots/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>gd-jagger-nexus-releases</id>
+            <name>gd-jagger-nexus-releases</name>
+            <url>https://nexus.griddynamics.net/nexus/content/repositories/jagger-releases/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>gd-public</id>
+            <name>gd-public</name>
+            <url>https://nexus.griddynamics.net/nexus/content/repositories/public/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- Spring -->
@@ -20,7 +41,7 @@
             <artifactId>jagger-distribution</artifactId>
             <type>zip</type>
             <classifier>full</classifier>
-            <version>2.0-SNAPSHOT</version>
+            <version>${jagger.version}</version>
         </dependency>
 
         <dependency>
@@ -36,12 +57,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>16.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.17</version>
@@ -49,12 +64,12 @@
         <dependency>
             <groupId>com.griddynamics.jagger</groupId>
             <artifactId>chassis.core</artifactId>
-            <version>2.0-SNAPSHOT</version>
+            <version>${jagger.version}</version>
         </dependency>
         <dependency>
             <groupId>com.griddynamics.jagger</groupId>
             <artifactId>chassis.util</artifactId>
-            <version>2.0-SNAPSHOT</version>
+            <version>${jagger.version}</version>
         </dependency>
     </dependencies>
 

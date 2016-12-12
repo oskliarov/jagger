@@ -25,7 +25,7 @@ import com.griddynamics.jagger.user.test.configurations.JParallelTestsGroup;
 import com.griddynamics.jagger.user.test.configurations.JTestDefinition;
 import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
 import com.griddynamics.jagger.user.test.configurations.limits.JLimitVsRefValue;
-import com.griddynamics.jagger.user.test.configurations.limits.auxiliary.*;
+import com.griddynamics.jagger.user.test.configurations.limits.auxiliary.RefValue;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfile;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
@@ -47,7 +47,7 @@ import java.util.stream.Stream;
 
 @Configuration
 public class JaasScenario extends JaggerPropertiesProvider {
-    private Stream<JParallelTestsGroup> sessionTests(QueryProvider queryProvider){
+    private Stream<JParallelTestsGroup> sessionTests(QueryProvider queryProvider) {
         JParallelTestsGroup tg_JaaS_GET_Sessions = JParallelTestsGroup.builder(Id.of("tg_JaaS_GET_Sessions"),
                 getTestWithResponseCode200("t_JaaS_GET_Sessions_List_SR_eq._1.0", queryProvider.GET_SessionsList(), SessionsListResponseContentValidator.class),
                 getTestWithResponseCode200("t_JaaS_GET_Exact_Session_SR_eq._1.0", queryProvider.GET_SessionIds(), SessionResponseContentValidator.class)
@@ -76,7 +76,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
         );
     }
 
-    private Stream<JParallelTestsGroup> executionsTests(QueryProvider queryProvider){
+    private Stream<JParallelTestsGroup> executionsTests(QueryProvider queryProvider) {
         JParallelTestsGroup tg_JaaS_POST_execution = JParallelTestsGroup.builder(Id.of("tg_JaaS_POST_execution"),
                 getExecutionLoadTest("t_JaaS_POST_execution", queryProvider.POST_execution(),
                         Arrays.asList(NotNullResponseValidator.class, ResponseStatus201Validator.class, CreateExecutionResponseValidator.class),
@@ -120,8 +120,8 @@ public class JaasScenario extends JaggerPropertiesProvider {
 
         QueryProvider queryProvider = new QueryProvider(this::getPropertyValue);
         return JLoadScenario.builder(Id.of("ts_JaaSTestSuit"), Stream.concat(
-                        sessionTests(queryProvider),
-                        executionsTests(queryProvider)).collect(Collectors.toList()))
+                sessionTests(queryProvider),
+                executionsTests(queryProvider)).collect(Collectors.toList()))
                 .withLatencyPercentiles(Collections.singletonList(99d))
                 .addListener(new LoadScenarioConfigListener())
                 .build();
@@ -145,7 +145,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 .build();
         JTerminationCriteria standardTermination = JTerminationCriteriaIterations
                 .of(IterationsNumber.of(Long.valueOf(getPropertyValue("jaas.std.tst.iterations"))),
-                    MaxDurationInSeconds.of(Long.valueOf(getPropertyValue("jaas.std.tst.max_duration"))));
+                        MaxDurationInSeconds.of(Long.valueOf(getPropertyValue("jaas.std.tst.max_duration"))));
 
         return getCommonLoadTest(id, queryProvider, validators, standardGroupLoad, standardTermination);
     }

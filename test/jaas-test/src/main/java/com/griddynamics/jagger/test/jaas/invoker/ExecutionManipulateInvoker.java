@@ -11,16 +11,16 @@ import org.springframework.http.HttpMethod;
 public class ExecutionManipulateInvoker extends InvokerWithoutStatusCodeValidation {
     @Override
     public JHttpResponse invoke(JHttpQuery query, JHttpEndpoint endpoint) throws InvocationException {
-        if(query.getMethod().equals(HttpMethod.DELETE)){
+        if (query.getMethod().equals(HttpMethod.DELETE)) {
             String path = query.getPath();
-            Long id = Long.valueOf(path.substring(path.lastIndexOf("/")+1));
+            Long id = Long.valueOf(path.substring(path.lastIndexOf("/") + 1));
             TestContext.getCreatedExecutionIds().remove(id);
             TestContext.setFirstRemovedExecution(id);
         }
 
         JHttpResponse result = super.invoke(query, endpoint);
 
-        if (query.getMethod().equals(HttpMethod.POST) && result.getStatus().is2xxSuccessful()){
+        if (query.getMethod().equals(HttpMethod.POST) && result.getStatus().is2xxSuccessful()) {
             TestContext.addCreatedExecutionId(((ExecutionEntity) result.getBody()).getId());
         }
         return result;

@@ -34,7 +34,7 @@ public class SessionsListResponseContentValidator extends BaseHttpResponseValida
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         List<SessionEntity> actualSessions = Arrays.asList((SessionEntity[]) result.getBody());
         int actlSize = actualSessions.size();
         int expctdSize = TestContext.getSessions().size();

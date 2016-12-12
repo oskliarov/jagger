@@ -8,7 +8,6 @@ import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
-
 import junit.framework.Assert;
 
 import java.util.Arrays;
@@ -29,7 +28,7 @@ public class ExListResponseValidator extends BaseHttpResponseValidator {
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         List<ExecutionEntity> actualEntities = Arrays.asList((ExecutionEntity[]) result.getBody());
         Set<Long> expectedIds = TestContext.getCreatedExecutionIds();
 
@@ -47,7 +46,7 @@ public class ExListResponseValidator extends BaseHttpResponseValidator {
 
         Long randomId = (Long) expectedIds.toArray()[new Random().nextInt(expectedIds.size())];
 
-        ExecutionEntity randomActualEntity = actualEntities.stream().filter( e-> e.getId().equals(randomId)).findFirst().orElse(null);
+        ExecutionEntity randomActualEntity = actualEntities.stream().filter(e -> e.getId().equals(randomId)).findFirst().orElse(null);
         ExecutionEntity expected = ExecutionEntity.getDefault();
 
         Assert.assertEquals("Randomly selected actual execution has unexpected value", expected.getEnvId(), randomActualEntity.getEnvId());

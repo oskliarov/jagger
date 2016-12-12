@@ -13,5 +13,7 @@ public class ResponseStatus204Validator extends ResponseStatusValidator {
         return "ResponseStatus204Validator";
     }
 
-    protected int getExpectedStatusCode(){ return 204; }
+    protected int getExpectedStatusCode() {
+        return 204;
+    }
 }

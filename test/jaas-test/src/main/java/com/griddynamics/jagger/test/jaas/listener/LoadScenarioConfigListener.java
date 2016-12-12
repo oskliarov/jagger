@@ -4,7 +4,9 @@ import com.griddynamics.jagger.engine.e1.Provider;
 import com.griddynamics.jagger.engine.e1.collector.loadscenario.LoadScenarioInfo;
 import com.griddynamics.jagger.engine.e1.collector.loadscenario.LoadScenarioListener;
 import com.griddynamics.jagger.engine.e1.services.ServicesAware;
-import com.griddynamics.jagger.engine.e1.services.data.service.*;
+import com.griddynamics.jagger.engine.e1.services.data.service.MetricEntity;
+import com.griddynamics.jagger.engine.e1.services.data.service.SessionEntity;
+import com.griddynamics.jagger.engine.e1.services.data.service.TestEntity;
 import com.griddynamics.jagger.invoker.InvocationException;
 import com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
@@ -16,7 +18,10 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Random;
+import java.util.Set;
 
 
 /**
@@ -79,8 +84,8 @@ public class LoadScenarioConfigListener extends ServicesAware implements Provide
                 Set<MetricEntity> metrics = null;
                 while (null == metrics) {
                     testToGetMetricsFrom = testsAvailable.size() < 2 ?
-                                            testsAvailable.stream().findFirst().orElse(null)
-                                            : testsAvailable.stream().skip(new Random().nextInt(testsAvailable.size() - 1)).findFirst().orElse(null);
+                            testsAvailable.stream().findFirst().orElse(null)
+                            : testsAvailable.stream().skip(new Random().nextInt(testsAvailable.size() - 1)).findFirst().orElse(null);
                     metrics = getDataService().getMetrics(testToGetMetricsFrom);
 
                     if (metrics.isEmpty()) {

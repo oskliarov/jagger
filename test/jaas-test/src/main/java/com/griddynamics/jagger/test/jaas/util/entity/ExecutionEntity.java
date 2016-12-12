@@ -9,14 +9,18 @@ public class ExecutionEntity {
     }
 
     private Long id;
-
     private String envId;
-
     private String loadScenarioId;
-
     private Long executionStartTimeoutInSeconds;
-
     private ExecutionEntity.TestExecutionStatus status;
+
+    public static ExecutionEntity getDefault() {
+        ExecutionEntity e = new ExecutionEntity();
+        e.setEnvId("1");
+        e.setLoadScenarioId("sid");
+        e.setExecutionStartTimeoutInSeconds(0L);
+        return e;
+    }
 
     public Long getId() {
         return id;
@@ -66,7 +70,8 @@ public class ExecutionEntity {
         ExecutionEntity that = (ExecutionEntity) o;
 
         if (envId != null ? !envId.equals(that.envId) : that.envId != null) return false;
-        if (loadScenarioId != null ? !loadScenarioId.equals(that.loadScenarioId) : that.loadScenarioId != null) return false;
+        if (loadScenarioId != null ? !loadScenarioId.equals(that.loadScenarioId) : that.loadScenarioId != null)
+            return false;
         if (executionStartTimeoutInSeconds != null ? !executionStartTimeoutInSeconds.equals(that.executionStartTimeoutInSeconds) :
                 that.executionStartTimeoutInSeconds != null) return false;
         return status == that.status;
@@ -93,15 +98,8 @@ public class ExecutionEntity {
                 '}';
     }
 
-    public String toJson(){
+    public String toJson() {
         return JSON.toJSONString(this);
     }
 
-    public static ExecutionEntity getDefault(){
-        ExecutionEntity e = new ExecutionEntity();
-        e.setEnvId("1");
-        e.setLoadScenarioId("sid");
-        e.setExecutionStartTimeoutInSeconds(0L);
-        return e;
-    }
 }

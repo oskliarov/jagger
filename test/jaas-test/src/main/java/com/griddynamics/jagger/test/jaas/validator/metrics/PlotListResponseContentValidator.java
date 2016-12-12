@@ -38,8 +38,8 @@ public class PlotListResponseContentValidator extends BaseHttpResponseValidator 
 
     @Override
     public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        Map<MetricEntity, List<MetricPlotPointEntity>> actualEntities = (Map<MetricEntity, List<MetricPlotPointEntity>>)result.getBody();
-        if(actualEntities == null){
+        Map<MetricEntity, List<MetricPlotPointEntity>> actualEntities = (Map<MetricEntity, List<MetricPlotPointEntity>>) result.getBody();
+        if (actualEntities == null) {
             LOGGER.warn("There are no plot data.");
             return false;
         }

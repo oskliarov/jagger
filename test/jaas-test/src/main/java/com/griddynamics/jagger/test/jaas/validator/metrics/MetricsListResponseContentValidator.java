@@ -39,11 +39,11 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         List<MetricEntity> actualEntities = Arrays.asList((MetricEntity[]) result.getBody());
 
         String sessionId = getSessionIdFromQuery(query);
-        Set<MetricEntity> expectedEntities =  TestContext.getMetricsBySessionIdAndTestName(sessionId, getTestNameFromQuery(query));
+        Set<MetricEntity> expectedEntities = TestContext.getMetricsBySessionIdAndTestName(sessionId, getTestNameFromQuery(query));
         int actlSize = actualEntities.size();
         int expctdSize = expectedEntities.size();
         assertTrue("At least one metrics record is expected. Check returned list's size", 0 < actlSize);
@@ -57,7 +57,7 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
         return true;
     }
 
-    private String getSessionIdFromQuery(JHttpQuery query){
+    private String getSessionIdFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName}/metrics => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName} + metrics
         // TODO : re-factor
         String[] parts = query.getPath().split("/");
@@ -65,7 +65,7 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
         return parts[parts.length - 4];
     }
 
-    private String getTestNameFromQuery(JHttpQuery query){
+    private String getTestNameFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName}/metrics => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName} + metrics
         // TODO : re-factor
         String[] parts = query.getPath().split("/");
@@ -73,11 +73,11 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
         return parts[parts.length - 2];
     }
 
-    private boolean compareIgnoringTestDto (Set<MetricEntity> expectedSet, List<MetricEntity> actualList){
+    private boolean compareIgnoringTestDto(Set<MetricEntity> expectedSet, List<MetricEntity> actualList) {
         boolean result = true;
-        for (MetricEntity expected : expectedSet){
+        for (MetricEntity expected : expectedSet) {
             MetricEntity actual = actualList.stream().filter(m -> m.getMetricId().equals(expected.getMetricId())).findFirst().orElse(null);
-            if (!areEqualIgnoringTestDto(expected, actual)){
+            if (!areEqualIgnoringTestDto(expected, actual)) {
                 result = false;
                 LOGGER.warn("Metric entities are not equal. \nExp: {} \nAct: {}", expected, actual);
                 break;

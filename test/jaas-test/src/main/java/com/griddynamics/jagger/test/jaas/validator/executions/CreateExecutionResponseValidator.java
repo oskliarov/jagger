@@ -9,7 +9,7 @@ import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import junit.framework.Assert;
 
 
-public class CreateExecutionResponseValidator  extends BaseHttpResponseValidator {
+public class CreateExecutionResponseValidator extends BaseHttpResponseValidator {
 
     public CreateExecutionResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -21,7 +21,7 @@ public class CreateExecutionResponseValidator  extends BaseHttpResponseValidator
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         String locationHdr = result.getHeaders().getFirst("Location");
         Assert.assertNotNull("Location header shall not be null.", locationHdr);
         Assert.assertTrue("Location header's value shall contain original query's path.", locationHdr.contains(query.getPath()));

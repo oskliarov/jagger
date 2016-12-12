@@ -24,7 +24,7 @@ public class ResponseStatusValidator extends BaseHttpResponseValidator {
      * @param duration - Duration of invoke
      * */
     @Override
-    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration)  {
+    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration) {
         int statusCode = result.getStatus().value();
 
         if (statusCode != getExpectedStatusCode()) { //TODO: Need range/RegExp.
@@ -33,7 +33,7 @@ public class ResponseStatusValidator extends BaseHttpResponseValidator {
                     endpoint,
                     result,
                     String.format("Unexpected response status code. %d instead of %d", statusCode, getExpectedStatusCode()));
-            return  false;
+            return false;
         }
 
         return true;
@@ -47,5 +47,7 @@ public class ResponseStatusValidator extends BaseHttpResponseValidator {
     /**
      * By default expected status code is 200. Should be changed in child classes.
      */
-    protected int getExpectedStatusCode(){ return 200; }
+    protected int getExpectedStatusCode() {
+        return 200;
+    }
 }

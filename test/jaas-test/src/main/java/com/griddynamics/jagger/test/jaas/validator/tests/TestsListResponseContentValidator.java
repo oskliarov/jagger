@@ -37,10 +37,10 @@ public class TestsListResponseContentValidator extends BaseHttpResponseValidator
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
         List<TestEntity> actualEntities = Arrays.asList((TestEntity[]) result.getBody());
         String sessionId = getSessionIdFromQuery(query);
-        Set<TestEntity> expectedEntities =  TestContext.getTestsBySessionId(sessionId);
+        Set<TestEntity> expectedEntities = TestContext.getTestsBySessionId(sessionId);
         int actlSize = actualEntities.size();
         int expctdSize = expectedEntities.size();
         assertTrue("At least one test record is expected. Check returned list's size", 0 < actlSize);
@@ -53,7 +53,7 @@ public class TestsListResponseContentValidator extends BaseHttpResponseValidator
         return true;
     }
 
-    private String getSessionIdFromQuery(JHttpQuery query){
+    private String getSessionIdFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests => ${jaas.rest.root} + sessions + {sessionId} + tests
         // TODO : re-factor
         String[] parts = query.getPath().split("/");

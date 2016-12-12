@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import static junit.framework.Assert.assertTrue;
 
-public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQuery, JHttpEndpoint, JHttpResponse>{
+public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQuery, JHttpEndpoint, JHttpResponse> {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseHttpResponseValidator.class);
 
     public BaseHttpResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
@@ -24,7 +24,7 @@ public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQ
     }
 
     @Override
-    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration){
+    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration) {
         boolean isValid;
 
         try {
@@ -38,7 +38,7 @@ public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQ
         return isValid;
     }
 
-    protected void logResponseAsFailed(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse response, String message){
+    protected void logResponseAsFailed(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse response, String message) {
         LOGGER.warn("{}'s query response content is not valid, due to [{}].", query.toString(), message);
         LOGGER.warn(String.format
                 ("------> Failed response:\n%s \n%s",

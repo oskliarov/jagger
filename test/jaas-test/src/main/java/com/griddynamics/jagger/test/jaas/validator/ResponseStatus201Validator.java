@@ -13,5 +13,7 @@ public class ResponseStatus201Validator extends ResponseStatusValidator {
         return "ResponseStatus201Validator";
     }
 
-    protected int getExpectedStatusCode(){ return 201; }
+    protected int getExpectedStatusCode() {
+        return 201;
+    }
 }

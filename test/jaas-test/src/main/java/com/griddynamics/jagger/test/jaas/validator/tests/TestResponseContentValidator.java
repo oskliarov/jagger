@@ -28,8 +28,8 @@ public class TestResponseContentValidator extends BaseHttpResponseValidator {
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
-        TestEntity actualEntity= (TestEntity) result.getBody();
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
+        TestEntity actualEntity = (TestEntity) result.getBody();
         TestEntity expectedEntity = TestContext.getTestByName(getSessionIdFromQuery(query), getTestNameFromQuery(query));
 
         assertNotNull("Returned test entity is null.", actualEntity);
@@ -39,14 +39,14 @@ public class TestResponseContentValidator extends BaseHttpResponseValidator {
         return true;
     }
 
-    private String getSessionIdFromQuery(JHttpQuery<String> query){
+    private String getSessionIdFromQuery(JHttpQuery<String> query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName} => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName}
         String[] parts = query.getPath().split("/");
 
         return parts[parts.length - 3];
     }
 
-    private String getTestNameFromQuery(JHttpQuery<String> query){
+    private String getTestNameFromQuery(JHttpQuery<String> query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName} => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName}
         String[] parts = query.getPath().split("/");
 

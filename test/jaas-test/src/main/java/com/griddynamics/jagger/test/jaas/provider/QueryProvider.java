@@ -7,17 +7,17 @@ import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 
 public class QueryProvider {
-    private String HDR_CONTENT_TYPE = "Content-Type";
-    private String HDR_CONTENT_TYPE_VALUE_APP_JSON = "application/json";
-
     private final String sessions_uri;
     private final String tests_uri;
+    private String HDR_CONTENT_TYPE = "Content-Type";
+    private String HDR_CONTENT_TYPE_VALUE_APP_JSON = "application/json";
     private Function<String, String> getPropertyValue;
     private String executions_uri;
 
@@ -28,7 +28,7 @@ public class QueryProvider {
         executions_uri = TestContext.getExecutionsUri();
     }
 
-    private String getValue(String key){
+    private String getValue(String key) {
         return getPropertyValue.apply(key);
     }
 
@@ -53,7 +53,7 @@ public class QueryProvider {
     }
 
     public Iterable GET_TestNames() {
-        return ()->TestContext.getTestsBySessionId(getSessionId())
+        return () -> TestContext.getTestsBySessionId(getSessionId())
                 .stream().map(t -> new JHttpQuery<String>()
                         .get().responseBodyType(TestEntity.class)
                         .path(sessions_uri + "/" + getSessionId() + tests_uri + "/" + t.getName()))
@@ -74,7 +74,7 @@ public class QueryProvider {
     }
 
     public Iterable GET_MetricPlotData() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
+        return () -> Collections.singletonList(new JHttpQuery<String>()
                 .get().responseBodyType(Map.class)
                 .path(getMetricPath() + getValue("jaas.rest.sub.tests.metrics_plot_data")))
                 .iterator();
@@ -91,7 +91,7 @@ public class QueryProvider {
     }
 
     public Iterable POST_execution() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
+        return () -> Collections.singletonList(new JHttpQuery<String>()
                 .post()
                 .header(HDR_CONTENT_TYPE, HDR_CONTENT_TYPE_VALUE_APP_JSON)
                 .body(TestContext.getExecutionConfigPrototype())
@@ -101,13 +101,13 @@ public class QueryProvider {
     }
 
     public Iterable GET_ExList() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
+        return () -> Collections.singletonList(new JHttpQuery<String>()
                 .get().responseBodyType(ExecutionEntity[].class).path(executions_uri))
                 .iterator();
     }
 
     public Iterable GET_ExId() {
-        return ()->TestContext.getCreatedExecutionIds().stream()
+        return () -> TestContext.getCreatedExecutionIds().stream()
                 .map(id -> new JHttpQuery<String>()
                         .get().responseBodyType(ExecutionEntity.class)
                         .path(executions_uri + "/" + id))
@@ -115,14 +115,14 @@ public class QueryProvider {
     }
 
     public Iterable GET_NonNumeric_ExId() {
-        return ()->Stream.of("/abvgdeyka", "/ABVGD")
+        return () -> Stream.of("/abvgdeyka", "/ABVGD")
                 .map(q -> new JHttpQuery<String>()
                         .get().responseBodyType(String.class).path(executions_uri + q))
                 .iterator();
     }
 
     public Iterable GET_NonExisting_ExId() {
-        return  ()->Stream.of(Integer.MAX_VALUE, Integer.MIN_VALUE)
+        return () -> Stream.of(Integer.MAX_VALUE, Integer.MIN_VALUE)
                 .map(q -> new JHttpQuery<String>()
                         .get().responseBodyType(String.class).path(executions_uri + "/" + q))
                 .iterator();
@@ -136,7 +136,7 @@ public class QueryProvider {
     }
 
     public Iterable GET_Deleted_Ex() {
-        return ()->Collections.singletonList(new JHttpQuery<String>()
+        return () -> Collections.singletonList(new JHttpQuery<String>()
                 .get().path(executions_uri + "/" + TestContext.getFirstRemovedExecution()))
                 .iterator();
     }

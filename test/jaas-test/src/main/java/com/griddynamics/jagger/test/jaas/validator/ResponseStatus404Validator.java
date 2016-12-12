@@ -13,5 +13,7 @@ public class ResponseStatus404Validator extends ResponseStatusValidator {
         return "ResponseStatus404Validator";
     }
 
-    protected int getExpectedStatusCode(){ return 404; }
+    protected int getExpectedStatusCode() {
+        return 404;
+    }
 }

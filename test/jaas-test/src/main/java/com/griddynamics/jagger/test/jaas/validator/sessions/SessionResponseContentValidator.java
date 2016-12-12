@@ -25,8 +25,8 @@ public class SessionResponseContentValidator extends SessionsListResponseContent
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result)  {
-        SessionEntity actualSession = (SessionEntity)result.getBody();
+    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
+        SessionEntity actualSession = (SessionEntity) result.getBody();
 
         String[] queryParts = query.getPath().split("/"); //Get SessionId from the query path.
         SessionEntity expectedSession = TestContext.getSession(queryParts[queryParts.length - 1]);
