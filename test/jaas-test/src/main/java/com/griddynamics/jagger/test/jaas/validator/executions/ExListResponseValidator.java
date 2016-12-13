@@ -1,6 +1,5 @@
 package com.griddynamics.jagger.test.jaas.validator.executions;
 
-
 import com.griddynamics.jagger.coordinator.NodeContext;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
@@ -16,7 +15,15 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ExListResponseValidator extends BaseHttpResponseValidator {
+/**
+ * Validates response of GET /executions
+ * Expected:
+ * - there are more then one record
+ * - there are no duplicates
+ * - there are all expected records
+ * - a randomly picked record is the same as corresponding expected one.
+ */
+public class ExListResponseValidator extends BaseHttpResponseValidator<ExecutionEntity[]> {
 
     public ExListResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -28,8 +35,8 @@ public class ExListResponseValidator extends BaseHttpResponseValidator {
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        List<ExecutionEntity> actualEntities = Arrays.asList((ExecutionEntity[]) result.getBody());
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<ExecutionEntity[]> result) {
+        List<ExecutionEntity> actualEntities = Arrays.asList(result.getBody());
         Set<Long> expectedIds = TestContext.getCreatedExecutionIds();
 
         int actlSize = actualEntities.size();

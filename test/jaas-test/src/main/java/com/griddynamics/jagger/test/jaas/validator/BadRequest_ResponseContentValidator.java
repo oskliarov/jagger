@@ -12,7 +12,7 @@ import junit.framework.Assert;
  * Expected:
  * - response entity contains some error explanation text.
  */
-public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidator {
+public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidator<String> {
 
     public BadRequest_ResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -24,8 +24,8 @@ public class BadRequest_ResponseContentValidator extends BaseHttpResponseValidat
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        String actualEntity = (String) result.getBody();
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<String> result) {
+        String actualEntity = result.getBody();
         Assert.assertTrue(actualEntity.contains("NumberFormatException"));
         return true;
     }

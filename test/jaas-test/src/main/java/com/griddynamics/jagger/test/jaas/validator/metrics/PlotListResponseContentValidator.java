@@ -24,7 +24,7 @@ import static junit.framework.Assert.assertTrue;
  * - the list's size is the same as the one's available via DataService;
  * - expected and actual sets are the same.
  */
-public class PlotListResponseContentValidator extends BaseHttpResponseValidator {
+public class PlotListResponseContentValidator extends BaseHttpResponseValidator<Map<MetricEntity, List<MetricPlotPointEntity>>> {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlotListResponseContentValidator.class);
 
     public PlotListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
@@ -37,8 +37,8 @@ public class PlotListResponseContentValidator extends BaseHttpResponseValidator 
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        Map<MetricEntity, List<MetricPlotPointEntity>> actualEntities = (Map<MetricEntity, List<MetricPlotPointEntity>>) result.getBody();
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<Map<MetricEntity, List<MetricPlotPointEntity>>> result) {
+        Map<MetricEntity, List<MetricPlotPointEntity>> actualEntities = result.getBody();
         if (actualEntities == null) {
             LOGGER.warn("There are no plot data.");
             return false;

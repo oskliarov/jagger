@@ -8,6 +8,10 @@ import com.griddynamics.jagger.test.jaas.util.TestContext;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 import org.springframework.http.HttpMethod;
 
+/**
+ * Perform POST and DELETE requests for executions.
+ * Manage list of available execution ids which used for validation and composing requests.
+ */
 public class ExecutionManipulateInvoker extends InvokerWithoutStatusCodeValidation {
     @Override
     public JHttpResponse invoke(JHttpQuery query, JHttpEndpoint endpoint) throws InvocationException {

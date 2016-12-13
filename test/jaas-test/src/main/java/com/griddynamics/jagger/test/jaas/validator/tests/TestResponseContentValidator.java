@@ -11,12 +11,11 @@ import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 import static junit.framework.Assert.assertNotNull;
 
 /**
- * [JFG-879]
  * Validates response of /sessions/{sessionId}/tests/{testName}.
  * Expected:
  * - actual record is the same as expected one.
  */
-public class TestResponseContentValidator extends BaseHttpResponseValidator {
+public class TestResponseContentValidator extends BaseHttpResponseValidator<TestEntity> {
 
     public TestResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -28,8 +27,8 @@ public class TestResponseContentValidator extends BaseHttpResponseValidator {
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        TestEntity actualEntity = (TestEntity) result.getBody();
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<TestEntity> result) {
+        TestEntity actualEntity = result.getBody();
         TestEntity expectedEntity = TestContext.getTestByName(getSessionIdFromQuery(query), getTestNameFromQuery(query));
 
         assertNotNull("Returned test entity is null.", actualEntity);

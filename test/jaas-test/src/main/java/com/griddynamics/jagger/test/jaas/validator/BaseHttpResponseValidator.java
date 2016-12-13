@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import static junit.framework.Assert.assertTrue;
 
-public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQuery, JHttpEndpoint, JHttpResponse> {
+public abstract class BaseHttpResponseValidator<T> extends ResponseValidator<JHttpQuery<String>, JHttpEndpoint, JHttpResponse<T>> {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseHttpResponseValidator.class);
 
     public BaseHttpResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
@@ -24,7 +24,7 @@ public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQ
     }
 
     @Override
-    public boolean validate(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result, long duration) {
+    public boolean validate(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<T> result, long duration) {
         boolean isValid;
 
         try {
@@ -49,5 +49,5 @@ public abstract class BaseHttpResponseValidator extends ResponseValidator<JHttpQ
      * Child classes shall provide own implementation of the method.
      * That allows to simplify functional checks.
      */
-    protected abstract boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result);
+    protected abstract boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<T> result);
 }

@@ -25,7 +25,7 @@ import static junit.framework.Assert.assertTrue;
  * - the list contains no duplicates;
  * - a randomly picked records is the same as corresponding expected one.
  */
-public class TestsListResponseContentValidator extends BaseHttpResponseValidator {
+public class TestsListResponseContentValidator extends BaseHttpResponseValidator<TestEntity[]> {
 
     public TestsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -37,8 +37,8 @@ public class TestsListResponseContentValidator extends BaseHttpResponseValidator
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        List<TestEntity> actualEntities = Arrays.asList((TestEntity[]) result.getBody());
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<TestEntity[]> result) {
+        List<TestEntity> actualEntities = Arrays.asList(result.getBody());
         String sessionId = getSessionIdFromQuery(query);
         Set<TestEntity> expectedEntities = TestContext.getTestsBySessionId(sessionId);
         int actlSize = actualEntities.size();
@@ -55,7 +55,6 @@ public class TestsListResponseContentValidator extends BaseHttpResponseValidator
 
     private String getSessionIdFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests => ${jaas.rest.root} + sessions + {sessionId} + tests
-        // TODO : re-factor
         String[] parts = query.getPath().split("/");
 
         return parts[parts.length - 2];

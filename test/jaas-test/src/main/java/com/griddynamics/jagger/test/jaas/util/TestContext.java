@@ -29,7 +29,7 @@ public class TestContext {
 
 
     /**
-     * DB Config Ids (Strings) which were created during test run.
+     * Execution Ids which were created during test run.
      */
     private Set<Long> createdExecutionsIds = new HashSet<>();
     private Long firstRemovedExecution;

@@ -7,6 +7,10 @@ import com.griddynamics.jagger.invoker.v2.SpringBasedHttpClient;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Invoker without checking result codes.
+ * I.e. if request returns 4xx or 5xx this invoker doesn't throw exception unlike DefaultHttpInvoker
+ */
 public class InvokerWithoutStatusCodeValidation extends DefaultHttpInvoker {
     public InvokerWithoutStatusCodeValidation() {
         super();

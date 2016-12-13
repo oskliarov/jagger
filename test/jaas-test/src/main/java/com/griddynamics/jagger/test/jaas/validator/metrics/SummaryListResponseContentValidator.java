@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertTrue;
  * - the list's size is the same as the one's available via DataService;
  * - expected and actual sets are the same.
  */
-public class SummaryListResponseContentValidator extends BaseHttpResponseValidator {
+public class SummaryListResponseContentValidator extends BaseHttpResponseValidator<Map<MetricEntity, MetricSummaryValueEntity>> {
 
     public SummaryListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -33,8 +33,8 @@ public class SummaryListResponseContentValidator extends BaseHttpResponseValidat
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        Map<MetricEntity, MetricSummaryValueEntity> actualEntities = (Map<MetricEntity, MetricSummaryValueEntity>) result.getBody();
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<Map<MetricEntity, MetricSummaryValueEntity>> result) {
+        Map<MetricEntity, MetricSummaryValueEntity> actualEntities = result.getBody();
 
         Map<MetricEntity, MetricSummaryValueEntity> expectedEntities = TestContext.getMetricSummaries();
         int actlSize = actualEntities.size();

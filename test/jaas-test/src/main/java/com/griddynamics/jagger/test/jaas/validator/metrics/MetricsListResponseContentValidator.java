@@ -26,7 +26,7 @@ import static junit.framework.Assert.assertTrue;
  * - the list contains no duplicates;
  * - expected and actual sets are the same.
  */
-public class MetricsListResponseContentValidator extends BaseHttpResponseValidator {
+public class MetricsListResponseContentValidator extends BaseHttpResponseValidator<MetricEntity[]> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MetricsListResponseContentValidator.class);
 
     public MetricsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
@@ -39,8 +39,8 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        List<MetricEntity> actualEntities = Arrays.asList((MetricEntity[]) result.getBody());
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<MetricEntity[]> result) {
+        List<MetricEntity> actualEntities = Arrays.asList(result.getBody());
 
         String sessionId = getSessionIdFromQuery(query);
         Set<MetricEntity> expectedEntities = TestContext.getMetricsBySessionIdAndTestName(sessionId, getTestNameFromQuery(query));
@@ -59,7 +59,6 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
 
     private String getSessionIdFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName}/metrics => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName} + metrics
-        // TODO : re-factor
         String[] parts = query.getPath().split("/");
 
         return parts[parts.length - 4];
@@ -67,7 +66,6 @@ public class MetricsListResponseContentValidator extends BaseHttpResponseValidat
 
     private String getTestNameFromQuery(JHttpQuery query) {
         // ${jaas.rest.root}/sessions/{sessionId}/tests/{testName}/metrics => ${jaas.rest.root} + sessions + {sessionId} + tests + {testName} + metrics
-        // TODO : re-factor
         String[] parts = query.getPath().split("/");
 
         return parts[parts.length - 2];

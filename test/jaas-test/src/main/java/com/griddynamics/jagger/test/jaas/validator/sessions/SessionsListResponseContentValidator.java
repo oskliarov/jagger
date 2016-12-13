@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * - the list contains no duplicates;
  * - a randomly picked record is the same as corresponding expected one.
  */
-public class SessionsListResponseContentValidator extends BaseHttpResponseValidator {
+public class SessionsListResponseContentValidator extends BaseHttpResponseValidator<SessionEntity[]> {
 
     public SessionsListResponseContentValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
@@ -34,8 +34,8 @@ public class SessionsListResponseContentValidator extends BaseHttpResponseValida
     }
 
     @Override
-    public boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        List<SessionEntity> actualSessions = Arrays.asList((SessionEntity[]) result.getBody());
+    public boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<SessionEntity[]> result) {
+        List<SessionEntity> actualSessions = Arrays.asList(result.getBody());
         int actlSize = actualSessions.size();
         int expctdSize = TestContext.getSessions().size();
         Assert.assertTrue("Several session records are expected. Check returned list's size", 1 < actlSize);

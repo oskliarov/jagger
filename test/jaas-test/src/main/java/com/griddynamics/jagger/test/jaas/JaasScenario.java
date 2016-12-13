@@ -64,7 +64,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
         JParallelTestsGroup tg_JaaS_GET_Metric_Summaries = getSingleTestWithResponseCode200("t_JaaS_GET_Metric_Summary_List_SR_eq",
                 queryProvider.GET_MetricSummary(), SummaryListResponseContentValidator.class);
 
-        JParallelTestsGroup td_JaaS_MetricPlotList = getSingleTestWithResponseCode200("t_JaaS_GET_Metric_Plot_List_SR_eq._1.0",
+        JParallelTestsGroup tg_JaaS_MetricPlotList = getSingleTestWithResponseCode200("t_JaaS_GET_Metric_Plot_List_SR_eq._1.0",
                 queryProvider.GET_MetricPlotData(), PlotListResponseContentValidator.class);
 
         return Stream.of(
@@ -72,7 +72,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 tg_JaaS_GET_Tests,
                 tg_JaaS_GET_Metrics,
                 tg_JaaS_GET_Metric_Summaries,
-                td_JaaS_MetricPlotList
+                tg_JaaS_MetricPlotList
         );
     }
 

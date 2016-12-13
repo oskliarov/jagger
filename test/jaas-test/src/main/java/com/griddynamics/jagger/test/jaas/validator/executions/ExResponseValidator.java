@@ -7,15 +7,19 @@ import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 import com.griddynamics.jagger.test.jaas.util.entity.ExecutionEntity;
 import com.griddynamics.jagger.test.jaas.validator.BaseHttpResponseValidator;
 
-
-public class ExResponseValidator extends BaseHttpResponseValidator {
+/**
+ * Validates response of GET /executions/{testExecutionId}
+ * Expected:
+ * - actual execution record is the same as expected one
+ */
+public class ExResponseValidator extends BaseHttpResponseValidator<ExecutionEntity> {
     public ExResponseValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
     }
 
     @Override
-    protected boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
-        ExecutionEntity actual = (ExecutionEntity) result.getBody();
+    protected boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<ExecutionEntity> result) {
+        ExecutionEntity actual = result.getBody();
 
         String[] parts = query.getPath().split("/");
         ExecutionEntity expected = ExecutionEntity.getDefault();

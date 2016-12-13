@@ -5,7 +5,7 @@ import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.invoker.v2.JHttpQuery;
 import com.griddynamics.jagger.invoker.v2.JHttpResponse;
 
-public class ResponseStatusValidator extends BaseHttpResponseValidator {
+public class ResponseStatusValidator extends BaseHttpResponseValidator<String> {
     public ResponseStatusValidator(String taskId, String sessionId, NodeContext kernelContext) {
         super(taskId, sessionId, kernelContext);
     }
@@ -40,7 +40,7 @@ public class ResponseStatusValidator extends BaseHttpResponseValidator {
     }
 
     @Override
-    protected boolean isValid(JHttpQuery query, JHttpEndpoint endpoint, JHttpResponse result) {
+    protected boolean isValid(JHttpQuery<String> query, JHttpEndpoint endpoint, JHttpResponse<String> result) {
         return false; //Just a place-holder to re-use the base class.
     }
 
