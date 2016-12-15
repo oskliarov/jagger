@@ -20,7 +20,14 @@
 
 package com.griddynamics.jagger.util;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Class is used in chassis, web UI server and web UI client
@@ -37,26 +44,86 @@ public class StandardMetricsNamesUtil {
     public static final String SUCCESS_RATE = "Success rate";
     public static final String DURATION_SEC = "Duration, sec";
     public static final String TIME_LATENCY_PERCENTILE = "Time Latency Percentile";
-    public static final String FAIL_COUNT = "Number of failures";
+    public static final String VIRTUAL_USERS = "Virtual users";
+
+    // aggregators ids
+    public static final String SUCCESS_RATE_AGGREGATOR_OK_ID = "Success rate";
+    public static final String SUCCESS_RATE_AGGREGATOR_FAILED_ID = "Number of fails";
 
     //begin: following section is used for docu generation - standard metrics ids
     public static final String THROUGHPUT_ID = "throughput";
     public static final String LATENCY_ID = "avgLatency";
     public static final String LATENCY_STD_DEV_ID = "stdDevLatency";
-    public static final String FAIL_COUNT_ID = "failureCount";
     public static final String SUCCESS_RATE_ID = "successRate";
+    public static final String SUCCESS_RATE_OK_ID = "successRate-Success rate";
+    public static final String SUCCESS_RATE_FAILED_ID = "successRate-Number of fails";
     public static final String DURATION_ID = "duration";
     public static final String ITERATION_SAMPLES_ID = "samples";
+
+    public static final String VIRTUAL_USERS_ID = "Jagger.Threads";
+
     //end: following section is used for docu generation - standard metrics ids
 
     // ids for standard metrics saved with old model (in WorkloadTaskData, TimeLatencyPercentile, etc)
     public static final String THROUGHPUT_OLD_ID = "throughput-old";
     public static final String LATENCY_OLD_ID = "avgLatency-old";
     public static final String LATENCY_STD_DEV_OLD_ID = "stdDevLatency-old";
-    public static final String FAIL_COUNT_OLD_ID = "failureCount-old";
-    public static final String SUCCESS_RATE_OLD_ID = "successRate-old";
     public static final String DURATION_OLD_ID = "duration-old";
     public static final String ITERATION_SAMPLES_OLD_ID = "samples-old";
+
+
+
+    // standard monitoring metric names
+    public static final String MON_CPULA_1 = "mon_cpula_1";
+    public static final String MON_CPULA_5 = "mon_cpula_5";
+    public static final String MON_CPULA_15 = "mon_cpula_15";
+
+    public static final String MON_GC_MINOR_TIME = "mon_gc_minor_time";
+    public static final String MON_GC_MAJOR_TIME = "mon_gc_major_time";
+    public static final String MON_GC_MINOR_UNIT = "mon_gc_minor_unit";
+    public static final String MON_GC_MAJOR_UNIT = "mon_gc_major_unit";
+
+    public static final String MON_MEM_RAM = "mon_mem_ram";
+    public static final String MON_MEM_TOTAL = "mon_mem_total";
+    public static final String MON_MEM_USED = "mon_mem_used";
+    public static final String MON_MEM_ACTUAL_USED = "mon_mem_actual_used";
+    public static final String MON_MEM_FREE_PRCNT = "mon_mem_free_prcnt";
+    public static final String MON_MEM_ACTUAL_FREE = "mon_mem_actual_free";
+    public static final String MON_MEM_FREE = "mon_mem_free";
+
+    public static final String MON_TCP_EST = "mon_tcp_est";
+    public static final String MON_TCP_LISTEN = "mon_tcp_listen";
+    public static final String MON_SYNC_RECEIVED = "mon_sync_received";
+    public static final String MON_INBOUND_TOTAL = "mon_inbound_total";
+    public static final String MON_OUTBOUND_TOTAL = "mon_outbound_total";
+
+    public static final String MON_DISK_READ_BYTES = "mon_disk_read_bytes";
+    public static final String MON_DISK_WRITE_BYTES = "mon_disk_write_bytes";
+
+    public static final String MON_DISK_SERVICE_TIME = "mon_disk_service_time";
+    public static final String MON_DISK_QUEUE_SIZE_TOTAL = "mon_disk_queue_size_total";
+
+    public static final String MON_CPU_USER = "mon_cpu_user";
+    public static final String MON_CPU_SYS_PRCNT = "mon_cpu_sys_prcnt";
+    public static final String MON_CPU_IDLE_PRCNT = "mon_cpu_idle_prcnt";
+    public static final String MON_CPU_WAIT = "mon_cpu_wait";
+    public static final String MON_CPU_COMBINED = "mon_cpu_combined";
+
+    public static final String MON_HEAP_INIT = "mon_heap_init";
+    public static final String MON_HEAP_USED = "mon_heap_used";
+    public static final String MON_HEAP_COMMITTED = "mon_heap_committed";
+    public static final String MON_HEAP_MAX = "mon_heap_max";
+
+    public static final String MON_NONHEAP_INIT = "mon_nonheap_init";
+    public static final String MON_NONHEAP_USED = "mon_nonheap_used";
+    public static final String MON_NONHEAP_COMMITTED = "mon_nonheap_committed";
+    public static final String MON_NONHEAP_MAX = "mon_nonheap_max";
+
+    public static final String MON_THREAD_COUNT = "mon_thread_count";
+    public static final String MON_THREAD_PEAK_COUNT = "mon_thread_peak_count";
+
+    public static final String MON_FILE_DESCRIPTORS = "mon_file_descriptors";
+
 
     public static String getLatencyMetricName(double latencyKey, boolean isOldModel) {
         if (isOldModel) {
@@ -120,8 +187,6 @@ public class StandardMetricsNamesUtil {
         synonyms.put(THROUGHPUT_OLD_ID, Arrays.asList(THROUGHPUT_ID, THROUGHPUT));
         synonyms.put(LATENCY_OLD_ID, Arrays.asList(LATENCY_ID, LATENCY));
         synonyms.put(LATENCY_STD_DEV_OLD_ID, Arrays.asList(LATENCY_STD_DEV_ID));
-        synonyms.put(FAIL_COUNT_OLD_ID, Arrays.asList(FAIL_COUNT_ID));
-        synonyms.put(SUCCESS_RATE_OLD_ID, Arrays.asList(SUCCESS_RATE_ID, SUCCESS_RATE));
         synonyms.put(DURATION_OLD_ID, Arrays.asList(DURATION_ID, "Duration"));
         synonyms.put(ITERATION_SAMPLES_OLD_ID, Arrays.asList(ITERATION_SAMPLES_ID, "Iterations"));
 
@@ -129,8 +194,6 @@ public class StandardMetricsNamesUtil {
         synonyms.put(THROUGHPUT_ID, Arrays.asList(THROUGHPUT_OLD_ID, THROUGHPUT));
         synonyms.put(LATENCY_ID, Arrays.asList(LATENCY_OLD_ID, LATENCY));
         synonyms.put(LATENCY_STD_DEV_ID, Arrays.asList(LATENCY_STD_DEV_OLD_ID));
-        synonyms.put(FAIL_COUNT_ID, Arrays.asList(FAIL_COUNT_OLD_ID));
-        synonyms.put(SUCCESS_RATE_ID, Arrays.asList(SUCCESS_RATE_OLD_ID, SUCCESS_RATE));
         synonyms.put(DURATION_ID, Arrays.asList(DURATION_OLD_ID, "Duration"));
         synonyms.put(ITERATION_SAMPLES_ID, Arrays.asList(ITERATION_SAMPLES_OLD_ID, "Iterations"));
     }
