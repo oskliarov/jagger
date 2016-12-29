@@ -143,7 +143,7 @@ public class InvocationsLoadTests extends LoadTestsDefinition {
 
         return test("Invocation with delays between invocations",
                 invocationLoad(targetInvCount, threadsCount)
-                        .withDelayBetweenInvocationsInSeconds(delayBetweenInvocations).build(),
+                        .withDelayBetweenInvocationsInMilliseconds(delayBetweenInvocations).build(),
                 iterTermination(targetInvCount),
                 SUCCESS_LIMIT, LATENCY_LIMIT,
                 exactValueLimit(JMetricName.PERF_ITERATION_SAMPLES, targetInvCount),
