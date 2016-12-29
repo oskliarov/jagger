@@ -17,6 +17,8 @@ public class RpsLoadTests extends LoadTestsDefinition{
     private final int sleepDelay;
     private final int testDuration;
     private final int rps;
+    private final JLimit LATENCY_LIMIT;
+    private final JLimit DURATION_LIMIT;
 
     public RpsLoadTests(JaggerPropertiesProvider provider) {
         super(provider);
@@ -24,6 +26,8 @@ public class RpsLoadTests extends LoadTestsDefinition{
         testDuration = provider.getIntPropertyValue("rps.test.duration");
         rps = provider.getIntPropertyValue("rps.test.rps");
         latency = (sleepDelay + provider.getIntPropertyValue("test.env.latency"))/1000.0;
+        LATENCY_LIMIT = deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1);
+        DURATION_LIMIT = deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1);
     }
 
 
@@ -40,12 +44,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
         return test("simple rps Load terminated by duration",
                 rpsLoad(rps).build(),
                 durationTermination(testDuration),
-                deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_THROUGHPUT, rps, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                 userLimit(expectedUsersCount),
-                SUCCESS_LIMIT);
+                LATENCY_LIMIT, DURATION_LIMIT, SUCCESS_LIMIT);
     }
 
     /**
@@ -61,12 +63,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
         return test("simple rps Load terminated by iterations",
                 rpsLoad(rps).build(),
                 iterTermination(iterationsCount),
-                deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_THROUGHPUT, rps, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, iterationsCount, 0.05, 0.1),
                 userLimit(expectedUsersCount),
-                SUCCESS_LIMIT);
+                LATENCY_LIMIT, DURATION_LIMIT, SUCCESS_LIMIT);
     }
 
     /**
@@ -85,12 +85,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
                 rpsLoad(requestedRps)
                         .withMaxLoadThreads(threadsCount).build(),
                 durationTermination(testDuration),
-                deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_THROUGHPUT, expectedRps, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterationsCount, 0.05, 0.1),
                 userLimit(threadsCount),
-                SUCCESS_LIMIT);
+                LATENCY_LIMIT, DURATION_LIMIT, SUCCESS_LIMIT);
     }
 
     /**
@@ -110,12 +108,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
                 rpsLoad(rps)
                         .withWarmUpTimeInSeconds(warmUp*1000).build(), //TODO *1000 remove after JFG-1093
                 durationTermination(testDuration),
-                deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_THROUGHPUT, expectedRps, 0.05, 0.1),
                 deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                 userLimit(expectedUsersCount),
-                SUCCESS_LIMIT);
+                LATENCY_LIMIT, DURATION_LIMIT, SUCCESS_LIMIT);
     }
 
     /**
@@ -123,7 +119,7 @@ public class RpsLoadTests extends LoadTestsDefinition{
      */
     public JLoadTest testRpsBalancingPulse(){
         int maxDelay = sleepDelay * 2;
-        int period = 2300;
+        int period = testDuration;
         double expectedUsersCount = rps * latency;
         double expectedIterations = rps * testDuration;
 
@@ -132,12 +128,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
                 rpsLoad(rps).build(),
                 durationTermination(testDuration))
                 .withLimits(
-                        deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_THROUGHPUT, rps, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         userLimit(expectedUsersCount),
-                        SUCCESS_LIMIT).build();
+                        LATENCY_LIMIT, DURATION_LIMIT, SUCCESS_LIMIT).build();
     }
 
     /**
@@ -157,11 +151,10 @@ public class RpsLoadTests extends LoadTestsDefinition{
                 durationTermination(testDuration))
                 .withLimits(
                         deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_THROUGHPUT, rps, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         userLimit(expectedUsersCount),
-                        SUCCESS_LIMIT).build();
+                        DURATION_LIMIT, SUCCESS_LIMIT).build();
     }
 
 

@@ -88,18 +88,16 @@ public class LoadTestsDefinition {
     }
 
     /**
-     * Short from to crate {@link JTerminationCriteriaIterations}
+     * Short form to create {@link JTerminationCriteriaIterations}
      */
     protected JTerminationCriteria iterTermination(long count){
         return JTerminationCriteriaIterations.of(IterationsNumber.of(count), defaultMaxDuration);
     }
 
     /**
-     * Short from to crate {@link JTerminationCriteriaDuration}
+     * Short form to create {@link JTerminationCriteriaDuration}
      */
     protected JTerminationCriteria durationTermination(long duration){
         return JTerminationCriteriaDuration.of(DurationInSeconds.of(duration));
     }
-
-
 }

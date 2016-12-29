@@ -1,8 +1,10 @@
 package com.griddynamics.jagger.test.javabuilders.load;
 
 import com.griddynamics.jagger.test.javabuilders.utils.JaggerPropertiesProvider;
+import com.griddynamics.jagger.test.javabuilders.utils.LoadDurationMetric;
 import com.griddynamics.jagger.user.test.configurations.JLoadTest;
 import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
+import com.griddynamics.jagger.user.test.configurations.limits.JLimit;
 import com.griddynamics.jagger.user.test.configurations.limits.auxiliary.JMetricName;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
@@ -12,12 +14,16 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
     private final Integer sleepDelay;
     private final double latency;
     private final Integer testDuration;
+    private final JLimit DURATION_LIMIT;
+    private JLimit LATENCY_LIMIT;
 
     public UserGroupsLoadTests(JaggerPropertiesProvider provider) {
         super(provider);
         sleepDelay = provider.getIntPropertyValue("group.sleep.delay");
         latency = (sleepDelay + provider.getIntPropertyValue("test.env.latency")) / 1000.0;
         testDuration = provider.getIntPropertyValue("group.test.duration");
+        LATENCY_LIMIT = deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1);
+        DURATION_LIMIT = deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1);
     }
 
     /**
@@ -56,16 +62,15 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
      */
     public JLoadTest userGroupWithDelay() {
         int delay = testDuration / 6;
+        int loadDuration = testDuration - delay;
         JLoadProfileUsers u = JLoadProfileUsers.builder(NumberOfUsers.of(5))
                 .withStartDelayInSeconds(delay).build();
-        double possibleRps = 5.0 / latency;
 
-        double expectedIterations = possibleRps * (testDuration - delay);
-        double expectedRps = expectedIterations / testDuration;
-        double expectedUsers = 5.0 * (testDuration - delay) / testDuration;
+        double expectedRps = 5.0 / latency;
+        double expectedIterations = expectedRps * loadDuration;
+        double expectedUsers = 5.0 * loadDuration / testDuration;
 
-        // TODO add limit for load duration = testDuration - delay
-        return oneUserTest("userGroupWithDelay", u, expectedIterations, expectedRps, expectedUsers);
+        return oneUserTest("userGroupWithDelay", u, expectedIterations, expectedRps, expectedUsers, loadDuration);
     }
 
     /**
@@ -75,14 +80,12 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
         int lifeTime = testDuration / 2;
         JLoadProfileUsers u = JLoadProfileUsers.builder(NumberOfUsers.of(2))
                 .withLifeTimeInSeconds(lifeTime).build();
-        double possibleRps = 2.0 / latency;
+        double expectedRps = 2.0 / latency;
 
-        double expectedIterations = possibleRps * lifeTime;
-        double expectedRps = expectedIterations / testDuration;
+        double expectedIterations = expectedRps * lifeTime;
         double expectedUsers = 1;
 
-        // TODO add limit for load duration = lifeTime
-        return oneUserTest("userGroupWithLifeTimeLessTestDuration", u, expectedIterations, expectedRps, expectedUsers);
+        return oneUserTest("userGroupWithLifeTimeLessTestDuration", u, expectedIterations, expectedRps, expectedUsers, lifeTime);
     }
 
     /**
@@ -155,12 +158,10 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
                 sleepTestDefinition(sleepDelay),
                 load, durationTermination(testDuration))
                 .withLimits(
-                        deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_THROUGHPUT, expectedRps, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_VIRTUAL_USERS, 1, 0.05, 0.1),
-                        SUCCESS_LIMIT).build();
+                        DURATION_LIMIT, SUCCESS_LIMIT, LATENCY_LIMIT).build();
     }
 
     /**
@@ -178,12 +179,10 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
                 JLoadProfileUserGroups.builder(u1, u2).build(),
                 durationTermination(testDuration))
                 .withLimits(
-                        deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_THROUGHPUT, expectedRps, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_VIRTUAL_USERS, 5, 0.05, 0.1),
-                        SUCCESS_LIMIT).build();
+                        DURATION_LIMIT, SUCCESS_LIMIT, LATENCY_LIMIT).build();
     }
 
     /**
@@ -223,23 +222,26 @@ public class UserGroupsLoadTests extends LoadTestsDefinition {
                 JLoadProfileUserGroups.builder(u1, u2, u3, u4).build(),
                 durationTermination(testDuration))
                 .withLimits(
-                        deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_VIRTUAL_USERS, expectedAvgUsers, 0.05, 0.1),
-                        SUCCESS_LIMIT).build();
+                        DURATION_LIMIT, SUCCESS_LIMIT, LATENCY_LIMIT).build();
     }
 
-    private JLoadTest oneUserTest(String id, JLoadProfileUsers u, double expectedIterations, double expectedRps, double expectedUsers) {
+    private JLoadTest oneUserTest(String id, JLoadProfileUsers u, double expectedIterations, double expectedRps,
+                                  double expectedUsers, double expectedLoadDuration) {
         return JLoadTest.builder(Id.of(id), sleepTestDefinition(sleepDelay), JLoadProfileUserGroups.builder(u).build(),
                 durationTermination(testDuration))
                 .withLimits(
-                        deviationLimit(JMetricName.PERF_AVG_LATENCY, latency, 0.05, 0.1),
-                        deviationLimit(JMetricName.PERF_DURATION, testDuration, 0.05, 0.1),
+                        deviationLimit(LoadDurationMetric.NAME, expectedLoadDuration, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_THROUGHPUT, expectedRps, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_ITERATION_SAMPLES, expectedIterations, 0.05, 0.1),
                         deviationLimit(JMetricName.PERF_VIRTUAL_USERS, expectedUsers, 0.05, 0.1),
-                        SUCCESS_LIMIT).build();
+                        DURATION_LIMIT, SUCCESS_LIMIT, LATENCY_LIMIT).build();
+    }
+
+    private JLoadTest oneUserTest(String id, JLoadProfileUsers u, double expectedIterations, double expectedRps,
+                                  double expectedUsers){
+        return oneUserTest(id, u,expectedIterations,expectedRps, expectedUsers, testDuration);
     }
 
 }
