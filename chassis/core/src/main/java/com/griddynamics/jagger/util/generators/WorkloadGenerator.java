@@ -3,15 +3,18 @@ package com.griddynamics.jagger.util.generators;
 import com.griddynamics.jagger.engine.e1.scenario.ExactInvocationsClockConfiguration;
 import com.griddynamics.jagger.engine.e1.scenario.FixedDelay;
 import com.griddynamics.jagger.engine.e1.scenario.QpsClockConfiguration;
+import com.griddynamics.jagger.engine.e1.scenario.TpsClockConfiguration;
 import com.griddynamics.jagger.engine.e1.scenario.UserGroupsClockConfiguration;
 import com.griddynamics.jagger.engine.e1.scenario.WorkloadClockConfiguration;
 import com.griddynamics.jagger.user.ProcessingConfig.Test.Task.User;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfile;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileInvocation;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileRps;
+import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileTps;
 import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUserGroups;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,6 +33,8 @@ class WorkloadGenerator {
             clockConfiguration = generateUserGroup((JLoadProfileUserGroups) jLoadProfile);
         } else if (jLoadProfile instanceof JLoadProfileInvocation) {
             clockConfiguration = generateInvocation((JLoadProfileInvocation) jLoadProfile);
+        } else if (jLoadProfile instanceof JLoadProfileTps) {
+            clockConfiguration = generateTps((JLoadProfileTps) jLoadProfile);
         }
         return clockConfiguration;
     }
@@ -38,10 +43,19 @@ class WorkloadGenerator {
     private static WorkloadClockConfiguration generateRps(JLoadProfileRps jLoadProfile) {
         QpsClockConfiguration qpsClockConfiguration = new QpsClockConfiguration();
         qpsClockConfiguration.setValue(jLoadProfile.getRequestsPerSecond());
-        qpsClockConfiguration.setWarmUpTime(jLoadProfile.getWarmUpTimeInSeconds());
+        qpsClockConfiguration.setWarmUpTime(jLoadProfile.getWarmUpTimeInMilliseconds());
         qpsClockConfiguration.setMaxThreadNumber((int) jLoadProfile.getMaxLoadThreads());
         qpsClockConfiguration.setTickInterval(jLoadProfile.getTickInterval());
         return qpsClockConfiguration;
+    }
+
+    private static WorkloadClockConfiguration generateTps(JLoadProfileTps jLoadProfile) {
+        TpsClockConfiguration tpsClockConfiguration = new TpsClockConfiguration();
+        tpsClockConfiguration.setValue(jLoadProfile.getTransactionsPerSecond());
+        tpsClockConfiguration.setWarmUpTime(jLoadProfile.getWarmUpTimeInMilliseconds());
+        tpsClockConfiguration.setMaxThreadNumber((int) jLoadProfile.getMaxLoadThreads());
+        tpsClockConfiguration.setTickInterval(jLoadProfile.getTickInterval());
+        return tpsClockConfiguration;
     }
 
     private static WorkloadClockConfiguration generateUserGroup(JLoadProfileUserGroups jLoadProfile) {
@@ -52,6 +66,7 @@ class WorkloadGenerator {
 
         UserGroupsClockConfiguration userGroupsClockConfiguration = new UserGroupsClockConfiguration();
         userGroupsClockConfiguration.setUsers(users);
+        userGroupsClockConfiguration.setShutdown(new AtomicBoolean());
         userGroupsClockConfiguration.setDelay(new FixedDelay(jLoadProfile.getDelayBetweenInvocationsInMilliseconds()));
         userGroupsClockConfiguration.setTickInterval(jLoadProfile.getTickInterval());
         return userGroupsClockConfiguration;
