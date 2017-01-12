@@ -1,18 +1,17 @@
 package com.griddynamics.jagger.user.test.configurations;
 
+import com.google.common.collect.Lists;
 import com.griddynamics.jagger.engine.e1.Provider;
 import com.griddynamics.jagger.engine.e1.collector.ResponseValidatorProvider;
 import com.griddynamics.jagger.engine.e1.collector.invocation.InvocationListener;
 import com.griddynamics.jagger.invoker.Invoker;
 import com.griddynamics.jagger.invoker.QueryPoolLoadBalancer;
+import com.griddynamics.jagger.invoker.RandomLoadBalancer;
 import com.griddynamics.jagger.invoker.RoundRobinLoadBalancer;
 import com.griddynamics.jagger.invoker.RoundRobinPairSupplierFactory;
-import com.griddynamics.jagger.invoker.SimpleCircularLoadBalancer;
 import com.griddynamics.jagger.invoker.v2.DefaultHttpInvoker;
 import com.griddynamics.jagger.invoker.v2.DefaultInvokerProvider;
 import com.griddynamics.jagger.user.test.configurations.auxiliary.Id;
-
-import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -21,8 +20,9 @@ import java.util.List;
  * @n
  * @par Details:
  * @details Test definition is the base component of the @ref section_writing_test_load_scenario "load test description". With the help of the internal Builder class it allows to setup: @n
- * @li source of the endpointsProvider (where to apply load)
+ * @li source of the endpoints (where to apply load)
  * @li source of queries (what parameters of the load to set)
+ * @li how to pair endpoints ans queries (one by one, round robin, random, unique, etc)
  * @li what protocol to use for the communication with the system under test (SUT)
  * @li how to validate SUT responses
  * @li what additional user defined actions to execute during communication with SUT
@@ -84,8 +84,9 @@ public class JTestDefinition {
         private Builder(Id id, Iterable endpointsProvider) {
             this.id = id;
             this.endpointsProvider = endpointsProvider;
-            this.loadBalancer = new SimpleCircularLoadBalancer() {{
+            this.loadBalancer = new RandomLoadBalancer() {{
                 setPairSupplierFactory(new RoundRobinPairSupplierFactory());
+                setRandomSeed(31);
             }};
         }
 
@@ -111,8 +112,10 @@ public class JTestDefinition {
         }
 
         /**
-         * Optional: Sets load balancer (subtypes of {@link QueryPoolLoadBalancer}).
+         * Optional: Sets load balancer aka distributor (how to pair endpoints and queries) (subtypes of {@link QueryPoolLoadBalancer}).
          * Default is {@link RoundRobinLoadBalancer}
+         *
+         * Available implementations: @ref Main_Distributors_group
          *
          * @param loadBalancer load balancer.
          */
