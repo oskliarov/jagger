@@ -4,7 +4,6 @@ import com.griddynamics.jagger.engine.e1.collector.DefaultResponseValidatorProvi
 import com.griddynamics.jagger.engine.e1.collector.JHttpResponseStatusValidatorProvider;
 import com.griddynamics.jagger.engine.e1.collector.NotNullResponseValidator;
 import com.griddynamics.jagger.engine.e1.collector.ResponseValidatorProvider;
-import com.griddynamics.jagger.invoker.OneByOneLoadBalancer;
 import com.griddynamics.jagger.invoker.v2.DefaultInvokerProvider;
 import com.griddynamics.jagger.invoker.v2.JHttpEndpoint;
 import com.griddynamics.jagger.test.jaas.invoker.ExecutionManipulateInvoker;
@@ -37,6 +36,7 @@ import com.griddynamics.jagger.user.test.configurations.load.JLoadProfileUsers;
 import com.griddynamics.jagger.user.test.configurations.load.auxiliary.InvocationCount;
 import com.griddynamics.jagger.user.test.configurations.load.auxiliary.NumberOfUsers;
 import com.griddynamics.jagger.user.test.configurations.load.auxiliary.ThreadCount;
+import com.griddynamics.jagger.user.test.configurations.loadbalancer.JLoadBalancer;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteria;
 import com.griddynamics.jagger.user.test.configurations.termination.JTerminationCriteriaIterations;
 import com.griddynamics.jagger.user.test.configurations.termination.auxiliary.IterationsNumber;
@@ -183,7 +183,7 @@ public class JaasScenario extends JaggerPropertiesProvider {
                 .withQueryProvider(queryProvider)
                 .withInvoker(DefaultInvokerProvider.of(ExecutionManipulateInvoker.class))
                 .addValidators(validators)
-                .withLoadBalancer(new OneByOneLoadBalancer())
+                .withLoadBalancer(JLoadBalancer.builder(JLoadBalancer.DefaultLoadBalancer.ONE_BY_ONE).build())
                 .build();
 
         return JLoadTest.builder(Id.of(id), definition, standardGroupLoad, standardTermination)
